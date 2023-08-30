@@ -1,44 +1,45 @@
-# YouTube Summary with ChatGPT
+# YouTube AI Translator
 
-YouTube Summary with ChatGPT is a simple Chrome Extension (manifest v3) that allows you to get both YouTube video transcripts and summary of the video with OpenAI's ChatGPT AI technology. Chrome Extension is available on [Chrome Web Store](https://chrome.google.com/webstore/detail/chatgpt-youtube-summary/nmmicjeknamkfloonkhhcjmomieiodli).
+YouTube AI Translator 是一个简单的 Chrome 扩展 (manifest v3)，它使用 OpenAI 的 ChatGPT AI 技术，让你能够获取 YouTube 视频的语音转换中英文文本，并对陌生单词进行标注解释的英文学习助手。
 
-## How to Install
+## 如何安装
 
-To install this extension, follow these steps:
+要安装这个扩展，请按照以下步骤进行操作：
 
-1. Download the code on GitHub.
-2. Unzip the downloaded file.
-3. Open the code in your favorite IDE like VS Code.
-4. Run `npm install` in terminal
+1. 在 GitHub 上下载源代码。
+2. 解压下载的文件。
+3. 在你喜欢的 IDE（如 VS Code）中打开代码。
+4. 在终端中运行 `npm install`。
 ```
 npm install
 ```
-5. Run `npm run build` or `npm run build-release` to run webpack to generate **dist** folder.
+5. 运行 `npm run build` 或 `npm run build-release` 来运行 webpack 以生成 **dist** 文件夹。
 ```
 npm run build
-# or
+# 或者
 npm run build-release
 ```
-6. In case of Google Chrome, open the Extensions page (chrome://extensions/).
-7. Turn on Developer mode by clicking the toggle switch in the top right corner of the page.
-8. Click the `Load unpacked` button and select the **dist** directory.
-9. YouTube Summary with ChatGPT extension should be installed and active!
+6. 对于 Google Chrome 浏览器，打开扩展页面（chrome://extensions/）。
+7. 在页面右上角点击切换开发者模式的开关。
+8. 点击 `Load unpacked` 按钮，选择 **dist** 目录。
+9. YouTube Summary with ChatGPT 扩展应该已经成功安装并且处于活动状态！
 
-## How to Use
+## 如何使用
 
-To use YouTube Summary with ChatGPT extension, follow these steps (or [watch this video](https://www.youtube.com/watch?v=pNxsdLif2cs)):
+要使用 YouTube Summary with ChatGPT 扩展，按照以下步骤进行操作（或者 [观看此视频](https://www.youtube.com/watch?v=pNxsdLif2cs)）：
 
-1. Go to any YouTube videos.
-2. Click the small box on the right top that says `Transcript & Summary`.
-3. Click `View AI Summary` button (It automatically copies the prompt for you and opens the ChatGPT page!)
-4. Hit `Cmd + V` if you use Mac
-5. You'll see a magic!
+1. 转到任何 YouTube 视频页面。
+2. 点击右上角的小框，上面写着 `Transcript & Summary`。
+3. 点击 `View AI Summary` 按钮（它会自动复制提示并打开 ChatGPT 页面！）。
+4. 如果你使用 Mac，按下 `Cmd + V`。
+5. 你将会看到奇迹发生！
 
-## Notes
+## 注意事项
 
-- According to OpenAI, ChatGPT is experiencing exceptionally high demand. They work on scaling their systems but I can't guarantee that ChatGPT keeps free and is open forever.
-- This code manually fetches the YouTube video transcripts, and the platform might change the system so I also cannot guarantee that the YouTube video transcript code works forever. I'll try my best to keep updated!
+- 本项目是基于YouTube Summary with ChatGPT Fork出来的开源项目
+- 本项目高度依赖于YouTube、OpenAI和Google官方产品，不保证永远有效
+- 本项目在中国大陆境内使用时请遵守相关法律法规
 
-## Feedback & Support
+## 反馈与支持
 
-If you have any questions or feedback about YouTube Summary with ChatGPT Extension, please reach out to me on [Twitter](https://twitter.com/kazuki_sf_). Also, I'm building Glasp, a social web annotation tool to build your own AI models to write, search, and summarize better. If you're interested, please check out [Glasp](https://glasp.co/ai-summary).
+如果你对 YouTube AI Translator 扩展有任何问题或反馈，请在发生Email:lewis.q.zhang@gmail.com给我

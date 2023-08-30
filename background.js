@@ -1,9 +1,9 @@
 "use strict";
 
-console.log("connected...");
-const onInstallURL = "https://glasp.co/youtube-summary";
+console.log("连接中 connected...");
+const onInstallURL = "https://youtube.com";
 
-// On Chrome Install
+// Chrome 插件按照成功过后，打开一个新的页面
 chrome.runtime.onInstalled.addListener(function (details) {
     if (details.reason === "install") {
         chrome.tabs.create({ url: onInstallURL });
