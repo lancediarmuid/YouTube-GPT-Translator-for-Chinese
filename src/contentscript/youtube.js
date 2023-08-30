@@ -7,7 +7,6 @@ import { copyTextToClipboard } from "./copy";
 
 // 插入小部件按钮
 export function insertSummaryBtn() {
-
     // 清空小部件
     if (document.querySelector("#yt_ai_summary_lang_select")) { document.querySelector("#yt_ai_summary_lang_select").innerHTML = ""; }
     if (document.querySelector("#yt_ai_summary_summary")) { document.querySelector("#yt_ai_summary_summary").innerHTML = ""; }
@@ -135,7 +134,7 @@ export function insertSummaryBtn() {
 
             if (!isWidgetOpen()) { return; }
 
-            // Get Transcript Language Options & Create Language Select Btns
+            // 获取语言选项的字幕链接
             const langOptionsWithLink = await getLangOptionsWithLink(videoId);
             if (!langOptionsWithLink) {
                 noTranscriptionAlert();
@@ -160,12 +159,17 @@ export function insertSummaryBtn() {
 function sanitizeWidget() {
     // 清空转录区域
     document.querySelector("#yt_ai_summary_lang_select").innerHTML = "";
+    // 清空总结区域
     document.querySelector("#yt_ai_summary_text").innerHTML = "";
 
     // 调整高度
     document.querySelector("#yt_ai_summary_body").style.maxHeight = window.innerHeight - 160 + "px";
+    // 总结区域出现加载动画
     document.querySelector("#yt_ai_summary_text").innerHTML = `
-    <svg class="yt_ai_summary_loading" style="display: block;width: 48px;margin: 40px auto;" width="48" height="48" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg class="yt_ai_summary_loading"
+     style="display: block;width: 48px;margin: 40px auto;" 
+     width="48" height="48" viewBox="0 0 200 200" fill="none" 
+     xmlns="http://www.w3.org/2000/svg">
         <path d="M100 36C59.9995 36 37 66 37 99C37 132 61.9995 163.5 100 163.5C138 163.5 164 132 164 99" stroke="#5C94FF" stroke-width="6"/>
     </svg>`;
 
@@ -186,8 +190,9 @@ function noTranscriptionAlert() {
     // 显示无转录提示
     document.querySelector("#yt_ai_summary_text").innerHTML = `
         <div style="margin: 40px auto;text-align: center;">
-            <p>No Transcription Available... 😢</p>
-            <p>Try <a href="https://huggingface.co/spaces/jeffistyping/Youtube-Whisperer" target="_blank">Huggingface Youtube Whisperer</a> to transcribe!</p>
+            <p>没有发现可用字幕😢</p>
+            <p>Try <a href="https://huggingface.co/spaces/jeffistyping/Youtube-Whisperer" 
+            target="_blank">Huggingface Youtube Whisperer</a> to transcribe!</p>
         </div>
     `;
 }
@@ -210,6 +215,7 @@ function evtListenerOnLangBtns(langOptionsWithLink, videoId) {
             const link = langOptionsWithLink.find((langOption) => langOption.language === lang).link;
             // 获取字幕的HTML内容以及设置事件监听器
             const transcriptHTML = await getTranscriptHTML(link, videoId);
+            
             document.querySelector("#yt_ai_summary_text").innerHTML = transcriptHTML;
             evtListenerOnTimestamp();
             // 添加选中状态类，并移除其他按钮的选中状态类

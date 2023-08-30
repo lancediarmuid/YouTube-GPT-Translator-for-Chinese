@@ -1,7 +1,7 @@
 {
-  "name": "youtube_summary_with_chatgpt",
-  "version": "1.0.0",
-  "description": "YouTube Summary with ChatGPT",
+  "name": "youyube_ai_translator",
+  "version": "0.0.1",
+  "description": "基于AI的YouTube视频翻译插件 Use AI to translate YouTube videos",
   "main": "background.js",
   "scripts": {
     "clean": "rimraf dist/*",
@@ -11,14 +11,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kazuki-sf/youtube_summary.git"
+    "url": ""
   },
-  "author": "",
+  "author": "Lewis Zhang",
   "license": "UNLICENSED",
-  "bugs": {
-    "url": "https://github.com/kazuki-sf/youtube_summary/issues"
-  },
-  "homepage": "https://github.com/kazuki-sf/youtube_summary#readme",
+  "homepage": "",
   "devDependencies": {
     "copy-webpack-plugin": "^9.0.1",
     "css-loader": "^6.4.0",

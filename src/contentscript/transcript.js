@@ -4,20 +4,33 @@ export async function getLangOptionsWithLink(videoId) {
   
   // Get a transcript URL
   const videoPageResponse = await fetch("https://www.youtube.com/watch?v=" + videoId);
+  // 读取当前视频页面的 HTML 源码
   const videoPageHtml = await videoPageResponse.text();
+  // 从 HTML 源码中提取出视频的字幕 URL
   const splittedHtml = videoPageHtml.split('"captions":')
+  
+  if (splittedHtml.length < 2) { 
+    //splittedHtml的内容分为有字幕和无字幕两种
+    return; 
+  } 
+  /**
+   *  @param {Array} audioTracks 
+   *  @param {Array} captionTracks 
+   *  @param {Array} translationLanguages 
+   */
+  const {playerCaptionsTracklistRenderer} = JSON.parse(splittedHtml[1].split(',"videoDetails')[0].replace('\n', ''));
 
-  if (splittedHtml.length < 2) { return; } // No Caption Available
-
-  const captions_json = JSON.parse(splittedHtml[1].split(',"videoDetails')[0].replace('\n', ''));
-  const captionTracks = captions_json.playerCaptionsTracklistRenderer.captionTracks;
+  const {captionTracks} = playerCaptionsTracklistRenderer;
+  // 提取字幕名称
   const languageOptions = Array.from(captionTracks).map(i => { return i.name.simpleText; })
   
-  const first = "English"; // Sort by English first
+  const first = "English"; 
+  // 对字幕进行排序
   languageOptions.sort(function(x,y){ return x.includes(first) ? -1 : y.includes(first) ? 1 : 0; });
   languageOptions.sort(function(x,y){ return x == first ? -1 : y == first ? 1 : 0; });
 
   return Array.from(languageOptions).map((langName, index) => {
+    // 拿到对应语言的字幕 URL
     const link = captionTracks.find(i => i.name.simpleText === langName).baseUrl;
     return {
       language: langName,
@@ -30,6 +43,7 @@ export async function getLangOptionsWithLink(videoId) {
 export async function getTranscript(langOption) {
   const rawTranscript = await getRawTranscript(langOption.link);
   const transcript = rawTranscript.map((item) => { return item.text; }).join(' ');
+  console.log('transcript',transcript)
   return transcript;
 }
 
@@ -42,14 +56,18 @@ export async function getRawTranscript(link) {
   // Parse Transcript
   const jQueryParse = $.parseHTML(transcriptPageXml);
   const textNodes = jQueryParse[1].childNodes;
-
-  return Array.from(textNodes).map(i => {
+  console.log('textNodes',textNodes)
+  // 生成对象
+  let items = Array.from(textNodes).map(i => {
     return {
       start: i.getAttribute("start"),
       duration: i.getAttribute("dur"),
       text: i.textContent
     };
   });
+  console.log('items',items)
+
+  return items;
 
 }
 
