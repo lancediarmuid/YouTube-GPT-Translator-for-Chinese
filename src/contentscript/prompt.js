@@ -1,3 +1,28 @@
+/**
+ * 本文件用于将字幕转为prompt
+ */
+
+// 文本转二进制字符串
+function textToBinaryString(str) {
+  let escstr = decodeURIComponent(encodeURIComponent(escape(str)));
+  let binstr = escstr.replace(/%([0-9A-F]{2})/gi, function (match, hex) {
+    let i = parseInt(hex, 16);
+    return String.fromCharCode(i);
+  });
+  return binstr;
+}
+// 对字幕进行截断
+function truncateTranscript(str) {
+  const bytes = textToBinaryString(str).length;
+  if (bytes > limit) {
+    const ratio = limit / bytes;
+    const newStr = str.substring(0, str.length * ratio);
+    return newStr;
+  }
+  return str;
+}
+
+// 将字幕作为prompt发送给GPT，如果超出则截取前半段
 export function getSummaryPrompt(transcript) {
   return `Title: "${document.title
     .replace(/\n+/g, " ")
@@ -6,8 +31,8 @@ export function getSummaryPrompt(transcript) {
     .trim()}"\nVideo Summary:`;
 }
 
-// Seems like 15,000 bytes is the limit for the prompt
-const limit = 14000; // 1000 is a buffer
+// 通常认为15000为prompt的极限，留出1000字节的buffer
+const limit = 14000; 
 
 export function getChunckedTranscripts(textData, textDataOriginal) {
 
@@ -19,6 +44,7 @@ export function getChunckedTranscripts(textData, textDataOriginal) {
 
   let result = "";
   const text = textData.sort((a, b) => a.index - b.index).map(t => t.text).join(" ");
+  // 将文本转为二进制字符串，并获取长度
   const bytes = textToBinaryString(text).length;
 
   if (bytes > limit) {
@@ -63,21 +89,4 @@ export function getChunckedTranscripts(textData, textDataOriginal) {
   
 }
 
-function truncateTranscript(str) {
-  const bytes = textToBinaryString(str).length;
-  if (bytes > limit) {
-    const ratio = limit / bytes;
-    const newStr = str.substring(0, str.length * ratio);
-    return newStr;
-  }
-  return str;
-}
 
-function textToBinaryString(str) {
-  let escstr = decodeURIComponent(encodeURIComponent(escape(str)));
-  let binstr = escstr.replace(/%([0-9A-F]{2})/gi, function (match, hex) {
-    let i = parseInt(hex, 16);
-    return String.fromCharCode(i);
-  });
-  return binstr;
-}

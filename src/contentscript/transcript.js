@@ -1,14 +1,12 @@
 import $ from "jquery";
+import { convertIntToHms } from "./utils";
 
 export async function getLangOptionsWithLink(videoId) {
-  
-  // Get a transcript URL
   const videoPageResponse = await fetch("https://www.youtube.com/watch?v=" + videoId);
   // 读取当前视频页面的 HTML 源码
   const videoPageHtml = await videoPageResponse.text();
   // 从 HTML 源码中提取出视频的字幕 URL
   const splittedHtml = videoPageHtml.split('"captions":')
-  
   if (splittedHtml.length < 2) { 
     //splittedHtml的内容分为有字幕和无字幕两种
     return; 
@@ -47,8 +45,8 @@ export async function getTranscript(langOption) {
   return transcript;
 }
 
-export async function getRawTranscript(link) {
 
+export async function getRawTranscript(link) {
   // Get Transcript
   const transcriptPageResponse = await fetch(link); // default 0
   const transcriptPageXml = await transcriptPageResponse.text();
@@ -56,27 +54,31 @@ export async function getRawTranscript(link) {
   // Parse Transcript
   const jQueryParse = $.parseHTML(transcriptPageXml);
   const textNodes = jQueryParse[1].childNodes;
-  console.log('textNodes',textNodes)
   // 生成对象
   let items = Array.from(textNodes).map(i => {
     return {
       start: i.getAttribute("start"),
       duration: i.getAttribute("dur"),
-      text: i.textContent
+      text: i.textContent,
     };
   });
-  console.log('items',items)
-
   return items;
-
 }
 
 export async function getTranscriptHTML(link, videoId) {
 
   const rawTranscript = await getRawTranscript(link);
 
-  const scriptObjArr = [], timeUpperLimit = 60, charInitLimit = 300, charUpperLimit = 500;
-  let loop = 0, chars = [], charCount = 0, timeSum = 0, tempObj = {}, remaining = {};
+  const scriptObjArr = [];
+  const timeUpperLimit = 60;
+  const charInitLimit = 300;
+  const charUpperLimit = 500;
+  let loop = 0;
+  let chars = [];
+  let charCount = 0;
+  let timeSum = 0;
+  let tempObj = {};
+  let remaining = {};
 
   // Sum-up to either total 60 seconds or 300 chars.
   Array.from(rawTranscript).forEach((obj, i, arr) => {
@@ -160,23 +162,36 @@ export async function getTranscriptHTML(link, videoId) {
       }
 
   })
+  
+  function resetNums() {
+    loop = 0, 
+    chars = [], 
+    charCount = 0, 
+    timeSum = 0, 
+    tempObj = {};
+  }
 
   return Array.from(scriptObjArr).map(obj => {
       const t = Math.round(obj.start);
       const hhmmss = convertIntToHms(t);
       return  `<div class="yt_ai_summary_transcript_text_segment">
-                  <div><a class="yt_ai_summary_transcript_text_timestamp" style="padding-top: 16px !important;" href="/watch?v=${videoId}&t=${t}s" target="_blank" data-timestamp-href="/watch?v=${videoId}&t=${t}s" data-start-time="${t}">${hhmmss}</a></div>
-                  <div class="yt_ai_summary_transcript_text" data-start-time="${t}">${obj.text}</div>
+                  <div>
+                    <a class="yt_ai_summary_transcript_text_timestamp" 
+                        style="padding-top: 16px !important;" 
+                        href="/watch?v=${videoId}&t=${t}s"
+                        target="_blank" 
+                        data-timestamp-href="/watch?v=${videoId}&t=${t}s" 
+                        data-start-time="${t}">
+                        ${hhmmss}
+                    </a>
+                  </div>
+                  <div class="yt_ai_summary_transcript_text" data-start-time="${t}">
+                    ${obj.text}
+                  </div>
               </div>`
   }).join("");
-
-  function resetNums() {
-      loop = 0, chars = [], charCount = 0, timeSum = 0, tempObj = {};
-  }
+  
+  
 
 }
 
-function convertIntToHms(num) {
-  const h = (num < 3600) ? 14 : 12;
-  return (new Date(num * 1000).toISOString().substring(h, 19)).toString();
-}
