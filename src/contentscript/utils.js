@@ -87,3 +87,46 @@ export function createLangSelectBtns(langOptionsWithLink) {
             ""}" data-yt-transcript-lang="${langOption.language}">${langOption.language}</button>`;
     }).join("");
 }
+
+let history = ''
+
+// 获取GPT翻译
+export const fetchGPT = async (text) => {
+    if(history !== '' || history !== text){
+        history = text
+    }
+    let data = {
+        model: 'gpt-3.5-turbo-16k-0613',
+        template:  `You are a translator tool like as Google Translator, and the user is a Chinese kid, who is learning English.history info: ${history}.
+         Please underline the words or phrase that you think are difficult for the user to understand in English, please give a Chinese translation for the underlined words or phrase.
+         please use <span> to underline the words or phrase.
+         output should be HTML,fllowing format: <div>{English<span>underline words</span>}</div>
+         <div>{Chinese}</div>
+         `,
+        question:text,
+        temperature:  0,
+        max_tokens: 5000,
+        top_p: 1,
+        frequency_penalty: 0,
+        presence_penalty: 0,
+      }
+    try {
+        const BACK_END = 'https://api.relai.social';
+        const res = await fetch(`${BACK_END}/rest-api/llm/chat`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+        const json = await res.json();
+        if (json.status_code === 200) {
+           
+          return json.data
+        } else {
+          return '\n【AI翻译服务器错误】'
+        }
+      } catch (e) {
+        return '\n【AI翻译服务器错误】'
+      }
+}

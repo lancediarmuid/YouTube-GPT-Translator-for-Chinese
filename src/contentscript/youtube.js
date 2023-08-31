@@ -1,7 +1,7 @@
 "use strict";
 
 import { getLangOptionsWithLink, getTranscriptHTML } from "./transcript";
-import { getSearchParam,copyTextToClipboard,noTranscriptionAlert,createLangSelectBtns} from "./utils";
+import { getSearchParam,noTranscriptionAlert,createLangSelectBtns,fetchGPT} from "./utils";
 import { ui,loading } from "./ui";
 import { waitForElm } from "./dom";
 // 插入小部件按钮
@@ -37,10 +37,6 @@ export function insertSummaryBtn() {
             })
         })
 
-        /**
-         * 按钮click事件监听
-         */
-   
         // 1.展开/收起小部件
         document.querySelector("#yt_ai_summary_header").addEventListener("click", async (e) => {
             // 获取视频ID
@@ -67,12 +63,6 @@ export function insertSummaryBtn() {
             // 监听文本
             evtListenerOnText();
         })
-
-        document.querySelector("#yt_ai_summary_header_copy").addEventListener("click", (e) => {
-            e.stopPropagation();
-            const videoId = getSearchParam(window.location.href).v;
-            copyTranscript(videoId);
-        })
         setInterval(scrollIntoCurrTimeDiv, 1000);
     });
 
@@ -91,7 +81,6 @@ function sanitizeWidget() {
 
     // 切换类列表
     document.querySelector("#yt_ai_summary_body").classList.toggle("yt_ai_summary_body_show");
-    document.querySelector("#yt_ai_summary_header_copy").classList.toggle("yt_ai_summary_header_icon_show");
     document.querySelector("#yt_ai_summary_header_toggle").classList.toggle("yt_ai_summary_header_toggle_rotate");
 }
 
@@ -137,27 +126,33 @@ function getTYEndTime() {
     return document.querySelector("#movie_player > div.html5-video-container > video").duration ?? 0;
 }
 
-// 滚动到当前时间对应的字幕位置
+// 字幕实时滚动
 function scrollIntoCurrTimeDiv() {
     const currTime = getTYCurrentTime();
-    Array.from(document.getElementsByClassName("yt_ai_summary_transcript_text_timestamp")).forEach((el, i, arr) => {
+    Array.from(document.getElementsByClassName("yt_ai_summary_transcript_text")).forEach(async (el, i, arr) => {
         const startTimeOfEl = el.getAttribute("data-start-time");
+        // 获取下一个字幕元素的开始时间
         const startTimeOfNextEl = (i === arr.length-1) ? getTYEndTime() : arr[i+1].getAttribute("data-start-time") ?? 0;
+        // 检查当前时间是否在当前字幕元素的时间范围内
         if (currTime >= startTimeOfEl && currTime < startTimeOfNextEl) {
-            // 检查当前字幕元素是否在可见区域内
+            // 获取当前元素的位置信息
             const boundingRect = el.getBoundingClientRect();
+            // 若当前元素已在可见区域内，则不进行滚动操作
             if (boundingRect.top >= 0 && boundingRect.bottom <= window.innerHeight) {
-                return; // 如果元素已在可见区域内则不进行滚动操作
+                return; 
             }
             // 将当前字幕和相应容器滚动到可见区域
             el.scrollIntoView({ behavior: 'auto', block: 'start' });
-            document.querySelector("#secondary > div.yt_ai_summary_container").scrollIntoView({ behavior: 'auto', block: 'end' });
+            let container = document.querySelector("#secondary > div.yt_ai_summary_container")
+            container.scrollIntoView({ behavior: 'auto', block: 'end' });
+            let text = el.innerText;
+            
+     
+            let translation = await fetchGPT(text);
+            el.innerHTML = translation
         }
     })
 }
-
-
-  
 
 // 在时间戳上设置事件监听器，点击时间戳可以跳转到对应时间点播放视频
 function evtListenerOnTimestamp() {
@@ -176,41 +171,8 @@ function evtListenerOnTimestamp() {
     })
 }
 
-const fetchGPT = async (text) => {
-    let data = {
-        model: 'gpt-3.5-turbo-16k-0613',
-        template:  `You are a translator expert between Chinese and English, and the user is an elementary school student.
-         Please underline and provide Chinese explanations for English words or phrases that the user may not understand.
-         The embedded format should be as follows: <u>word</u>.`,
-        question:text,
-        temperature:  0.1,
-        max_tokens: 5000,
-        top_p: 1,
-        frequency_penalty: 1,
-        presence_penalty: 1.1,
-      }
-    try {
-        const BACK_END = 'https://api.relai.social';
-        const res = await fetch(`${BACK_END}/rest-api/llm/chat`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        });
-        const json = await res.json();
-        console.log(json)
-        if (json.status_code === 200) {
-           
-          return json.data
-        } else {
-          return '\n【AI翻译服务器错误】'
-        }
-      } catch (e) {
-        return '\n【AI翻译服务器错误】'
-      }
-}
 
+// 监听文本
 function evtListenerOnText() {
     let texts = Array.from(document.getElementsByClassName("yt_ai_summary_transcript_text"));
   
@@ -225,65 +187,18 @@ function evtListenerOnText() {
         e.stopPropagation();
         el.classList.remove('hover');
       });
-  
-      // 点击事件处理程序
-      const clickHandler = async (e) => {
+      el.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
-  
-        // 移除点击事件处理程序
-        el.removeEventListener("click", clickHandler);
-  
-        let text = e.target.innerText;
-        e.target.innerText = 'AI翻译中...';
-        let translation = await fetchGPT(text);
-        console.log(translation)
-        e.target.innerHTML = translation
-       
-        // 重新启用点击事件处理程序（3秒后）
-        setTimeout(() => {
-          el.addEventListener("click", clickHandler);
-        }, 3000);
-      };
-  
-      // 添加点击事件处理程序
-      el.addEventListener("click", clickHandler);
+        const ytVideoEl = document.querySelector("#movie_player > div.html5-video-container > video");
+        if (ytVideoEl.paused) {
+            // 如果视频已经暂停，则执行播放
+            ytVideoEl.play();
+          } else {
+            // 如果视频正在播放，则执行暂停
+            ytVideoEl.pause();
+          }
+      });
     });
   }
   
-
-// 复制视频的字幕文本
-function copyTranscript(videoId) {
-    let contentBody = "";
-    const url = `https://www.youtube.com/watch?v=${videoId}`;
-    contentBody += `${document.title}\n`; // 获取当前页面的标题，并将其加入到contentBody中
-    contentBody += `${url}\n\n`; // 将视频链接加入到contentBody中
-    contentBody += `Transcript:\n`; // 在contentBody中加入"Transcript:"标识
-
-    Array.from(document.getElementById("yt_ai_summary_text").children).forEach(el => { // 遍历transcript区域的每个子元素
-        if (!el) { return; } // 如果当前元素为空，则跳过
-        if (el.children.length < 2) { return; } // 如果当前元素的子元素数量小于2，则跳过
-        const timestamp = el.querySelector(".yt_ai_summary_transcript_text_timestamp").innerText; // 获取时间戳
-        const timestampHref = el.querySelector(".yt_ai_summary_transcript_text_timestamp").getAttribute("data-timestamp-href"); // 获取时间戳链接
-        const text = el.querySelector(".yt_ai_summary_transcript_text").innerText; // 获取文本内容
-        contentBody += `(${timestamp}) ${text}\n`; // 将时间戳和文本内容组合成一行，并加入到contentBody中
-    })
-  
-    copyTextToClipboard(contentBody); // 将contentBody中的内容复制到剪贴板中
-}
-
-// 复制字幕文本并提示用户
-// function copyTranscriptAndPrompt() {
-//     const textEls = document.getElementsByClassName("yt_ai_summary_transcript_text"); // 获取所有的字幕文本元素
-//     const textData = Array.from(textEls).map((textEl, i) => { return { // 将字幕文本元素和索引封装成对象，存储到数组中
-//         text: textEl.textContent.trim(),
-//         index: i,
-//     }})
-    
-//     const text = getChunckedTranscripts(textData, textData); // 调用函数获取分块的字幕文本
-//     const prompt = getSummaryPrompt(text); // 调用函数获取摘要提示文本
-//     copyTextToClipboard(prompt); // 将摘要提示文本复制到剪贴板中
-//     return prompt; // 返回摘要提示文本
-// }
-
-

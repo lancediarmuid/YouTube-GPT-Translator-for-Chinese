@@ -41,7 +41,6 @@ export async function getLangOptionsWithLink(videoId) {
 export async function getTranscript(langOption) {
   const rawTranscript = await getRawTranscript(langOption.link);
   const transcript = rawTranscript.map((item) => { return item.text; }).join(' ');
-  console.log('transcript',transcript)
   return transcript;
 }
 
