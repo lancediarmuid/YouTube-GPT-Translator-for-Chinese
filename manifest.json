@@ -8,10 +8,12 @@
     "type": "module"
   },
   "action": {
+    "default_popup": "popup/login.html",
     "default_icon": {
       "48": "images/48.png"
     }
   },
+  "permissions": ["activeTab"],
   "content_scripts": [
     {
       "matches": ["https://www.youtube.com/*", "https://chat.openai.com/*"],

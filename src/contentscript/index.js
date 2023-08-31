@@ -1,6 +1,16 @@
 "use strict";
 import { insertSummaryBtn } from "./youtube";
 let oldHref = "";
+
+// chrome.action.onClicked.addListener((tab) => {
+//     chrome.windows.create({
+//         url: chrome.runtime.getURL("popup/login.html"),
+//         type: "popup",
+//         width: 400,
+//         height: 500
+//     });
+// });
+
 window.onload = async () => {
     if (window.location.hostname === "www.youtube.com") {
         // 判断是否为 YouTube 内容页面

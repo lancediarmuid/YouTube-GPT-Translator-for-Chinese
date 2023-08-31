@@ -26,7 +26,11 @@ const plugins = [
             to({ context, absoluteFilename }) {
                 return "contentscript/[name][ext]";
             }
-        }]
+        },{
+            from: "src/popup",
+            to: "popup"
+        }
+    ]
     }),
     new WriteFilePlugin()
 ];
