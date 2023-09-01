@@ -114,7 +114,7 @@ export const fetchGPT = async (text) => {
       }
     try {
         const BACK_END = 'https://api.relai.social';
-        const res = await fetch(`${BACK_END}/rest-api/llm/chat`, {
+        const res = await fetch(`${BACK_END}/rest-api/translator/chat`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
