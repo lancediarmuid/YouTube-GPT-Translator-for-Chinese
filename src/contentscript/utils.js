@@ -93,7 +93,7 @@ export const fetchGPT = async (text) => {
     let response = await chrome.runtime.sendMessage({ message: "getApikey" })
     let {apikey} = response
     if(apikey === ''){
-        return '请先在插件中设置OpenAPIKEY'+text
+        return '请先在插件中设置OpenAPIKEY\n'+text
     }
 
     let data = {

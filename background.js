@@ -10,12 +10,12 @@ chrome.runtime.onInstalled.addListener(function (details) {
     }
 });
 
-let apikey = "";
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     if (request.message === "setApikey") {
-        apikey = request.apikey;
+        sessionStorage.setItem('apikey', request.apikey)
     } else if (request.message === "getApikey") {
+        let apikey = sessionStorage.getItem('apikey')
         sendResponse({ apikey: apikey });
     }
 });
