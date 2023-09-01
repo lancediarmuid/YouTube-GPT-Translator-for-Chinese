@@ -108,11 +108,6 @@
     line-height: 1.4em;
 }
 
-.hover {
-    cursor: pointer;
-    color: #065fd4;
-}
-
 .yt_ai_summary_lang_select {
     display: flex;
     justify-content: left;
@@ -171,4 +166,22 @@
 
 .yt_ai_summary_transcript_text div {
     margin-bottom: 10px;
+}
+
+.hover {
+    cursor: pointer;
+    color: #20497f;
+}
+
+.translation {
+    margin-top: 10px;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 150px;
+    text-align: center;
+    color: #20497f;
 }

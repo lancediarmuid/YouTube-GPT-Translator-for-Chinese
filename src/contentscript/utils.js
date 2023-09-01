@@ -111,6 +111,7 @@ export const fetchGPT = async (text) => {
     if(!isMatched){
         return '请先在插件中设置正确的OpenAPIKEY\n'+text
     }
+    console.log("触发翻译请求")
 
     let data = {
         model: 'gpt-3.5-turbo-16k-0613',

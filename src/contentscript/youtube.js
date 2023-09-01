@@ -5,9 +5,8 @@ import { getSearchParam,noTranscriptionAlert,createLangSelectBtns,fetchGPT} from
 import { ui,loading } from "./ui";
 import { waitForElm } from "./dom";
 // 插入小部件按钮
-let apikey = ''
-export function insertSummaryBtn(apikey) {
-    apikey = apikey
+
+export function insertSummaryBtn() {
     // 清空小部件
     if (document.querySelector("#yt_ai_summary_lang_select")) { document.querySelector("#yt_ai_summary_lang_select").innerHTML = ""; }
     if (document.querySelector("#yt_ai_summary_summary")) { document.querySelector("#yt_ai_summary_summary").innerHTML = ""; }
@@ -65,7 +64,25 @@ export function insertSummaryBtn(apikey) {
             // 监听文本
             evtListenerOnText();
         })
-        setInterval(scrollIntoCurrTimeDiv, 1000);
+
+        // 监视 id=yt_ai_summary_text 元素的滚动事件
+        // document.getElementById('yt_ai_summary_text').addEventListener('scroll', function() {
+        //     isScrolling = true; // 当开始滚动时, 将状态变量设为 true
+        //     if (window.scrollTimer) {
+        //         clearTimeout(window.scrollTimer);
+        //     }
+
+        //     window.scrollTimer = setTimeout(function() {
+        //         isScrolling = false;
+        //     }, 3000);
+        // });
+        setInterval(function() {
+            const ytVideoEl = document.querySelector("#movie_player > div.html5-video-container > video");
+            if (!ytVideoEl.paused) {
+
+                scrollIntoCurrTimeDiv();
+            }
+        }, 2000);
     });
 
 }
@@ -170,7 +187,10 @@ function evtListenerOnTimestamp() {
     })
 }
 
-
+function containsChinese(str) {
+    const reg = /[\u4e00-\u9fa5]/gm;
+    return reg.test(str);
+}
 // 监听文本
 function evtListenerOnText() {
     let texts = Array.from(document.getElementsByClassName("yt_ai_summary_transcript_text"));
@@ -196,9 +216,12 @@ function evtListenerOnText() {
           } else {
             ytVideoEl.pause();
             let text = el.innerText;
-            el.innerHTML = "翻译中...";
+            if(containsChinese(text)){
+                return;
+            }
+            el.innerHTML = `<div>${text}</div><div class='loading'>${loading}.</div>`;
             let translation = await fetchGPT(text);
-            el.innerHTML = text+translation
+            el.innerHTML = `<div>${text}</div><div class='translation'>${translation}</div>`
             ytVideoEl.play();
           }
       });
