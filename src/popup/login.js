@@ -1,10 +1,9 @@
 
-window.onload = async () => {
-    chrome.runtime.sendMessage({ message: "getApikey" }, (response) => {
-        document.getElementById("input").value = response.apikey;
-    });  
+ 
     document.getElementById("input").addEventListener("input", (e) => {
-        e.stopPropagation();
-        chrome.runtime.sendMessage({ message: "setApikey", apikey: e.target.value });
+        chrome.storage.local.set({apikey: e.target.value})
     })
-}
+
+    chrome.storage.local.get(["apikey"], (result) => {
+        document.getElementById("input").value = result.apikey
+    })

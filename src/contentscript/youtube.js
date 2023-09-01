@@ -129,7 +129,7 @@ function getTYEndTime() {
 }
 
 // 字幕实时滚动
-function scrollIntoCurrTimeDiv() {
+async function scrollIntoCurrTimeDiv() {
     const currTime = getTYCurrentTime();
     Array.from(document.getElementsByClassName("yt_ai_summary_transcript_text")).forEach(async (el, i, arr) => {
         const startTimeOfEl = el.getAttribute("data-start-time");
@@ -147,14 +147,11 @@ function scrollIntoCurrTimeDiv() {
             el.scrollIntoView({ behavior: 'auto', block: 'start' });
             let container = document.querySelector("#secondary > div.yt_ai_summary_container")
             container.scrollIntoView({ behavior: 'auto', block: 'end' });
-            let text = el.innerText;
-            
-     
-            let translation = await fetchGPT(text,apikey);
-            el.innerHTML = translation
+           
         }
     })
 }
+
 
 // 在时间戳上设置事件监听器，点击时间戳可以跳转到对应时间点播放视频
 function evtListenerOnTimestamp() {
@@ -189,7 +186,7 @@ function evtListenerOnText() {
         e.stopPropagation();
         el.classList.remove('hover');
       });
-      el.addEventListener('click', (e) => {
+      el.addEventListener('click',async (e) => {
         e.preventDefault();
         e.stopPropagation();
         const ytVideoEl = document.querySelector("#movie_player > div.html5-video-container > video");
@@ -197,8 +194,12 @@ function evtListenerOnText() {
             // 如果视频已经暂停，则执行播放
             ytVideoEl.play();
           } else {
-            // 如果视频正在播放，则执行暂停
             ytVideoEl.pause();
+            let text = el.innerText;
+            el.innerHTML = "翻译中...";
+            let translation = await fetchGPT(text);
+            el.innerHTML = text+translation
+            ytVideoEl.play();
           }
       });
     });

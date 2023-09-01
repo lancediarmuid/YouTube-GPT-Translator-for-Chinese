@@ -10,12 +10,14 @@ chrome.runtime.onInstalled.addListener(function (details) {
     }
 });
 
-
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-    if (request.message === "setApikey") {
-        sessionStorage.setItem('apikey', request.apikey)
-    } else if (request.message === "getApikey") {
-        let apikey = sessionStorage.getItem('apikey')
-        sendResponse({ apikey: apikey });
-    }
-});
+// chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+//     if (request.message === "setApikey") {
+//         chrome.storage.sync.set({ apikey: request.apikey }, function() {
+//             console.log("保存了apikey", request.apikey);
+//         });
+//     } else if (request.message === "getApikey") {
+//         chrome.storage.sync.get("apikey", function(result) {
+//             sendResponse({ apikey: result.apikey||'' });
+//         });
+//     }
+// });

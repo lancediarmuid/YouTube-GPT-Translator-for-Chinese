@@ -88,22 +88,33 @@ export function createLangSelectBtns(langOptionsWithLink) {
     }).join("");
 }
 
+const readLocalStorage = async () => {
+    return new Promise((resolve, reject) => {
+        chrome.storage.local.get(['apikey'], function (result) {
+          if (result['apikey'] === undefined) {
+            reject();
+          } else {
+            resolve(result['apikey']);
+          }
+        });
+      });
+}
 // 获取GPT翻译
 export const fetchGPT = async (text) => {
-    let response = await chrome.runtime.sendMessage({ message: "getApikey" })
-    let {apikey} = response
-    if(apikey === ''){
-        return '请先在插件中设置OpenAPIKEY\n'+text
+    let apikey = await readLocalStorage()
+    if(!apikey){
+        return '请先在插件中填写您的OpenAPIKEY\n'
+    }
+    const openaiKeyRegex = /sk-\w{32}/;
+    const isMatched = openaiKeyRegex.test(apikey);
+
+    if(!isMatched){
+        return '请先在插件中设置正确的OpenAPIKEY\n'+text
     }
 
     let data = {
         model: 'gpt-3.5-turbo-16k-0613',
-        template:  `You are a translator tool like as Google Translator, and the user is a Chinese kid, who is learning English.
-         Please underline the words or phrase that you think are difficult for the user to understand in English, please give a Chinese translation for the underlined words or phrase.
-         please use <span> to underline the words or phrase.
-         output should be HTML,fllowing format: <div>{English<span>underline words</span>}</div>
-         <div>{Chinese}</div>
-         `,
+        template:  `You are a translator tool.please tranlate user input content into Chinese"`,
         apikey,
         question:text,
         temperature:  0,
