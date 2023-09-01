@@ -91,7 +91,7 @@ export function createLangSelectBtns(langOptionsWithLink) {
 let history = ''
 
 // 获取GPT翻译
-export const fetchGPT = async (text) => {
+export const fetchGPT = async (text,apikey) => {
     if(history !== '' || history !== text){
         history = text
     }
@@ -103,6 +103,7 @@ export const fetchGPT = async (text) => {
          output should be HTML,fllowing format: <div>{English<span>underline words</span>}</div>
          <div>{Chinese}</div>
          `,
+        apikey,
         question:text,
         temperature:  0,
         max_tokens: 5000,

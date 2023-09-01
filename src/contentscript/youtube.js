@@ -5,7 +5,9 @@ import { getSearchParam,noTranscriptionAlert,createLangSelectBtns,fetchGPT} from
 import { ui,loading } from "./ui";
 import { waitForElm } from "./dom";
 // 插入小部件按钮
-export function insertSummaryBtn() {
+let apikey = ''
+export function insertSummaryBtn(apikey) {
+    apikey = apikey
     // 清空小部件
     if (document.querySelector("#yt_ai_summary_lang_select")) { document.querySelector("#yt_ai_summary_lang_select").innerHTML = ""; }
     if (document.querySelector("#yt_ai_summary_summary")) { document.querySelector("#yt_ai_summary_summary").innerHTML = ""; }
@@ -148,7 +150,7 @@ function scrollIntoCurrTimeDiv() {
             let text = el.innerText;
             
      
-            let translation = await fetchGPT(text);
+            let translation = await fetchGPT(text,apikey);
             el.innerHTML = translation
         }
     })

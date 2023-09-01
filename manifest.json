@@ -13,7 +13,7 @@
       "48": "images/48.png"
     }
   },
-  "permissions": ["activeTab"],
+  "permissions": ["activeTab","scripting"],
   "content_scripts": [
     {
       "matches": ["https://www.youtube.com/*", "https://chat.openai.com/*"],
