@@ -10,9 +10,12 @@ chrome.runtime.onInstalled.addListener(function (details) {
     }
 });
 
-let prompt = "";
+let apikey = "";
 
-// On Message
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-    console.log("background.js: onMessage", request);
+    if (request.message === "setApikey") {
+        apikey = request.apikey;
+    } else if (request.message === "getApikey") {
+        sendResponse({ apikey: apikey });
+    }
 });
