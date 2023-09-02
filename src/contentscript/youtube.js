@@ -219,7 +219,7 @@ function evtListenerOnText() {
             if(containsChinese(text)){
                 return;
             }
-            el.innerHTML = `<div>${text}</div><div class='loading'>${loading}<p>AI 翻译中...</p></div>`;
+            el.innerHTML = `<div>${text}</div><div class='loading'>${loading}<div>AI 翻译中....</div></div>`;
             let translation = await fetchGPT(text);
             el.innerHTML = `<div>${text}</div><div class='translation'>${translation}</div>`
             ytVideoEl.play();

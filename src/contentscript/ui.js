@@ -13,7 +13,7 @@ export const ui = `
         </svg>
         
         </a>
-        <p class="yt_ai_summary_header_text">YouTube for Chinese 字幕君</p>
+        <p class="yt_ai_summary_header_text">YouTube AI Translator</p>
         <div class="yt_ai_summary_header_actions">
             <div style="filter: brightness(0.9);" id="yt_ai_summary_header_toggle" class="yt_ai_summary_header_action_btn">
                 <svg width="24" height="24" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
