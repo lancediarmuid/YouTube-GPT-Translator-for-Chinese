@@ -10,14 +10,21 @@ chrome.runtime.onInstalled.addListener(function (details) {
     }
 });
 
-// chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-//     if (request.message === "setApikey") {
-//         chrome.storage.sync.set({ apikey: request.apikey }, function() {
-//             console.log("保存了apikey", request.apikey);
-//         });
-//     } else if (request.message === "getApikey") {
-//         chrome.storage.sync.get("apikey", function(result) {
-//             sendResponse({ apikey: result.apikey||'' });
-//         });
-//     }
-// });
+function onClickHandler(info, tab) {
+    if (info.menuItemId === "myContextMenuId") {
+      console.log("Selected Text: ", info.selectionText);
+      span.innerHTML = info.selectionText;
+      span.style.backgroundColor = "yellow";
+      document.body.appendChild(span);
+    }
+}
+  
+chrome.contextMenus.onClicked.addListener(onClickHandler);
+  
+chrome.runtime.onInstalled.addListener(function() {
+    chrome.contextMenus.create({
+      title: "YouTube AI Translator 标注翻译",
+      contexts: ["selection"],
+      id: "myContextMenuId"
+    });
+});

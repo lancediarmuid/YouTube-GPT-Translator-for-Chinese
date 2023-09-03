@@ -99,6 +99,8 @@ const readLocalStorage = async () => {
         });
       });
 }
+        const BACK_END = 'https://api.relai.social';
+
 // 获取GPT翻译
 export const fetchGPT = async (text) => {
     let apikey = await readLocalStorage()
@@ -111,7 +113,6 @@ export const fetchGPT = async (text) => {
     if(!isMatched){
         return '请先在插件中设置正确的OpenAPIKEY\n'+text
     }
-    console.log("触发翻译请求")
 
     let data = {
         model: 'gpt-3.5-turbo-16k-0613',
@@ -125,7 +126,6 @@ export const fetchGPT = async (text) => {
         presence_penalty: 0,
       }
     try {
-        const BACK_END = 'https://api.relai.social';
         const res = await fetch(`${BACK_END}/rest-api/translator/chat`, {
           method: 'POST',
           headers: {
@@ -144,3 +144,47 @@ export const fetchGPT = async (text) => {
         return '\n【AI翻译服务器错误】'
       }
 }
+
+// 获取GPT翻译
+export const fetchGPTAnalysis = async (text) => {
+  let apikey = await readLocalStorage()
+  if(!apikey){
+      return '请先在插件中填写您的OpenAPIKEY\n'
+  }
+  const openaiKeyRegex = /sk-\w{32}/;
+  const isMatched = openaiKeyRegex.test(apikey);
+
+  if(!isMatched){
+      return '请先在插件中设置正确的OpenAPIKEY\n'+text
+  }
+
+  let data = {
+      model: 'gpt-3.5-turbo-16k-0613',
+      template:  `用户是一个学习英文的中国学生，请用中文帮助分析用户输入的英文文本，划出重点学习句子和单词。返回格式为HTML"`,
+      apikey,
+      question:text,
+      temperature:  0,
+      max_tokens: 5000,
+      top_p: 1,
+      frequency_penalty: 0,
+      presence_penalty: 0,
+    }
+  try {
+      const res = await fetch(`${BACK_END}/rest-api/translator/chat`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+      const json = await res.json();
+      if (json.status_code === 200) {
+        return json.data
+      } else {
+        return '\n【AI翻译服务器错误】'
+      }
+    } catch (e) {
+      return '\n【AI翻译服务器错误】'
+    }
+}
+

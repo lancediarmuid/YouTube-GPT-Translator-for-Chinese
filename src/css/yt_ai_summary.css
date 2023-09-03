@@ -169,11 +169,17 @@
 }
 
 .hover {
+    cursor: pointer;
+    color: #3068b0;
+}
+
+.onair {
     color: #20497f;
 }
 
 .translation {
     margin-top: 10px;
+    font-size: 14px;
 }
 
 .loading {

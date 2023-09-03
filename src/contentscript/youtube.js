@@ -1,7 +1,7 @@
 "use strict";
 
 import { getLangOptionsWithLink, getTranscriptHTML } from "./transcript";
-import { getSearchParam,noTranscriptionAlert,createLangSelectBtns,fetchGPT} from "./utils";
+import { getSearchParam,noTranscriptionAlert,createLangSelectBtns,fetchGPT,fetchGPTAnalysis} from "./utils";
 import { ui,loading } from "./ui";
 import { waitForElm } from "./dom";
 // 插入小部件按钮
@@ -63,19 +63,10 @@ export function insertSummaryBtn() {
             evtListenerOnTimestamp();
             // 监听文本
             evtListenerOnText();
+            // 监听按钮
+            evtListenerOnBtn();
         })
 
-        // 监视 id=yt_ai_summary_text 元素的滚动事件
-        // document.getElementById('yt_ai_summary_text').addEventListener('scroll', function() {
-        //     isScrolling = true; // 当开始滚动时, 将状态变量设为 true
-        //     if (window.scrollTimer) {
-        //         clearTimeout(window.scrollTimer);
-        //     }
-
-        //     window.scrollTimer = setTimeout(function() {
-        //         isScrolling = false;
-        //     }, 3000);
-        // });
         setInterval(function() {
             const ytVideoEl = document.querySelector("#movie_player > div.html5-video-container > video");
             if (!ytVideoEl.paused) {
@@ -162,9 +153,10 @@ async function scrollIntoCurrTimeDiv() {
             }
             // 将当前字幕和相应容器滚动到可见区域
             el.scrollIntoView({ behavior: 'auto', block: 'start' });
+     
             let container = document.querySelector("#secondary > div.yt_ai_summary_container")
             container.scrollIntoView({ behavior: 'auto', block: 'end' });
-           
+            // el.classList.add("onair"); // 添加 onair 类名
         }
     })
 }
@@ -194,17 +186,18 @@ function containsChinese(str) {
 // 监听文本
 function evtListenerOnText() {
     let texts = Array.from(document.getElementsByClassName("yt_ai_summary_transcript_text"));
-  
     texts.forEach(el => {
       el.addEventListener('mouseover', (e) => {
         e.preventDefault();
         e.stopPropagation();
-        el.classList.add('hover');
+        el.classList.add('hover'); 
       });
+
       el.addEventListener('mouseout', (e) => {
         e.preventDefault();
         e.stopPropagation();
         el.classList.remove('hover');
+    
       });
       el.addEventListener('click',async (e) => {
         e.preventDefault();
@@ -215,16 +208,78 @@ function evtListenerOnText() {
             ytVideoEl.play();
           } else {
             ytVideoEl.pause();
-            let text = el.innerText;
-            if(containsChinese(text)){
-                return;
-            }
-            el.innerHTML = `<div>${text}</div><div class='loading'>${loading}<div>AI 翻译中....</div></div>`;
-            let translation = await fetchGPT(text);
-            el.innerHTML = `<div>${text}</div><div class='translation'>${translation}</div>`
-            ytVideoEl.play();
           }
       });
     });
   }
+
+function evtListenerOnBtn(){
+    let translateList = document.querySelectorAll('.translate');
+    let grammaList = document.querySelectorAll('.gramma');
+    
+    translateList.forEach((element) => {
+      element.addEventListener('click', async function(e) {
+        let startTime = this.getAttribute('data-start-time');
+        e.preventDefault();
+        e.stopPropagation();
+    
+        let text = document.getElementById('text-' + startTime).innerText;
+        if(containsChinese(text)){
+            console.log("中文",text)
+            return;
+        }
+        let el = document.getElementById('text-' + startTime);
+        el.innerHTML += `<div class='loading'>${loading}<div>AI 翻译中....</div></div>`;
+        let translation = await fetchGPT(text);
+        el.innerHTML += `<div class='translation'>${translation}</div>`
+        let loadingEl = el.querySelector('.loading');
+        if (loadingEl) {
+            loadingEl.remove(); 
+        }
+      });
+    });
+    
+    grammaList.forEach((element) => {
+        element.addEventListener('click', async function(e) {
+            let startTime = this.getAttribute('data-start-time');
+            e.preventDefault();
+            e.stopPropagation();
+            let text = document.getElementById('text-' + startTime).innerText;
+            if(containsChinese(text)){
+                console.log("中文",text)
+                return;
+            }
+            let el = document.getElementById('text-' + startTime);
+            el.innerHTML += `<div class='loading'>${loading}<div>AI 分析中....</div></div>`;
+            let translation = await fetchGPTAnalysis(text);
+            el.innerHTML += `<div class='translation'>${translation}</div>`
+            let loadingEl = el.querySelector('.loading');
+            if (loadingEl) {
+                loadingEl.remove(); 
+            }
+        });
+    });
+    
+}
   
+//   let button = document.querySelector('.translate');
+//   if(button){
+//     console.log("button")
+//       button.addEventListener('click', async function(e) {
+//           e.preventDefault();
+//           e.stopPropagation();
+//           console.log("点击")
+//           let btns = document.querySelectorAll('.translate');
+//           Array.prototype.forEach.call(btns, (btn) => {
+//                   btn.remove();
+//           });
+//               // 翻译字幕
+//           let text = el.innerText;
+//           if(containsChinese(text)){
+//               return;
+//           }
+//           el.innerHTML = `<div>${text}</div><div class='loading'>${loading}<div>AI 翻译中....</div></div>`;
+//           let translation = await fetchGPT(text);
+//           el.innerHTML = `<div>${text}</div><div class='translation'>${translation}</div>`
+//       });
+//   }

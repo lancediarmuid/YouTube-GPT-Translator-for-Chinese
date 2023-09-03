@@ -120,9 +120,7 @@ export async function getTranscriptHTML(link, videoId) {
 
           if (charCount < charUpperLimit) {
               if (obj.text.includes(".")) {
-
                   const splitStr = obj.text.split(".");
-
                   // Case: the last letter is . => Process regulary
                   if (splitStr[splitStr.length-1].replace(/\s+/g, "") == "") {
                       tempObj.text = chars.join(" ").replace(/\n/g, " ");
@@ -146,7 +144,6 @@ export async function getTranscriptHTML(link, videoId) {
                   scriptObjArr.push(tempObj);
                   resetNums();
                   return;
-
               } else {
                   // Move onto next loop to find .
                   return;
@@ -184,8 +181,14 @@ export async function getTranscriptHTML(link, videoId) {
                         ${hhmmss}
                     </a>
                   </div>
-                  <div class="yt_ai_summary_transcript_text" data-start-time="${t}">
-                    ${obj.text}
+                  <div id="transcript-${t}">
+                    <div class="yt_ai_summary_transcript_text" data-start-time="${t}" id="text-${t}">
+                      ${obj.text}
+                    </div>
+                    <div>
+                      <button class="translate" id="translate-btn-${t}" data-start-time="${t}">段落翻译</button>
+                      <button class="gramma" id="gramma-btn-${t}" data-start-time="${t}">词法分析</button>
+                    </div>
                   </div>
               </div>`
   }).join("");
