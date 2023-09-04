@@ -13,7 +13,7 @@ export const ui = `
         </svg>
         
         </a>
-        <p class="yt_ai_summary_header_text">YouTube AI Translator</p>
+        <p class="yt_ai_summary_header_text">YouTube GPT Translator</p>
         <div class="yt_ai_summary_header_actions">
             <div id="yt_ai_summary_header_track" class="yt_ai_summary_header_action_btn yt-summary-hover-el" 
                 data-hover-label="暂停/播放">

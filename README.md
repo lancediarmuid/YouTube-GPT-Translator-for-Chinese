@@ -1,9 +1,11 @@
-# YouTube GPT Translator (中文版)
+# YouTube GPT Translator for Chinese
 
-YouTube AI Translator 是一个简单的 Chrome 扩展 (manifest v3)，它使用 OpenAI 的 ChatGPT AI 技术，让你能够获取 YouTube 视频的语音转换中英文文本，并对陌生单词进行标注解释的英文学习助手。
+YouTube AI Translator for Chinese 是一个简单的 Chrome 扩展 (manifest v3)，
+它使用 OpenAI 的 ChatGPT AI 技术，让你能够获取 YouTube 视频的语音转换中英文文本，并对陌生单词进行标注解释的英文学习助手。
 
-## 如何安装
+## 安装
 
+### 开发者安装
 要安装这个扩展，请按照以下步骤进行操作：
 
 1. 在 GitHub 上下载源代码。
@@ -24,15 +26,19 @@ npm run build-release
 8. 点击 `Load unpacked` 按钮，选择 **dist** 目录。
 9. YouTube Summary with ChatGPT 扩展应该已经成功安装并且处于活动状态！
 
+### 普通安装
+请在**Chrome Store**中搜索**YouTube GPT Translator for Chinese**
+
 ## 如何使用
 
-要使用 YouTube Summary with ChatGPT 扩展，按照以下步骤进行操作（或者 [观看此视频](https://www.youtube.com/watch?v=pNxsdLif2cs)）：
-
-1. 转到任何 YouTube 视频页面。
-2. 点击右上角的小框，上面写着 `Transcript & Summary`。
-3. 点击 `View AI Summary` 按钮（它会自动复制提示并打开 ChatGPT 页面！）。
-4. 如果你使用 Mac，按下 `Cmd + V`。
-5. 你将会看到奇迹发生！
+1. 安装成功后打开任一YouTube英文视频，右侧页面会插入`YouTube GPT Translator`插件。
+2. 点击浏览器右上角的插件ICON填入您的`OpenAI API KEY`.
+3. 点击页面插件的下拉按钮，会显示全部英文字母。
+4. 点击`段落翻译`：翻译整段翻译；
+5. 点击`词法分析`：会翻译出段落中的重点短语；
+6. 点击字幕原文，视频会自动滚动到该字幕的位置；
+7. 点击`暂停/播放`按钮，视频会在暂停播放间切换；
+8. 点击`复制全部字幕`按钮，视频字幕会自动复制到您电脑的粘贴板上，您可以粘贴到任意您所需的地方。
 
 ## 注意事项
 
