@@ -1,7 +1,9 @@
 # YouTube GPT Translator for Chinese
 
-<p align="center">
+<center>
   <img src="./src/images/icon.png" width="200"/>
+</center>
+<p align="center">
   <em>可能是东半球最好的YouTube视频翻译插件</em>
 </p>
 <p align="center">
