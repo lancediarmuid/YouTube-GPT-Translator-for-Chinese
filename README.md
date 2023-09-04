@@ -1,5 +1,12 @@
 # YouTube GPT Translator for Chinese
 
+<p align="center">
+  <em>哪里不会点哪里</em>
+</p>
+<p align="center">
+      <img src="https://img.shields.io/badge/manifest-v3-blue" alt="python">
+</p>
+
 YouTube AI Translator for Chinese 是一个简单的 Chrome 扩展 (manifest v3)，
 它使用 OpenAI 的 ChatGPT AI 技术，让你能够获取 YouTube 视频的语音转换中英文文本，并对陌生单词进行标注解释的英文学习助手。
 
