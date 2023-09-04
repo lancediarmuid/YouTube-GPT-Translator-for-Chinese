@@ -1,4 +1,4 @@
-# YouTube AI Translator
+# YouTube GPT Translator (中文版)
 
 YouTube AI Translator 是一个简单的 Chrome 扩展 (manifest v3)，它使用 OpenAI 的 ChatGPT AI 技术，让你能够获取 YouTube 视频的语音转换中英文文本，并对陌生单词进行标注解释的英文学习助手。
 

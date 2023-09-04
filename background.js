@@ -19,12 +19,12 @@ function onClickHandler(info, tab) {
     }
 }
   
-chrome.contextMenus.onClicked.addListener(onClickHandler);
+// chrome.contextMenus.onClicked.addListener(onClickHandler);
   
-chrome.runtime.onInstalled.addListener(function() {
-    chrome.contextMenus.create({
-      title: "YouTube AI Translator 标注翻译",
-      contexts: ["selection"],
-      id: "myContextMenuId"
-    });
-});
+// chrome.runtime.onInstalled.addListener(function() {
+//     chrome.contextMenus.create({
+//       title: "YouTube GPT Translator (中文版)",
+//       contexts: ["selection"],
+//       id: "myContextMenuId"
+//     });
+// });
