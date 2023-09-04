@@ -1,7 +1,7 @@
 {
-  "name": "youyube_ai_translator",
-  "version": "0.0.1",
-  "description": "基于AI的YouTube视频翻译插件 Use AI to translate YouTube videos",
+  "name": "youtube_gpt_translator_chrome_extension",
+  "version": "1.0.1",
+  "description": "基于GPT的YouTube视频翻译插件 Use AI to translate YouTube videos",
   "main": "background.js",
   "scripts": {
     "clean": "rimraf dist/*",
@@ -14,7 +14,7 @@
     "url": ""
   },
   "author": "Lewis Zhang",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "homepage": "",
   "devDependencies": {
     "copy-webpack-plugin": "^9.0.1",
