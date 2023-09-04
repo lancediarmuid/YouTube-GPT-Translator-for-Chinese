@@ -2,37 +2,7 @@ export function convertIntToHms(num) {
     const h = (num < 3600) ? 14 : 12;
     return (new Date(num * 1000).toISOString().substring(h, 19)).toString();
 }
-export function copyTextToClipboard(text) {
-    if (!navigator.clipboard) {
-        fallbackCopyTextToClipboard(text);
-        return;
-    } else {
-        navigator.clipboard.writeText(text).then(function () {
-        }, function (err) {
-        });
-    }
-    function fallbackCopyTextToClipboard(text) {
-        var textArea = document.createElement("textarea");
-        textArea.value = text;
 
-        // Avoid scrolling to bottom
-        textArea.style.top = "0";
-        textArea.style.left = "0";
-        textArea.style.position = "fixed";
-
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-
-        try {
-            var successful = document.execCommand('copy');
-            var msg = successful ? 'successful' : 'unsuccessful';
-        } catch (err) {
-        }
-
-        document.body.removeChild(textArea);
-    }
-}
 
 /* 
 这段代码定义了一个名为getSearchParam的导出函数，它接受一个参数str。
@@ -160,9 +130,9 @@ export const fetchGPTAnalysis = async (text) => {
 
   let data = {
       model: 'gpt-3.5-turbo-16k-0613',
-      template:  `用户是一个学习英文的中国学生，请用中文帮助分析用户输入的英文文本，划出重点学习句子和单词。返回格式为HTML"`,
+      template:  `你是一个英语教学专家，输出语言为中文`,
       apikey,
-      question:text,
+      question:"请从下面文本中使用<ul><li><strong>标签划出难度较高的词组并给出解释，"+text,
       temperature:  0,
       max_tokens: 5000,
       top_p: 1,
@@ -186,5 +156,51 @@ export const fetchGPTAnalysis = async (text) => {
     } catch (e) {
       return '\n【AI翻译服务器错误】'
     }
+}
+
+export function copyTextToClipboard(text) {
+
+  if (!navigator.clipboard) {
+      fallbackCopyTextToClipboard(text);
+      return;
+  } else {
+      navigator.clipboard.writeText(text).then(function () {
+      }, function (err) {
+      });
+  }
+  function fallbackCopyTextToClipboard(text) {
+      var textArea = document.createElement("textarea");
+      textArea.value = text;
+
+      // Avoid scrolling to bottom
+      textArea.style.top = "0";
+      textArea.style.left = "0";
+      textArea.style.position = "fixed";
+
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+
+      try {
+          var successful = document.execCommand('copy');
+          var msg = successful ? 'successful' : 'unsuccessful';
+      } catch (err) {
+      }
+
+      document.body.removeChild(textArea);
+  }
+}
+
+export function copyTranscript() {
+  let contentBody = "";
+  contentBody += `${document.title}\n`;
+  contentBody += `Transcript:\n`;
+  Array.from(document.getElementById("yt_ai_summary_text").children).forEach(el => {
+      if (!el) { return; }
+      if (el.children.length < 2) { return; }
+      const text = el.querySelector(".yt_ai_summary_transcript_text").innerText;
+      contentBody += `${text}\n`;
+  })
+  copyTextToClipboard(contentBody);
 }
 

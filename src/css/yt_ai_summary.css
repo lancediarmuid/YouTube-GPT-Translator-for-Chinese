@@ -76,11 +76,6 @@
     transition: background-color 0.5s cubic-bezier(0.05, 0, 0, 1) 0s;
 }
 
-#yt_ai_summary_header_copy, #yt_ai_summary_header_summary {
-    /* visibility: hidden; */
-    display: none;
-}
-
 .yt_ai_summary_header_icon_show {
     /* visibility: visible !important; */
     display: block !important;
@@ -182,6 +177,15 @@
     font-size: 14px;
 }
 
+.translation-text {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.gramma-text {
+    margin-top: 10px;
+    font-size: 14px;
+}
 .loading {
     display: flex;
     justify-content: center;
