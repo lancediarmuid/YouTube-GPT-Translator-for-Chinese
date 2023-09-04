@@ -1,8 +1,9 @@
 .DS_Store
+dist.zip
 
 # dist directory
 dist/
-dist.zip
+
 # IntelliJ
 .idea
 # VS Code
