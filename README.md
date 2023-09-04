@@ -1,14 +1,18 @@
 # YouTube GPT Translator for Chinese
 
 <p align="center">
-  <em>哪里不会点哪里</em>
+  <em>可能是东半球最好的YouTube字幕插件</em>
 </p>
 <p align="center">
-      <img src="https://img.shields.io/badge/manifest-v3-blue" alt="python">
+    <img src="https://img.shields.io/badge/manifest-v3-blue" alt="python">
+    <img src="https://img.shields.io/badge/chrome-116-red" alt="python">
 </p>
 
-YouTube AI Translator for Chinese 是一个简单的 Chrome 扩展 (manifest v3)，
-它使用 OpenAI 的 ChatGPT AI 技术，让你能够获取 YouTube 视频的语音转换中英文文本，并对陌生单词进行标注解释的英文学习助手。
+"**YouTube AI Translator for Chinese** is a simple Chrome extension (manifest v3) based on OpenAI's ChatGPT AI technology. It enables real-time translation of English videos and allows for easy copying and pasting of video subtitles. For English learners, this plugin provides Chinese definitions for key words or phrases in the videos. For friends practicing English listening skills, subtitles can be selected for repeated playback and practice. In the future, we will also develop additional features such as video content summaries and one-click generation of video content mind maps. Stay tuned for more updates."
+
+**YouTube AI Translator for Chinese** 是一个简单的 Chrome 扩展 (manifest v3)，基于 OpenAI 的 ChatGPT AI 技术
+能够让您实时翻译英文视频，亦可对视频字幕内容一键复制粘贴。对于英语学习者来说，本插件可对视频中关键单词或短语进行中文释义，
+对于练习英文听力的朋友，可选择字幕进行反复播放练习。后续我们还会开发视频内容总结和视频内容思维导图一键生成等功能，敬请期待。
 
 ## 安装
 
