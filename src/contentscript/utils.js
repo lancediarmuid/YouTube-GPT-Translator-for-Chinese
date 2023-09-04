@@ -130,11 +130,16 @@ export const fetchGPTAnalysis = async (text) => {
 
   let data = {
       model: 'gpt-3.5-turbo-16k-0613',
-      template:  `你是一个英语教学专家，输出语言为中文`,
+      template:  `You are a English Teacher。IMPORTANT:Your Output must be a HTML format as following schema：
+      <ul>
+      <li>
+        <strong>{Phrase}</strong>: {中文翻译}
+      </li>
+      </ul>"`,
       apikey,
-      question:"请从下面文本中使用<ul><li><strong>标签划出难度较高的词组并给出解释，"+text,
-      temperature:  0,
-      max_tokens: 5000,
+      question:text+"对以上文本进行分析，找出其中较难的短语词汇(最多5个)，并翻译成中文",
+      temperature:  0.1,
+      max_tokens: 2000,
       top_p: 1,
       frequency_penalty: 0,
       presence_penalty: 0,
