@@ -2,7 +2,7 @@
 
 # dist directory
 dist/
-
+dist.zip
 # IntelliJ
 .idea
 # VS Code
