@@ -1,6 +1,6 @@
 {
   "name": "youtube_gpt_translator_chrome_extension",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "基于GPT的YouTube视频翻译插件 Use AI to translate YouTube videos",
   "main": "background.js",
   "scripts": {
