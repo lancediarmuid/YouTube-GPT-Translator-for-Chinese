@@ -193,14 +193,18 @@ export function copyTextToClipboard(text) {
 
 export function copyTranscript() {
   let contentBody = "";
-  contentBody += `${document.title}\n`;
+  let title = document.title;
+  title = title.replace(/- YouTube/g, "")
+  contentBody += `${title}\n`;
   contentBody += `Transcript:\n`;
   Array.from(document.getElementById("yt_ai_summary_text").children).forEach(el => {
       if (!el) { return; }
       if (el.children.length < 2) { return; }
       const text = el.querySelector(".yt_ai_summary_transcript_text").innerText;
-      contentBody += `${text}\n`;
+      contentBody += `${text}`;
   })
   copyTextToClipboard(contentBody);
+  const url ="https://gptapp.pub"
+  window.open(url, '_blank');
 }
 
