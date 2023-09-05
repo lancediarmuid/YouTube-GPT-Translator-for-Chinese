@@ -1,7 +1,7 @@
 "use strict";
 
 import { getLangOptionsWithLink, getTranscriptHTML } from "./transcript";
-import { getSearchParam,noTranscriptionAlert,createLangSelectBtns,fetchGPT,fetchGPTAnalysis,copyTranscript} from "./utils";
+import { getSearchParam,noTranscriptionAlert,createLangSelectBtns,fetchGPT,fetchGPTKeywords,fetchGPTAnalysis,copyTranscript} from "./utils";
 import { ui,loading } from "./ui";
 import { waitForElm } from "./dom";
 // 插入小部件按钮
