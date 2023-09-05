@@ -131,7 +131,7 @@ export const fetchGPTAnalysis = async (text) => {
       model: 'gpt-3.5-turbo',
       template:  `你是英文语法专家`,
       apikey,
-      question:text+"请对该英文进行语法结构分析",
+      question:text+"请对该英文进行语法结构分析,提取内容如：主语、谓语、状语...",
       temperature:  0,
       max_tokens: 1000,
       top_p: 1,

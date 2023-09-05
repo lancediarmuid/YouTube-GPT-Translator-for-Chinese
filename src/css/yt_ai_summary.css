@@ -179,17 +179,22 @@
 
 .translation-text {
     margin-top: 10px;
-    font-size: 14px;
+    font-size: 13px;
+    color: #353535;
 }
 
 .gramma-text {
     margin-top: 10px;
-    font-size: 12px;
+    font-size: 13px;
+    color: #353535;
+
 }
 
 .keywords-text {
     margin-top: 10px;
-    font-size: 14px;
+    font-size: 13px;
+    color: #353535;
+
 }
 
 .loading {
