@@ -186,6 +186,12 @@
     margin-top: 10px;
     font-size: 14px;
 }
+
+.keywords-text {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
 .loading {
     display: flex;
     justify-content: center;
