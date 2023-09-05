@@ -71,13 +71,14 @@ const readLocalStorage = async () => {
 }
         const BACK_END = 'https://api.relai.social';
 
+const openaiKeyRegex = /sk-\w{32}/;
+
 // 获取GPT翻译
 export const fetchGPT = async (text) => {
     let apikey = await readLocalStorage()
     if(!apikey){
         return '请先在插件中填写您的OpenAPIKEY\n'
     }
-    const openaiKeyRegex = /sk-\w{32}/;
     const isMatched = openaiKeyRegex.test(apikey);
 
     if(!isMatched){
@@ -121,25 +122,70 @@ export const fetchGPTAnalysis = async (text) => {
   if(!apikey){
       return '请先在插件中填写您的OpenAPIKEY\n'
   }
-  const openaiKeyRegex = /sk-\w{32}/;
   const isMatched = openaiKeyRegex.test(apikey);
-
   if(!isMatched){
       return '请先在插件中设置正确的OpenAPIKEY\n'+text
   }
 
   let data = {
-      model: 'gpt-3.5-turbo-16k-0613',
-      template:  `You are a English Teacher。IMPORTANT:Your Output must be a HTML format as following schema：
-      <ul>
-      <li>
-        <strong>{Phrase}</strong>: {中文翻译}
-      </li>
-      </ul>"`,
+      model: 'gpt-3.5-turbo',
+      template:  `You are a English Teacher。`,
       apikey,
-      question:text+"对以上文本进行分析，找出其中较难的短语词汇(最多5个)，并翻译成中文",
-      temperature:  0.1,
-      max_tokens: 2000,
+      question:text+`分析这段话的语法结构`,
+      temperature:  0,
+      max_tokens: 1500,
+      top_p: 1,
+      frequency_penalty: 0,
+      presence_penalty: 0,
+    }
+  try {
+      const res = await fetch(`${BACK_END}/rest-api/translator/chat`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+      const json = await res.json();
+      if (json.status_code === 200) {
+        return json.data
+      } else {
+        return '\n【AI翻译服务器错误】'
+      }
+    } catch (e) {
+      return '\n【AI翻译服务器错误】'
+    }
+}
+
+// 获取GPT翻译
+export const fetchGPTKeywords = async (text) => {
+  let apikey = await readLocalStorage()
+  if(!apikey){
+      return '请先在插件中填写您的OpenAPIKEY\n'
+  }
+  const isMatched = openaiKeyRegex.test(apikey);
+  if(!isMatched){
+      return '请先在插件中设置正确的OpenAPIKEY\n'+text
+  }
+
+  let data = {
+      model: 'gpt-3.5-turbo',
+      template:  `You are a English Teacher。
+      strictly follow HTML tags in your output：
+      <ul>
+        <li>
+          <strong>{Phrase}</strong>: {中文翻译}
+        </li>
+      </ul>",not pure text`,
+      apikey,
+      question:text+`对以上文本进行分析，找出其中较难的短语词汇(最多5个)，并翻译成中文, strictly follow HTML tags in your output：
+      <ul>
+        <li>
+          <strong>{Phrase}</strong>: {中文翻译}
+        </li>
+      </ul>`,
+      temperature:  0,
+      max_tokens: 500,
       top_p: 1,
       frequency_penalty: 0,
       presence_penalty: 0,

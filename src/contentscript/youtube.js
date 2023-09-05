@@ -96,14 +96,18 @@ function sanitizeWidget() {
     document.querySelector("#yt_ai_summary_header_toggle").classList.toggle("yt_ai_summary_header_toggle_rotate");
 }
 
-function sanitizeAiResult() {
-    let grammaText = document.querySelector(".gramma-text")
+function sanitizeAiResult(startTime) {
+    let grammaText = document.getElementById(`gramma-${startTime}`)
+    let translation = document.getElementById(`translation-${startTime}`)
+    let keywords = document.getElementById(`keywords-${startTime}`)
     if(grammaText){
         grammaText.remove()
-    }
-    let translation = document.querySelector(".translation-text")
+    }    
     if(translation){
         translation.remove()
+    }
+    if(keywords){
+        keywords.remove()
     }
 }
 // 检查小部件是否打开
@@ -225,6 +229,7 @@ function evtListenerOnText() {
 function evtListenerOnBtn(){
     let translateList = document.querySelectorAll('.translate');
     let grammaList = document.querySelectorAll('.gramma');
+    let keywordsList = document.querySelectorAll('.keywords');
     
     translateList.forEach((element) => {
       element.addEventListener('click', async function(e) {
@@ -235,16 +240,16 @@ function evtListenerOnBtn(){
         let text = document.getElementById('text-' + startTime).innerText;
         // 对于中文不进行翻译
         if(containsChinese(text)){
-            console.log("中文",text)
+            console.log("包含中文",text)
             return;
         }
         // 清理上一次的翻译结果
-        sanitizeAiResult();
+        sanitizeAiResult(startTime);
         let el = document.getElementById('text-' + startTime);
         el.innerHTML += `<div class='loading'>${loading}<div>AI 翻译中....</div></div>`;
         ytVideoEl.pause()
         let translation = await fetchGPT(text);
-        el.insertAdjacentHTML('afterend', `<div class='translation-text'>${translation}</div>`);
+        el.insertAdjacentHTML('afterend', `<div class='translation-text' id='translation-${startTime}'>${translation}</div>`);
         ytVideoEl.play()
         let loadingEl = el.querySelector('.loading');
         if (loadingEl) {
@@ -260,16 +265,42 @@ function evtListenerOnBtn(){
             e.stopPropagation();
             let text = document.getElementById('text-' + startTime).innerText;
             if(containsChinese(text)){
-                console.log("中文",text)
+                console.log("包含中文",text)
                 return;
             }
              // 清理上一次的翻译结果
-            sanitizeAiResult();
+            sanitizeAiResult(startTime);
             let el = document.getElementById('text-' + startTime);
             el.innerHTML += `<div class='loading'>${loading}<div>AI 分析中....</div></div>`;
             ytVideoEl.pause()
             let result = await fetchGPTAnalysis(text);
-            el.insertAdjacentHTML('afterend', `<div class='gramma-text'>${result}</div>`);
+            el.insertAdjacentHTML('afterend', `<div class='gramma-text' id='gramma-${startTime}'>${result}</div>`);
+
+            ytVideoEl.play()
+            let loadingEl = el.querySelector('.loading');
+            if (loadingEl) {
+                loadingEl.remove(); 
+            }
+        });
+    });
+
+    keywordsList.forEach((element) => {
+        element.addEventListener('click', async function(e) {
+            let startTime = this.getAttribute('data-start-time');
+            e.preventDefault();
+            e.stopPropagation();
+            let text = document.getElementById('text-' + startTime).innerText;
+            if(containsChinese(text)){
+                console.log("包含中文",text)
+                return;
+            }
+             // 清理上一次的翻译结果
+            sanitizeAiResult(startTime);
+            let el = document.getElementById('text-' + startTime);
+            el.innerHTML += `<div class='loading'>${loading}<div>AI 分析中....</div></div>`;
+            ytVideoEl.pause()
+            let result = await fetchGPTKeywords(text);
+            el.insertAdjacentHTML('afterend', `<div class='keywords-text' id='keywords-${startTime}'>${result}</div>`);
 
             ytVideoEl.play()
             let loadingEl = el.querySelector('.loading');
@@ -295,5 +326,6 @@ function evtListenerOnBtn(){
         e.stopPropagation();
         copyTranscript();
     })
+    
 }
   
