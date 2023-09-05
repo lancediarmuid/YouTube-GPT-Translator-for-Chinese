@@ -129,21 +129,11 @@ export const fetchGPTAnalysis = async (text) => {
 
   let data = {
       model: 'gpt-3.5-turbo',
-      template:  `You are a English Teacher.strictly follow HTML tags in your output：
-      <ul>
-        <li>
-          {output}
-        </li>
-      </ul>",not pure text`,
+      template:  `你是英文语法专家`,
       apikey,
-      question:text+`分析这段话的语法结构.strictly follow HTML tags in your output：
-      <ul>
-        <li>
-          {output}
-        </li>
-      </ul>",not pure text`,
+      question:text+"请对该英文进行语法结构分析",
       temperature:  0,
-      max_tokens: 1500,
+      max_tokens: 1000,
       top_p: 1,
       frequency_penalty: 0,
       presence_penalty: 0,
