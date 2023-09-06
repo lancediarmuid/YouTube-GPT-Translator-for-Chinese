@@ -78,4 +78,4 @@ Please search **YouTube GPT Translator for Chinese** from **Chrome Store**.
 If you have any questions or feedback regarding the YouTube AI Translator extension, please feel free to email me at lewis.q.zhang@gmail.com.
 This project is forked from YouTube_Summary_with_ChatGPT, and special thanks to kazuki-sf for their contribution to the open-source community.
 
-如果你对 YouTube AI Translator 扩展有任何问题或反馈，请在发生Email:lewis.q.zhang@gmail.com给我。本项目Fork自[YouTube_Summary_with_ChatGPT](https://github.com/kazuki-sf/YouTube_Summary_with_ChatGPT)，感谢kazuki-sf对开源社区的贡献。
+如果你对 YouTube AI Translator 扩展有任何问题或反馈，请在发Email:lewis.q.zhang@gmail.com给我。本项目Fork自[YouTube_Summary_with_ChatGPT](https://github.com/kazuki-sf/YouTube_Summary_with_ChatGPT)，感谢kazuki-sf对开源社区的贡献。
