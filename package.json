@@ -1,7 +1,7 @@
 {
-  "name": "youtube_gpt_translator_chrome_extension",
+  "name": "hercules_chrome_extension",
   "version": "1.0.2",
-  "description": "基于GPT的YouTube视频翻译插件 Use AI to translate YouTube videos",
+  "description": "基于Open AI API KEY的YouTube视频翻译插件(英翻中)",
   "main": "background.js",
   "scripts": {
     "clean": "rimraf dist/*",

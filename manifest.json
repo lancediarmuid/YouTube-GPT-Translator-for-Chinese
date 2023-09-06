@@ -1,8 +1,8 @@
 {
-  "name": "YouTube GPT Translator 中文版",
-  "version": "1.0.1",
+  "name": "Hercules:YouTube视频翻译插件(英翻中)",
+  "version": "1.0.2",
   "manifest_version": 3,
-  "description": "基于AI的YouTube视频翻译插件 Use AI to translate YouTube videos",
+  "description": "基于Open AI API KEY的YouTube视频翻译插件(英翻中)",
   "background": {
     "service_worker": "background.bundle.js",
     "type": "module"
