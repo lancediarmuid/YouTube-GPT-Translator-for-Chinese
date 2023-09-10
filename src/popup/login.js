@@ -5,5 +5,7 @@
     })
 
     chrome.storage.local.get(["apikey"], (result) => {
-        document.getElementById("input").value = result.apikey
+        if(result.apikey) {
+            document.getElementById("input").value = result.apikey
+        }
     })

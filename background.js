@@ -1,7 +1,7 @@
 "use strict";
 
 console.log("连接中 connected...");
-const onInstallURL = "https://youtube.com";
+const onInstallURL = "https://www.hercules.ink/";
 
 // Chrome 插件按照成功过后，打开一个新的页面
 chrome.runtime.onInstalled.addListener(function (details) {
@@ -19,12 +19,3 @@ function onClickHandler(info, tab) {
     }
 }
   
-// chrome.contextMenus.onClicked.addListener(onClickHandler);
-  
-// chrome.runtime.onInstalled.addListener(function() {
-//     chrome.contextMenus.create({
-//       title: "YouTube GPT Translator (中文版)",
-//       contexts: ["selection"],
-//       id: "myContextMenuId"
-//     });
-// });

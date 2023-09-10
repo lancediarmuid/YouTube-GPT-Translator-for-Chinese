@@ -1,6 +1,6 @@
 {
   "name": "Hercules:YouTube视频翻译插件(英翻中)",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "manifest_version": 3,
   "description": "基于Open AI API KEY的YouTube视频翻译插件(英翻中)",
   "background": {

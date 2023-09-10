@@ -255,7 +255,7 @@ export function copyTranscript() {
       contentBody += `${text}`;
   })
   copyTextToClipboard(contentBody);
-  const url ="https://gptapp.pub"
-  window.open(url, '_blank');
+  // const url ="https://gptapp.pub"
+  // window.open(url, '_blank');
 }
 

@@ -67,6 +67,8 @@ export function insertSummaryBtn() {
             evtListenerOnText();
             // 监听按钮
             evtListenerOnBtn();
+            // 
+            evtListenerOnScreen();
         })
 
         setInterval(function() {
@@ -328,4 +330,22 @@ function evtListenerOnBtn(){
     })
     
 }
-  
+
+// 处理全屏模式切换事件的函数
+function handleFullScreenChange() {
+    if (document.fullscreenElement) {
+      // 进入全屏模式
+      console.log('进入全屏模式');
+      sanitizeWidget();
+      // 在这里执行你想要的操作
+    } else {
+      // 退出全屏模式
+      console.log('退出全屏模式');
+      // 在这里执行你想要的操作
+    }
+}
+
+function evtListenerOnScreen(){
+    // 监听全屏模式切换事件
+    document.addEventListener('fullscreenchange', handleFullScreenChange);
+}
