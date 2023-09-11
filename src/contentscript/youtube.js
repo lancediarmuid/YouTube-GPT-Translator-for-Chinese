@@ -14,11 +14,11 @@ export function insertSummaryBtn() {
     // 清空小部件
     if (document.querySelector("#yt_ai_summary_lang_select")) { document.querySelector("#yt_ai_summary_lang_select").innerHTML = ""; }
     if (document.querySelector("#yt_ai_summary_summary")) { document.querySelector("#yt_ai_summary_summary").innerHTML = ""; }
-    Array.from(document.getElementsByClassName("yt_ai_summary_container")).forEach(el => { el.remove(); });
+    Array.from(document.getElementsByClassName("hercules_container")).forEach(el => { el.remove(); });
     if (!getSearchParam(window.location.href).v) { return; }
     waitForElm('#secondary.style-scope.ytd-watch-flexy').then(() => {
         // Sanitize
-        Array.from(document.getElementsByClassName("yt_ai_summary_container")).forEach(el => { el.remove(); });
+        Array.from(document.getElementsByClassName("hercules_container")).forEach(el => { el.remove(); });
         // 注入插件UI
         document.querySelector("#secondary.style-scope.ytd-watch-flexy").insertAdjacentHTML("afterbegin", ui);
         // 事件监听
@@ -164,15 +164,15 @@ async function scrollIntoCurrTimeDiv() {
         if (currTime >= startTimeOfEl && currTime < startTimeOfNextEl) {
             el.classList.add('hover'); 
             // 获取当前元素的位置信息
-            // const boundingRect = el.getBoundingClientRect();
+            const boundingRect = el.getBoundingClientRect();
             // // 若当前元素已在可见区域内，则不进行滚动操作
-            // if (boundingRect.top >= 0 && boundingRect.bottom <= window.innerHeight) {
-            //     return; 
-            // }
+            if (boundingRect.top >= 0 && boundingRect.bottom <= window.innerHeight) {
+                return; 
+            }
             // 将当前字幕和相应容器滚动到可见区域
             el.scrollIntoView({ behavior: 'auto', block: 'start' });
      
-            let container = document.querySelector("#secondary > div.yt_ai_summary_container")
+            let container = document.querySelector("#secondary > div.hercules_container")
             container.scrollIntoView({ behavior: 'auto', block: 'end' });
         }else{
             el.classList.remove('hover');
@@ -202,18 +202,6 @@ function evtListenerOnTimestamp() {
 function evtListenerOnText() {
     let texts = Array.from(document.getElementsByClassName("yt_ai_summary_transcript_text"));
     texts.forEach(el => {
-      el.addEventListener('mouseover', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        el.classList.add('hover'); 
-      });
-
-      el.addEventListener('mouseout', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        el.classList.remove('hover');
-    
-      });
       el.addEventListener('click',async (e) => {
         e.preventDefault();
         e.stopPropagation();

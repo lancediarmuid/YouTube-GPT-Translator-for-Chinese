@@ -1,5 +1,5 @@
 export const ui = `
-<div class="yt_ai_summary_container">
+<div class="hercules_container">
     <div id="yt_ai_summary_header" class="yt_ai_summary_header">
         <a href="#" target="_blank" style="width: 24px;height: 24px;">
         <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48.000000 48.000000" preserveAspectRatio="xMidYMid meet">

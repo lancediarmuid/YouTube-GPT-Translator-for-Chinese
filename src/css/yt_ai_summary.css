@@ -1,9 +1,10 @@
-.yt_ai_summary_container {
+.hercules_container {
     background-color: #FFFFFF;
     padding: 4px 8px 4px 12px;
     border: 1px solid rgba(0,0,0,0.3);
     border-radius: 4px;
     margin-bottom: 10px;
+    box-shadow: rgb(0 0 0 / 35%) 2px 4px 6px;
 }
 
 .yt_ai_summary_header {
@@ -166,6 +167,7 @@
 .hover {
     cursor: pointer;
     color: #3068b0;
+    font-weight: bolder;
 }
 
 .onair {
@@ -204,4 +206,15 @@
     min-height: 150px;
     text-align: center;
     color: #20497f;
+}
+
+button {  
+    background-color: #fff;
+    border: 1px solid #4d4d4d;
+    color: #4d4d4d;
+    margin-top: 10px;
+}
+
+button:hover {
+    cursor: pointer;
 }
