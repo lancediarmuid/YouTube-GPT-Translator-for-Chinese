@@ -1,7 +1,9 @@
 "use strict";
 
 import { getLangOptionsWithLink, getTranscriptHTML } from "./transcript";
-import { getSearchParam,noTranscriptionAlert,createLangSelectBtns,fetchGPT,fetchGPTKeywords,fetchGPTAnalysis,copyTranscript} from "./utils";
+import { getSearchParam,noTranscriptionAlert,createLangSelectBtns,fetchGPT,
+    containsChinese,
+    fetchGPTKeywords,fetchGPTAnalysis,copyTranscript} from "./utils";
 import { ui,loading } from "./ui";
 import { waitForElm } from "./dom";
 // 插入小部件按钮
@@ -74,10 +76,9 @@ export function insertSummaryBtn() {
         setInterval(function() {
             const ytVideoEl = document.querySelector("#movie_player > div.html5-video-container > video");
             if (!ytVideoEl.paused) {
-
                 scrollIntoCurrTimeDiv();
             }
-        }, 2000);
+        }, 1000);
     });
 
 }
@@ -132,7 +133,6 @@ function evtListenerOnLangBtns(langOptionsWithLink, videoId) {
             // 执行时间戳监听，确保不同的语言在切换的过程中保持字幕一致性
             evtListenerOnTimestamp();
             // 添加选中状态类，并移除其他按钮的选中状态类
-
             // 修改选中状态的class样式
             targetBtn.classList.add("yt_ai_summary_lange_selected");
             Array.from(document.getElementsByClassName("yt_ai_summary_lang")).forEach((langBtn) => {
@@ -159,22 +159,23 @@ async function scrollIntoCurrTimeDiv() {
     const currTime = getTYCurrentTime();
     Array.from(document.getElementsByClassName("yt_ai_summary_transcript_text")).forEach(async (el, i, arr) => {
         const startTimeOfEl = el.getAttribute("data-start-time");
-        // 获取下一个字幕元素的开始时间
         const startTimeOfNextEl = (i === arr.length-1) ? getTYEndTime() : arr[i+1].getAttribute("data-start-time") ?? 0;
         // 检查当前时间是否在当前字幕元素的时间范围内
         if (currTime >= startTimeOfEl && currTime < startTimeOfNextEl) {
+            el.classList.add('hover'); 
             // 获取当前元素的位置信息
-            const boundingRect = el.getBoundingClientRect();
-            // 若当前元素已在可见区域内，则不进行滚动操作
-            if (boundingRect.top >= 0 && boundingRect.bottom <= window.innerHeight) {
-                return; 
-            }
+            // const boundingRect = el.getBoundingClientRect();
+            // // 若当前元素已在可见区域内，则不进行滚动操作
+            // if (boundingRect.top >= 0 && boundingRect.bottom <= window.innerHeight) {
+            //     return; 
+            // }
             // 将当前字幕和相应容器滚动到可见区域
             el.scrollIntoView({ behavior: 'auto', block: 'start' });
      
             let container = document.querySelector("#secondary > div.yt_ai_summary_container")
             container.scrollIntoView({ behavior: 'auto', block: 'end' });
-            // el.classList.add("onair"); // 添加 onair 类名
+        }else{
+            el.classList.remove('hover');
         }
     })
 }
@@ -191,16 +192,12 @@ function evtListenerOnTimestamp() {
                 ytVideoEl.play();
             } else {
                 ytVideoEl.pause();
-            }
-       
+            }    
         })
     })
 }
 
-function containsChinese(str) {
-    const reg = /[\u4e00-\u9fa5]/gm;
-    return reg.test(str);
-}
+
 // 监听文本
 function evtListenerOnText() {
     let texts = Array.from(document.getElementsByClassName("yt_ai_summary_transcript_text"));

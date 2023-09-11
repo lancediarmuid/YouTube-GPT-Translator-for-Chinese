@@ -69,7 +69,7 @@ const readLocalStorage = async () => {
         });
       });
 }
-        const BACK_END = 'https://api.relai.social';
+const BACK_END = 'https://api.relai.social';
 
 const openaiKeyRegex = /sk-\w{32}/;
 
@@ -259,3 +259,7 @@ export function copyTranscript() {
   // window.open(url, '_blank');
 }
 
+export function containsChinese(str) {
+  const reg = /[\u4e00-\u9fa5]/gm;
+  return reg.test(str);
+}
