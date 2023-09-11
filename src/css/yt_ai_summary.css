@@ -160,6 +160,10 @@
     color: red;
 }
 
+yt_ai_summary_transcript_text:hover{
+    cursor: pointer;
+}
+
 .yt_ai_summary_transcript_text div {
     margin-bottom: 10px;
 }
