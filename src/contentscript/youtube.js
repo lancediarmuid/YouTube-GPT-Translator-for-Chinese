@@ -71,6 +71,18 @@ export function insertSummaryBtn() {
             evtListenerOnBtn();
             // 
             evtListenerOnScreen();
+            window.addEventListener('scroll', function() {
+                const ytVideoEl = document.querySelector("#movie_player > div.html5-video-container > video");
+                if (window.pageYOffset > 300) {
+                    if (!ytVideoEl.paused) {
+                        ytVideoEl.pause();
+                    }
+                }else{ 
+                    if (ytVideoEl.paused) {
+                        ytVideoEl.play();
+                    }
+                }
+              });
         })
 
         setInterval(function() {
