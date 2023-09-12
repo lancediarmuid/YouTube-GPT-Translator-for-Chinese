@@ -1,26 +1,50 @@
 "use strict";
 
 import { getLangOptionsWithLink, getTranscriptHTML } from "./transcript";
-import { getSearchParam,noTranscriptionAlert,createLangSelectBtns,fetchGPT,
-    containsChinese,
+import { getSearchParam,noTranscriptionAlert,createLangSelectBtns,fetchGPT,isWidgetOpen,
+    containsChinese,handleFullScreenChange,getTYCurrentTime,getTYEndTime,ytVideoEl,
     fetchGPTKeywords,fetchGPTAnalysis,copyTranscript} from "./utils";
 import { ui,loading } from "./ui";
 import { waitForElm } from "./dom";
-// 插入小部件按钮
 
-const ytVideoEl = document.querySelector("#movie_player > div.html5-video-container > video");
+function evtListenerOnHeader() {
+        // 监听暂停/开始按钮
+        document.getElementById("yt_ai_summary_header_track").addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log("=======")
+            if (ytVideoEl.paused) {
+                // 如果视频已经暂停，则执行播放
+                ytVideoEl.play();
+            } else {
+                ytVideoEl.pause();
+            }
+        })
+    
+        // 监听复制按钮
+        document.querySelector("#yt_ai_summary_header_copy").addEventListener("click", (e) => {
+            console.log("复制")
+            e.stopPropagation();
+            copyTranscript();
+        })
+}
 
 export function insertSummaryBtn() {
     // 清空小部件
-    if (document.querySelector("#yt_ai_summary_lang_select")) { document.querySelector("#yt_ai_summary_lang_select").innerHTML = ""; }
-    if (document.querySelector("#yt_ai_summary_summary")) { document.querySelector("#yt_ai_summary_summary").innerHTML = ""; }
+    if (document.querySelector("#yt_ai_summary_lang_select")) { 
+        document.querySelector("#yt_ai_summary_lang_select").innerHTML = ""; 
+    }
+    if (document.querySelector("#yt_ai_summary_summary")) { 
+        document.querySelector("#yt_ai_summary_summary").innerHTML = ""; 
+    }
     Array.from(document.getElementsByClassName("hercules_container")).forEach(el => { el.remove(); });
     if (!getSearchParam(window.location.href).v) { return; }
     waitForElm('#secondary.style-scope.ytd-watch-flexy').then(() => {
-        // Sanitize
         Array.from(document.getElementsByClassName("hercules_container")).forEach(el => { el.remove(); });
         // 注入插件UI
         document.querySelector("#secondary.style-scope.ytd-watch-flexy").insertAdjacentHTML("afterbegin", ui);
+        evtListenerOnHeader()
+
         // 事件监听
         Array.from(document.getElementsByClassName("yt-summary-hover-el")).forEach(el => {
             const label = el.getAttribute("data-hover-label");
@@ -40,7 +64,7 @@ export function insertSummaryBtn() {
                 e.preventDefault();
                 Array.from(document.getElementsByClassName("yt_ai_summary_header_hover_label")).forEach(el => { el.remove(); })
             })
-        })
+        });
         
         async function init(){
                   // 对组件进行清理
@@ -64,8 +88,6 @@ export function insertSummaryBtn() {
                   evtListenerOnLangBtns(langOptionsWithLink, videoId);
                   // 监听时间戳
                   evtListenerOnTimestamp();
-                  // 监听文本
-                  evtListenerOnText();
                   // 监听按钮
                   evtListenerOnBtn();
                   // 监听是否全屏
@@ -90,8 +112,8 @@ export function insertSummaryBtn() {
             init()
         }
 
-        // 1.展开/收起小部件
-        document.querySelector("#yt_ai_summary_header").addEventListener("click", async (e) => {
+        // // 1.展开/收起小部件
+        document.querySelector("#yt_ai_summary_header_toggle").addEventListener("click", async (e) => {
             init()
         })
 
@@ -108,14 +130,14 @@ export function insertSummaryBtn() {
 
 function sanitizeWidget() {
     // 清空转录区域
-    document.querySelector("#yt_ai_summary_lang_select").innerHTML = "";
+    // document.querySelector("#yt_ai_summary_lang_select").innerHTML = "";
     // 清空总结区域
-    document.querySelector("#yt_ai_summary_text").innerHTML = "";
+    // document.querySelector("#yt_ai_summary_text").innerHTML = "";
 
     // 调整高度
     document.querySelector("#yt_ai_summary_body").style.maxHeight = window.innerHeight - 160 + "px";
     // 总结区域出现加载动画
-    document.querySelector("#yt_ai_summary_text").innerHTML = loading;
+    // document.querySelector("#yt_ai_summary_text").innerHTML = loading;
 
     // 切换类列表
     document.querySelector("#yt_ai_summary_body").classList.toggle("yt_ai_summary_body_show");
@@ -136,10 +158,7 @@ function sanitizeAiResult(startTime) {
         keywords.remove()
     }
 }
-// 检查小部件是否打开
-function isWidgetOpen() {
-    return document.querySelector("#yt_ai_summary_body").classList.contains("yt_ai_summary_body_show");
-}
+
 
 // 在语言按钮上设置事件监听器
 function evtListenerOnLangBtns(langOptionsWithLink, videoId) {
@@ -167,15 +186,7 @@ function evtListenerOnLangBtns(langOptionsWithLink, videoId) {
     })
 }
 
-// 获取当前视频的播放时间
-function getTYCurrentTime() {
-    return document.querySelector("#movie_player > div.html5-video-container > video").currentTime ?? 0;
-}
 
-// 获取当前视频的总时长
-function getTYEndTime() {
-    return document.querySelector("#movie_player > div.html5-video-container > video").duration ?? 0;
-}
 
 // 字幕实时滚动
 async function scrollIntoCurrTimeDiv() {
@@ -217,20 +228,6 @@ function evtListenerOnTimestamp() {
     })
 }
 
-
-// 监听文本
-function evtListenerOnText() {
-    let texts = Array.from(document.getElementsByClassName("yt_ai_summary_transcript_text"));
-    texts.forEach(el => {
-      el.addEventListener('click',async (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        // const starttime = el.getAttribute("data-start-time");
-        // ytVideoEl.currentTime = starttime;
-        // ytVideoEl.play();
-      });
-    });
-  }
 // 监听划词
 function evtListenerOnSelectText(){
     let textboard = document.getElementById('yt_ai_summary_text')
@@ -256,50 +253,6 @@ function evtListenerOnSelectText(){
                 }
             }
         }   
-        // var highlightedText = document.querySelectorAll('span[style="background-color: yellow;"]');
-        // highlightedText.forEach(function(span) {
-        //     span.style.backgroundColor = ''; // Remove the background color
-        // });
-        // if (englishWords) { 
-        //     var popup = document.createElement("div");
-        //     popup.innerHTML = `
-        //         <div class="popup-option">词法解释</div>
-        //         <div class="popup-option">撤销</div>
-        //     `;
-        //     popup.style.position = "absolute";
-        //     popup.style.top = event.clientY + "px";
-        //     popup.style.left = event.clientX + "px";
-        //     popup.classList.add("popup-container");
-        //     document.body.appendChild(popup);
-        //     popup.addEventListener("click", function(e) {
-        //         e.stopPropagation();
-        //         e.preventDefault();
-        //         var selectedOption = e.target.innerText;
-        //         if (selectedOption === "划词注释") {
-        //           console.log("执行划词操作");
-        //         } else if (selectedOption === "词法解释") {
-        //           console.log("执行解释操作");
-        //         } else if (selectedOption === "撤销") {
-        //             var isInsidePopup = e.target.closest(".popup-container");
-        //             var isInsideSelectedText = e.target.closest("span");
-        //             if (!isInsidePopup && !isInsideSelectedText) {
-        //               var spans = document.querySelectorAll("span");
-        //               spans.forEach(function(span) {
-        //                 var parent = span.parentNode;
-        //                 while (span.firstChild) {
-        //                   parent.insertBefore(span.firstChild, span);
-        //                 }
-        //                 parent.removeChild(span);
-        //               });
-        //               var popup = document.querySelector(".popup-container");
-        //               if (popup) {
-        //                 document.body.removeChild(popup);
-        //               }
-        //             }
-        //         }
-        //         document.body.removeChild(popup);
-        //     });
-        // }
     });
 }
 
@@ -400,43 +353,8 @@ function evtListenerOnBtn(){
             }
         });
     });
-    // 监听暂停/开始按钮
-    document.getElementById("yt_ai_summary_header_track").addEventListener("click", (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        if (ytVideoEl.paused) {
-            // 如果视频已经暂停，则执行播放
-            ytVideoEl.play();
-        } else {
-            ytVideoEl.pause();
-        }
-    })
 
-    // 监听复制按钮
-    document.querySelector("#yt_ai_summary_header_copy").addEventListener("click", (e) => {
-        e.stopPropagation();
-        copyTranscript();
-    })
     
-}
-
-// 处理全屏模式切换事件的函数
-function handleFullScreenChange() {
-    let hercules = document.querySelector('.hercules_container')
-    if (document.fullscreenElement) {
-      // 进入全屏模式
-      hercules.style.zIndex = 9999
-      hercules.style.position = 'fixed';
-      hercules.style.backgroundColor = "rgba(255, 255, 255, 0.6)"; // 半透明的黑色
-      hercules.style.top = '10px';
-      hercules.style.backdropFilter = "blur(10px)";
-    } else {
-        hercules.style.zIndex = null;
-        hercules.style.position = null;
-        hercules.style.top = null;
-        hercules.style.backgroundColor = null;
-        hercules.style.backdropFilter = null;
-    }
 }
 
 function evtListenerOnScreen(){

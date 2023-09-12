@@ -4,6 +4,7 @@
 <head>
   <title>Hercules:YouTube视频翻译插件</title>
   <meta charset="UTF-8"/>
+  <script type="text/javascript" src="oauth.js"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -20,7 +21,8 @@
     }
 
     .login-container {
-      height: 400px;
+      min-height: 200px;
+      height: auto;
       width: 300px;
       margin: 0 auto;
       padding: 20px;
@@ -51,6 +53,28 @@
       background-color: #45a049;
     }
 
+    #google-login {
+      width: fit-content;
+      height: 44px;
+      border: thin solid rgba(0, 0, 0, 0.25);
+      box-shadow: rgb(0 0 0 / 25%) 1px 1px 1px;
+      border-radius: 40px;
+      background-color: #FFFFFF;
+      color: #353535;
+      font-size: 15px;
+      line-height: 16px;
+      font-family: 'roboto';
+      font-weight: normal;
+      margin: auto;
+      display: flex;
+      justify-content: left;
+      align-items: center;
+      user-select: none;
+      outline: none !important;
+      padding: 0 20px;
+      cursor: pointer;
+    }
+
     footer {
       position: fixed;
       bottom: 0;
@@ -67,7 +91,6 @@
 <body>
   <div class="login-container">
     <center>
-   
     <h1>
       <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48.000000 48.000000" preserveAspectRatio="xMidYMid meet">
         <g transform="translate(0.000000,48.000000) scale(0.100000,-0.100000)" fill="#ff0000" stroke="none">
@@ -82,12 +105,27 @@
     </h1>
     </center>
      <form id="form" action="" method="post">
-      <input type="password" id="input" placeholder="请输入您的openAI api key">
+      <!-- <input type="password" id="input" placeholder="请输入您的openAI api key"> -->
+       <button id="google-login">
+            <svg className="company-logo" width="19.66" height="20" viewBox="0 0 57 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clipPath="url(#clip0)">
+                <path d="M57 29.666C57 27.6947 56.8397 25.7127 56.4978 23.7733H29.0715V34.9407H44.7773C44.1255 38.5424 42.0314 41.7285 38.9651 43.7531V50.9991H48.3351C53.8374 45.9482 57 38.4891 57 29.666Z" fill="#4285F4"></path>
+                <path d="M29.0718 58C36.9139 58 43.5274 55.432 48.346 50.9991L38.976 43.7531C36.3691 45.522 33.0035 46.5236 29.0825 46.5236C21.4967 46.5236 15.0648 41.4195 12.7571 34.5571H3.08789V42.0268C8.02397 51.8196 18.0778 58 29.0718 58V58Z" fill="#34A853"></path>
+                <path d="M12.7462 34.557C11.5282 30.9553 11.5282 27.0553 12.7462 23.4536V15.9838H3.08769C-1.03639 24.1782 -1.03639 33.8324 3.08769 42.0268L12.7462 34.557V34.557Z" fill="#FBBC04"></path>
+                <path d="M29.0718 11.4764C33.2172 11.4125 37.2238 12.9682 40.226 15.824L48.5276 7.54437C43.271 2.62135 36.2942 -0.085246 29.0718 1.15123e-06C18.0778 1.15123e-06 8.02397 6.18042 3.08789 15.9838L12.7464 23.4536C15.0435 16.5806 21.486 11.4764 29.0718 11.4764V11.4764Z" fill="#EA4335"></path>
+              </g>
+              <defs>
+              <clipPath id="clip0">
+                <rect width="57" height="58" fill="white"></rect>
+              </clipPath>
+              </defs>
+            </svg>
+            <div style="margin-left: 10px;">Login with Google</div>
+          </button>
     </form>
     <footer>
-      新版本 1.0.5 🎉
+      新版本 1.0.6 🎉
     </footer>
   </div>
-  <script src="login.js"></script>
 </body>
 </html>

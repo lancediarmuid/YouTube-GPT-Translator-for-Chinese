@@ -177,9 +177,9 @@ export async function getTranscriptHTML(link, videoId) {
                       ${obj.text}
                     </div>
                     <div>
-                      <button class="translate" id="translate-btn-${t}" data-start-time="${t}">段落翻译</button>
-                      <button class="keywords" id="keywords-btn-${t}" data-start-time="${t}">重点词组</button>
-                      <button class="gramma" id="gramma-btn-${t}" data-start-time="${t}">语法分析</button>
+                      <button class="hercules-button translate" id="translate-btn-${t}" data-start-time="${t}">段落翻译</button>
+                      <button class="hercules-button keywords" id="keywords-btn-${t}" data-start-time="${t}">重点词组</button>
+                      <button class="hercules-button gramma" id="gramma-btn-${t}" data-start-time="${t}">语法分析</button>
                     </div>
                   </div>
 

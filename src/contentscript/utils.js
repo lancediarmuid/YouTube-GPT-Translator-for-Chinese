@@ -3,6 +3,43 @@ export function convertIntToHms(num) {
     return (new Date(num * 1000).toISOString().substring(h, 19)).toString();
 }
 
+// 检查小部件是否打开
+export function isWidgetOpen() {
+  return document.querySelector("#yt_ai_summary_body").classList.contains("yt_ai_summary_body_show");
+}
+
+// 处理全屏模式切换事件的函数
+export function handleFullScreenChange() {
+  let hercules = document.querySelector('.hercules_container')
+  if (document.fullscreenElement) {
+    // 进入全屏模式
+    hercules.style.zIndex = 9999
+    hercules.style.position = 'fixed';
+    hercules.style.backgroundColor = "rgba(255, 255, 255, 0.6)"; // 半透明的黑色
+    hercules.style.top = '10px';
+    hercules.style.backdropFilter = "blur(10px)";
+    
+  } else {
+      hercules.style.zIndex = null;
+      hercules.style.position = null;
+      hercules.style.top = null;
+      hercules.style.backgroundColor = null;
+      hercules.style.backdropFilter = null;
+  }
+}
+
+// 获取当前视频的播放时间
+export function getTYCurrentTime() {
+  return document.querySelector("#movie_player > div.html5-video-container > video").currentTime ?? 0;
+}
+
+// 获取当前视频的总时长
+export function getTYEndTime() {
+  return document.querySelector("#movie_player > div.html5-video-container > video").duration ?? 0;
+}
+
+export const ytVideoEl = document.querySelector("#movie_player > div.html5-video-container > video");
+
 
 /* 
 这段代码定义了一个名为getSearchParam的导出函数，它接受一个参数str。
