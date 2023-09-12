@@ -41,51 +41,58 @@ export function insertSummaryBtn() {
                 Array.from(document.getElementsByClassName("yt_ai_summary_header_hover_label")).forEach(el => { el.remove(); })
             })
         })
+        
+        async function init(){
+                  // 对组件进行清理
+                  sanitizeWidget();
+                  // 如果小部件已经关闭，则直接返回
+                  if (!isWidgetOpen()) { return; }
+                  // 获取视频ID
+                   const videoId = getSearchParam(window.location.href).v;
+                  // 获取语言选项的字幕链接
+                  const langOptionsWithLink = await getLangOptionsWithLink(videoId);
+                  // 没有字幕则提示用户
+                  if (!langOptionsWithLink) {
+                      noTranscriptionAlert();
+                      return;
+                  }
+                  // 生成语言选择按钮
+                  createLangSelectBtns(langOptionsWithLink);
+                  const transcriptHTML = await getTranscriptHTML(langOptionsWithLink[0].link, videoId);
+                  document.querySelector("#yt_ai_summary_text").innerHTML = transcriptHTML;
+                  // 语言切换按钮的监听
+                  evtListenerOnLangBtns(langOptionsWithLink, videoId);
+                  // 监听时间戳
+                  evtListenerOnTimestamp();
+                  // 监听文本
+                  evtListenerOnText();
+                  // 监听按钮
+                  evtListenerOnBtn();
+                  // 监听是否全屏
+                  evtListenerOnScreen();
+                  // 监听划词
+                  evtListenerOnSelectText();
+                  // 监听滚动
+                  window.addEventListener('scroll', function() {
+                      const ytVideoEl = document.querySelector("#movie_player > div.html5-video-container > video");
+                      if (window.pageYOffset > 300) {
+                          if (!ytVideoEl.paused) {
+                              ytVideoEl.pause();
+                          }
+                      }else{ 
+                          if (ytVideoEl.paused) {
+                              ytVideoEl.play();
+                          }
+                      }
+                  });
+        }
+        if (!isWidgetOpen()){
+            init()
+        }
 
         // 1.展开/收起小部件
         document.querySelector("#yt_ai_summary_header").addEventListener("click", async (e) => {
-            // 获取视频ID
-            const videoId = getSearchParam(window.location.href).v;
-            // 对组件进行清理
-            sanitizeWidget();
-            // 如果小部件已经打开，则直接返回
-            if (!isWidgetOpen()) { return; }
-            // 获取语言选项的字幕链接
-            const langOptionsWithLink = await getLangOptionsWithLink(videoId);
-            // 没有字幕则提示用户
-            if (!langOptionsWithLink) {
-                noTranscriptionAlert();
-                return;
-            }
-            // 生成语言选择按钮
-            createLangSelectBtns(langOptionsWithLink);
-            const transcriptHTML = await getTranscriptHTML(langOptionsWithLink[0].link, videoId);
-            document.querySelector("#yt_ai_summary_text").innerHTML = transcriptHTML;
-            // 语言切换按钮的监听
-            evtListenerOnLangBtns(langOptionsWithLink, videoId);
-            // 监听时间戳
-            evtListenerOnTimestamp();
-            // 监听文本
-            evtListenerOnText();
-            // 监听按钮
-            evtListenerOnBtn();
-            // 监听是否全屏
-            evtListenerOnScreen();
-            // 监听划词
-            evtListenerOnSelectText();
-            // 监听滚动
-            window.addEventListener('scroll', function() {
-                const ytVideoEl = document.querySelector("#movie_player > div.html5-video-container > video");
-                if (window.pageYOffset > 300) {
-                    if (!ytVideoEl.paused) {
-                        ytVideoEl.pause();
-                    }
-                }else{ 
-                    if (ytVideoEl.paused) {
-                        ytVideoEl.play();
-                    }
-                }
-              });
+            init()
         })
 
         setInterval(function() {
@@ -94,8 +101,9 @@ export function insertSummaryBtn() {
                 scrollIntoCurrTimeDiv();
             }
         }, 1000);
-    });
 
+    });
+    
 }
 
 function sanitizeWidget() {
