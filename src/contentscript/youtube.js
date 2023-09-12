@@ -238,11 +238,11 @@ function evtListenerOnSelectText(){
             var newNode = document.createElement("span");
             if (range.toString().length > 0) {
                 var selectedNode = range.startContainer.parentNode;
-                if (selectedNode.style.backgroundColor === "green") {
+                if (selectedNode.style.backgroundColor === "yellow") {
                     selectedNode.removeAttribute("style"); // remove the style attribute
                     selectedNode.innerHTML = selectedNode.textContent; // revert to plain text
                 } else {
-                    newNode.style.backgroundColor = "green";
+                    newNode.style.backgroundColor = "yellow";
                     newNode.appendChild(range.extractContents());
                     range.insertNode(newNode);
                 }
