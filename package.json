@@ -1,7 +1,7 @@
 {
   "name": "hercules_chrome_extension",
-  "version": "1.0.4",
-  "description": "基于Open AI API KEY的YouTube视频翻译插件(英翻中)",
+  "version": "1.0.5",
+  "description": "Hercules:您的YouTube笔记本",
   "main": "background.js",
   "scripts": {
     "clean": "rimraf dist/*",

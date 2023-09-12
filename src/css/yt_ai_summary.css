@@ -150,18 +150,11 @@
     color:#065fd4;
     text-decoration: none;
     cursor: pointer;
-    margin-right: 16px;
+    margin-left: 16px;
 }
 
 .yt_ai_summary_transcript_text {
     font-size: 14px;
-}
-.yt_ai_summary_transcript_text span {
-    color: red;
-}
-
-yt_ai_summary_transcript_text:hover{
-    cursor: pointer;
 }
 
 .yt_ai_summary_transcript_text div {
@@ -169,7 +162,6 @@ yt_ai_summary_transcript_text:hover{
 }
 
 .hover {
-    cursor: pointer;
     color: #3068b0;
     font-weight: bolder;
 }
@@ -221,4 +213,26 @@ button {
 
 button:hover {
     cursor: pointer;
+}
+
+.popup-container {
+   border-radius: 4px;
+   background-color: #fff;
+   padding: 10px auto;
+   box-shadow: rgb(0 0 0 / 35%) 2px 4px 6px;
+   width: 100px;
+   text-align: center;
+   justify-content: center;
+   align-items: center;
+}
+
+.popup-option {
+    font-size: 14px;
+    padding: 10px auto;
+}
+
+.popup-option:hover {
+    cursor: pointer;
+    color: #fff;
+    background-color: #3068b0;
 }

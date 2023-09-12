@@ -10,12 +10,5 @@ chrome.runtime.onInstalled.addListener(function (details) {
     }
 });
 
-function onClickHandler(info, tab) {
-    if (info.menuItemId === "myContextMenuId") {
-      console.log("Selected Text: ", info.selectionText);
-      span.innerHTML = info.selectionText;
-      span.style.backgroundColor = "yellow";
-      document.body.appendChild(span);
-    }
-}
+
   

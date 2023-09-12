@@ -171,16 +171,7 @@ export async function getTranscriptHTML(link, videoId) {
       const t = Math.round(obj.start);
       const hhmmss = convertIntToHms(t);
       return  `<div class="yt_ai_summary_transcript_text_segment">
-                  <div>
-                    <a class="yt_ai_summary_transcript_text_timestamp" 
-                        style="padding-top: 16px !important;" 
-                        href="/watch?v=${videoId}&t=${t}s"
-                        target="_blank" 
-                        data-timestamp-href="/watch?v=${videoId}&t=${t}s" 
-                        data-start-time="${t}">
-                        ${hhmmss}
-                    </a>
-                  </div>
+                 
                   <div id="transcript-${t}">
                     <div class="yt_ai_summary_transcript_text" data-start-time="${t}" id="text-${t}">
                       ${obj.text}
@@ -191,6 +182,17 @@ export async function getTranscriptHTML(link, videoId) {
                       <button class="gramma" id="gramma-btn-${t}" data-start-time="${t}">语法分析</button>
                     </div>
                   </div>
+
+                  <div>
+                  <a class="yt_ai_summary_transcript_text_timestamp" 
+                      style="padding-top: 16px !important;" 
+                      href="/watch?v=${videoId}&t=${t}s"
+                      target="_blank" 
+                      data-timestamp-href="/watch?v=${videoId}&t=${t}s" 
+                      data-start-time="${t}">
+                      ${hhmmss}
+                  </a>
+                </div>
               </div>`
   }).join("");
   

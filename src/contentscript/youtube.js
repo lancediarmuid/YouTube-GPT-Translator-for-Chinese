@@ -69,8 +69,11 @@ export function insertSummaryBtn() {
             evtListenerOnText();
             // 监听按钮
             evtListenerOnBtn();
-            // 
+            // 监听是否全屏
             evtListenerOnScreen();
+            // 监听划词
+            evtListenerOnSelectText();
+            // 监听滚动
             window.addEventListener('scroll', function() {
                 const ytVideoEl = document.querySelector("#movie_player > div.html5-video-container > video");
                 if (window.pageYOffset > 300) {
@@ -199,12 +202,9 @@ function evtListenerOnTimestamp() {
         el.addEventListener("click", (e) => {
             e.preventDefault();
             e.stopPropagation();
-            if (ytVideoEl.paused) {
-                // 如果视频已经暂停，则执行播放
-                ytVideoEl.play();
-            } else {
-                ytVideoEl.pause();
-            }    
+            const starttime = el.getAttribute("data-start-time");
+            ytVideoEl.currentTime = starttime;
+            ytVideoEl.play();   
         })
     })
 }
@@ -217,12 +217,83 @@ function evtListenerOnText() {
       el.addEventListener('click',async (e) => {
         e.preventDefault();
         e.stopPropagation();
-        const starttime = el.getAttribute("data-start-time");
-        ytVideoEl.currentTime = starttime;
-        ytVideoEl.play();
+        // const starttime = el.getAttribute("data-start-time");
+        // ytVideoEl.currentTime = starttime;
+        // ytVideoEl.play();
       });
     });
   }
+// 监听划词
+function evtListenerOnSelectText(){
+    let textboard = document.getElementById('yt_ai_summary_text')
+    textboard.addEventListener('mouseup', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        var selectedText = window.getSelection().toString().trim();
+        var englishWords = selectedText.match(/\b\w+\b/g);
+        if (englishWords) { 
+            var selection = window.getSelection();
+            if (!selection.rangeCount) return;
+            var range = selection.getRangeAt(0);
+            var newNode = document.createElement("span");
+            if (range.toString().length > 0) {
+                var selectedNode = range.startContainer.parentNode;
+                if (selectedNode.style.backgroundColor === "green") {
+                    selectedNode.removeAttribute("style"); // remove the style attribute
+                    selectedNode.innerHTML = selectedNode.textContent; // revert to plain text
+                } else {
+                    newNode.style.backgroundColor = "green";
+                    newNode.appendChild(range.extractContents());
+                    range.insertNode(newNode);
+                }
+            }
+        }   
+        // var highlightedText = document.querySelectorAll('span[style="background-color: yellow;"]');
+        // highlightedText.forEach(function(span) {
+        //     span.style.backgroundColor = ''; // Remove the background color
+        // });
+        // if (englishWords) { 
+        //     var popup = document.createElement("div");
+        //     popup.innerHTML = `
+        //         <div class="popup-option">词法解释</div>
+        //         <div class="popup-option">撤销</div>
+        //     `;
+        //     popup.style.position = "absolute";
+        //     popup.style.top = event.clientY + "px";
+        //     popup.style.left = event.clientX + "px";
+        //     popup.classList.add("popup-container");
+        //     document.body.appendChild(popup);
+        //     popup.addEventListener("click", function(e) {
+        //         e.stopPropagation();
+        //         e.preventDefault();
+        //         var selectedOption = e.target.innerText;
+        //         if (selectedOption === "划词注释") {
+        //           console.log("执行划词操作");
+        //         } else if (selectedOption === "词法解释") {
+        //           console.log("执行解释操作");
+        //         } else if (selectedOption === "撤销") {
+        //             var isInsidePopup = e.target.closest(".popup-container");
+        //             var isInsideSelectedText = e.target.closest("span");
+        //             if (!isInsidePopup && !isInsideSelectedText) {
+        //               var spans = document.querySelectorAll("span");
+        //               spans.forEach(function(span) {
+        //                 var parent = span.parentNode;
+        //                 while (span.firstChild) {
+        //                   parent.insertBefore(span.firstChild, span);
+        //                 }
+        //                 parent.removeChild(span);
+        //               });
+        //               var popup = document.querySelector(".popup-container");
+        //               if (popup) {
+        //                 document.body.removeChild(popup);
+        //               }
+        //             }
+        //         }
+        //         document.body.removeChild(popup);
+        //     });
+        // }
+    });
+}
 
 
 function evtListenerOnBtn(){
