@@ -17,7 +17,7 @@
       "48": "images/48.png"
     }
   },
-  "permissions": ["storage","identity"],
+  "permissions": ["storage"],
   "content_scripts": [
     {
       "matches": ["https://www.youtube.com/*", "https://chat.openai.com/*"],
