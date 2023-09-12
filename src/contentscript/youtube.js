@@ -326,12 +326,17 @@ function evtListenerOnBtn(){
         let el = document.getElementById('text-' + startTime);
         el.innerHTML += `<div class='loading'>${loading}<div>AI 翻译中....</div></div>`;
         ytVideoEl.pause()
-        let translation = await fetchGPT(text);
-        el.insertAdjacentHTML('afterend', `<div class='translation-text' id='translation-${startTime}'>${translation}</div>`);
-        ytVideoEl.play()
-        let loadingEl = el.querySelector('.loading');
-        if (loadingEl) {
-            loadingEl.remove(); 
+        try{
+            let translation = await fetchGPT(text);
+            el.insertAdjacentHTML('afterend', `<div class='translation-text' id='translation-${startTime}'>${translation}</div>`);
+        }catch(e){
+            el.insertAdjacentHTML('afterend', `<div class='translation-text' id='translation-${startTime}'>请填写您的OpenAI API KEY</div>`);
+        }finally{
+            ytVideoEl.play()
+            let loadingEl = el.querySelector('.loading');
+            if (loadingEl) {
+                loadingEl.remove(); 
+            }
         }
       });
     });
@@ -351,13 +356,17 @@ function evtListenerOnBtn(){
             let el = document.getElementById('text-' + startTime);
             el.innerHTML += `<div class='loading'>${loading}<div>AI 分析中....</div></div>`;
             ytVideoEl.pause()
-            let result = await fetchGPTAnalysis(text);
-            el.insertAdjacentHTML('afterend', `<div class='gramma-text' id='gramma-${startTime}'>${result}</div>`);
-
-            ytVideoEl.play()
-            let loadingEl = el.querySelector('.loading');
-            if (loadingEl) {
-                loadingEl.remove(); 
+            try{
+                let result = await fetchGPTAnalysis(text);
+                el.insertAdjacentHTML('afterend', `<div class='gramma-text' id='gramma-${startTime}'>${result}</div>`);
+            }catch(e){
+                el.insertAdjacentHTML('afterend', `<div class='translation-text' id='translation-${startTime}'>请填写您的OpenAI API KEY</div>`);
+            }finally{
+                ytVideoEl.play()
+                let loadingEl = el.querySelector('.loading');
+                if (loadingEl) {
+                    loadingEl.remove(); 
+                }
             }
         });
     });
@@ -377,13 +386,17 @@ function evtListenerOnBtn(){
             let el = document.getElementById('text-' + startTime);
             el.innerHTML += `<div class='loading'>${loading}<div>AI 分析中....</div></div>`;
             ytVideoEl.pause()
-            let result = await fetchGPTKeywords(text);
-            el.insertAdjacentHTML('afterend', `<div class='keywords-text' id='keywords-${startTime}'>${result}</div>`);
-
-            ytVideoEl.play()
-            let loadingEl = el.querySelector('.loading');
-            if (loadingEl) {
-                loadingEl.remove(); 
+            try{
+                let result = await fetchGPTKeywords(text);
+                el.insertAdjacentHTML('afterend', `<div class='keywords-text' id='keywords-${startTime}'>${result}</div>`);
+            }catch(e){
+                el.insertAdjacentHTML('afterend', `<div class='translation-text' id='translation-${startTime}'>请填写您的OpenAI API KEY</div>`);
+            }finally{
+                ytVideoEl.play()
+                let loadingEl = el.querySelector('.loading');
+                if (loadingEl) {
+                    loadingEl.remove(); 
+                }
             }
         });
     });
@@ -409,15 +422,20 @@ function evtListenerOnBtn(){
 
 // 处理全屏模式切换事件的函数
 function handleFullScreenChange() {
+    let hercules = document.querySelector('.hercules_container')
     if (document.fullscreenElement) {
       // 进入全屏模式
-      console.log('进入全屏模式');
-      sanitizeWidget();
-      // 在这里执行你想要的操作
+      hercules.style.zIndex = 9999
+      hercules.style.position = 'fixed';
+      hercules.style.backgroundColor = "rgba(255, 255, 255, 0.6)"; // 半透明的黑色
+      hercules.style.top = '10px';
+      hercules.style.backdropFilter = "blur(10px)";
     } else {
-      // 退出全屏模式
-      console.log('退出全屏模式');
-      // 在这里执行你想要的操作
+        hercules.style.zIndex = null;
+        hercules.style.position = null;
+        hercules.style.top = null;
+        hercules.style.backgroundColor = null;
+        hercules.style.backdropFilter = null;
     }
 }
 

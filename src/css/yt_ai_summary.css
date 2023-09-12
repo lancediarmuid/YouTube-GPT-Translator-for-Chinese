@@ -205,10 +205,11 @@
 }
 
 button {  
-    background-color: #fff;
+    background:rgba(255, 255, 255, 0.0);
     border: 1px solid #4d4d4d;
     color: #4d4d4d;
     margin-top: 10px;
+    border-radius: 8px;
 }
 
 button:hover {
