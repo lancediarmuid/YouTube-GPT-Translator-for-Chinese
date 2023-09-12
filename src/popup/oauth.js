@@ -1,4 +1,14 @@
 window.onload = function() {
+
+    document.getElementById("input").addEventListener("input", (e) => {
+      chrome.storage.local.set({apikey: e.target.value})
+    })
+  
+    chrome.storage.local.get(["apikey"], (result) => {
+      if(result.apikey) {
+          document.getElementById("input").value = result.apikey
+      }
+    })
     let login = document.querySelector('#google-login')
     login.addEventListener('click', function() {
       chrome.identity.getAuthToken({interactive: true}, function(token) {
@@ -23,14 +33,5 @@ window.onload = function() {
       });
     });
 
-    // document.getElementById("input").addEventListener("input", (e) => {
-    //   chrome.storage.local.set({apikey: e.target.value})
-    // })
-  
-    // chrome.storage.local.get(["apikey"], (result) => {
-    //   if(result.apikey) {
-    //       document.getElementById("input").value = result.apikey
-    //   }
-    // })
   };
 
