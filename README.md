@@ -46,7 +46,7 @@ npm run build-release
 
 Please search **Hercules** from **Chrome Store**.
 
-## Notice 注意事项 
+## Notice 
 
 - This project is a fork of YouTube Summary with ChatGPT and is an open-source project.
 - This project heavily relies on YouTube, OpenAI, and Google official products, and there is no guarantee of its perpetual effectiveness.
