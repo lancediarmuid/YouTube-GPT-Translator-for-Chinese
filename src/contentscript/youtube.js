@@ -8,15 +8,21 @@ import { ui,loading } from "./ui";
 import { waitForElm } from "./dom";
 
 function evtListenerOnHeader() {
+        const pauseIcon = document.querySelector('svg[data-icon="pause"]');
+        const startIcon = document.querySelector('svg[data-icon="start"]');
+        startIcon.style.display = "none";
         // 监听暂停/开始按钮
         document.getElementById("yt_ai_summary_header_track").addEventListener("click", (e) => {
             e.preventDefault();
             e.stopPropagation();
-            console.log("=======")
             if (ytVideoEl.paused) {
                 // 如果视频已经暂停，则执行播放
+                pauseIcon.style.display = "block";
+                startIcon.style.display = "none";
                 ytVideoEl.play();
             } else {
+                startIcon.style.display = "block";
+                pauseIcon.style.display = "none";
                 ytVideoEl.pause();
             }
         })
@@ -122,7 +128,7 @@ export function insertSummaryBtn() {
             if (!ytVideoEl.paused) {
                 scrollIntoCurrTimeDiv();
             }
-        }, 1000);
+        }, 500);
 
     });
     

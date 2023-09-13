@@ -15,14 +15,15 @@ export const ui = `
         </a>
         <p class="yt_ai_summary_header_text">Hercules:YouTube AI NoteBook</p>
         <div class="yt_ai_summary_header_actions">
-            <div id="yt_ai_summary_header_track" class="yt_ai_summary_header_action_btn yt-summary-hover-el" 
+            <div id="yt_ai_summary_header_track" 
+                class="yt_ai_summary_header_action_btn yt-summary-hover-el" 
                 data-hover-label="暂停/播放">
-                <svg style="filter: brightness(0.9);" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="12" r="6.25" stroke="#828282" stroke-width="1.5"/>
-                    <rect x="3.19995" y="11.3999" width="5" height="1.2" rx="0.6" fill="#828282"/>
-                    <rect x="15.7" y="11.3999" width="5" height="1.2" rx="0.6" fill="#828282"/>
-                    <rect x="11.3999" y="8" width="5" height="1.2" rx="0.6" transform="rotate(-90 11.3999 8)" fill="#828282"/>
-                    <rect x="11.3999" y="21" width="5" height="1.2" rx="0.6" transform="rotate(-90 11.3999 21)" fill="#828282"/>
+                <svg viewBox="64 64 896 896" id="pause" focusable="false" data-icon="pause"  width="24" height="24" style="filter: brightness(0.95);" fill="#828282" aria-hidden="true">
+                    <path d="M304 176h80v672h-80zm408 0h-64c-4.4 0-8 3.6-8 8v656c0 4.4 3.6 8 8 8h64c4.4 0 8-3.6 8-8V184c0-4.4-3.6-8-8-8z">
+                    </path>
+                </svg>
+                <svg viewBox="64 64 896 896" id="start" focusable="false" data-icon="start"  width="24" height="24" style="filter: brightness(0.95);" fill="#828282" aria-hidden="true">
+                    <path d="M715.8 493.5L335 165.1c-14.2-12.2-35-1.2-35 18.5v656.8c0 19.7 20.8 30.7 35 18.5l380.8-328.4c10.9-9.4 10.9-27.6 0-37z"></path>
                 </svg>
             </div>
             <div id="yt_ai_summary_header_copy" class="yt_ai_summary_header_action_btn yt-summary-hover-el" data-hover-label="复制全部字幕（纯文本）">

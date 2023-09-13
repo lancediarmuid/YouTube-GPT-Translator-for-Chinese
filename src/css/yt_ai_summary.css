@@ -237,3 +237,7 @@
     color: #fff;
     background-color: #3068b0;
 }
+
+.yt_ai_summary_header_actions :hover{
+    cursor: pointer;
+}
