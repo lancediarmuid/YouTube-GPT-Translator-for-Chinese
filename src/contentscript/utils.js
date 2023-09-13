@@ -168,7 +168,8 @@ export const fetchGPTAnalysis = async (text,context) => {
       model: 'gpt-3.5-turbo',
       template:  `你是英文语法专家`,
       apikey,
-      question:`请根据上下文${context},对${text}进行翻译。包含该单词或短语的中文语法解释、英文例句。, strictly follow HTML tags in your output：
+      question:`请根据上下文${context},对${text}进行翻译。包含该单词或短语的中文语法解释、英文例句(必须为英文)。
+       strictly follow HTML tags in your output：
       <ul>
         <li>
          {翻译}
