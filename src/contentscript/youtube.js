@@ -8,8 +8,9 @@ import { ui,loading } from "./ui";
 import { waitForElm } from "./dom";
 
 function evtListenerOnHeader() {
-        const pauseIcon = document.querySelector('svg[data-icon="pause"]');
-        const startIcon = document.querySelector('svg[data-icon="start"]');
+        let pauseIcon = document.querySelector('svg[data-icon="pause"]');
+        let startIcon = document.querySelector('svg[data-icon="start"]');
+    
         startIcon.style.display = "none";
         // 监听暂停/开始按钮
         document.getElementById("yt_ai_summary_header_track").addEventListener("click", (e) => {
@@ -73,6 +74,7 @@ export function insertSummaryBtn() {
         });
         
         async function init(){
+          
                   // 对组件进行清理
                   sanitizeWidget();
                   // 如果小部件已经关闭，则直接返回
@@ -112,7 +114,8 @@ export function insertSummaryBtn() {
                               ytVideoEl.play();
                           }
                       }
-                  });
+                });
+                
         }
         if (!isWidgetOpen()){
             init()
@@ -125,8 +128,15 @@ export function insertSummaryBtn() {
 
         setInterval(function() {
             const ytVideoEl = document.querySelector("#movie_player > div.html5-video-container > video");
+            let pauseIcon = document.querySelector('svg[data-icon="pause"]');
+            let startIcon = document.querySelector('svg[data-icon="start"]');
             if (!ytVideoEl.paused) {
+                startIcon.style.display = "none";
+                pauseIcon.style.display = "block";
                 scrollIntoCurrTimeDiv();
+            }else{
+                startIcon.style.display = "block";
+                pauseIcon.style.display = "none";
             }
         }, 500);
 
