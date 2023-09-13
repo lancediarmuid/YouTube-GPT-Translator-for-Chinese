@@ -37,10 +37,10 @@ npm run build
 npm run build-release
 ```
 
-6. For Google Chrome browser, open the extensions page（chrome://extensions/）  对于 Google Chrome 浏览器，打开扩展页面（chrome://extensions/）。
-7. Click the switch on the top right corner of the page to enable developer mode. 在页面右上角点击切换开发者模式的开关。
-8. Click the Load unpacked button and select the dist directory. 点击 `Load unpacked` 按钮，选择 **dist** 目录。
-9. The YouTube Summary with ChatGPT extension should now be successfully installed and active! YouTube Summary with ChatGPT 扩展应该已经成功安装并且处于活动状态！
+6. For Google Chrome browser, open the extensions page（chrome://extensions/）  
+7. Click the switch on the top right corner of the page to enable developer mode. 
+8. Click the Load unpacked button and select the dist directory.
+9. Open YouTube website and the Hercules extension should now be successfully installed and active! 
 
 ### Installation from Chrome Store
 
@@ -52,14 +52,8 @@ Please search **Hercules** from **Chrome Store**.
 - This project heavily relies on YouTube, OpenAI, and Google official products, and there is no guarantee of its perpetual effectiveness.
 - When using this project in mainland China, please comply with relevant laws and regulations.
 
-
-- 本项目是基于YouTube Summary with ChatGPT Fork出来的开源项目
-- 本项目高度依赖于YouTube、OpenAI和Google官方产品，不保证永远有效
-- 本项目在中国大陆境内使用时请遵守相关法律法规
-
-## Feedback and Support 反馈与支持
+## Feedback and Support 
 
 If you have any questions or feedback regarding the YouTube AI Translator extension, please feel free to email me at lewis.q.zhang@gmail.com.
-This project is forked from YouTube_Summary_with_ChatGPT, and special thanks to kazuki-sf for their contribution to the open-source community.
+This project is forked from [YouTube_Summary_with_ChatGPT](https://github.com/kazuki-sf/YouTube_Summary_with_ChatGPT), and special thanks to kazuki-sf for their contribution to the open-source community.
 
-如果你对 YouTube AI Translator 扩展有任何问题或反馈，请在发Email:lewis.q.zhang@gmail.com给我。本项目Fork自[YouTube_Summary_with_ChatGPT](https://github.com/kazuki-sf/YouTube_Summary_with_ChatGPT)，感谢kazuki-sf对开源社区的贡献。
