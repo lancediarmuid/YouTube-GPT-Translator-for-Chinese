@@ -55,5 +55,6 @@ Please search **Hercules** from **Chrome Store**.
 ## Feedback and Support 
 
 If you have any questions or feedback regarding the YouTube AI Translator extension, please feel free to email me at lewis.q.zhang@gmail.com.
+
 This project is forked from [YouTube_Summary_with_ChatGPT](https://github.com/kazuki-sf/YouTube_Summary_with_ChatGPT), and special thanks to kazuki-sf for their contribution to the open-source community.
 
