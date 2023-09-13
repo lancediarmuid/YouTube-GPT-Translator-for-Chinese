@@ -154,21 +154,32 @@ export const fetchGPT = async (text) => {
 }
 
 // 获取GPT翻译
-export const fetchGPTAnalysis = async (text) => {
+export const fetchGPTAnalysis = async (text,context) => {
   let apikey = await readLocalStorage()
   if(!apikey){
       return '请先在插件中填写您的OpenAPIKEY\n'
   }
   const isMatched = openaiKeyRegex.test(apikey);
   if(!isMatched){
-      return '请先在插件中设置正确的OpenAPIKEY\n'+text
+      return '请先在插件中设置正确的OpenAPIKEY\n'
   }
 
   let data = {
       model: 'gpt-3.5-turbo',
       template:  `你是英文语法专家`,
       apikey,
-      question:text+"请对该英文进行语法结构分析,提取内容如：主语、谓语、状语...",
+      question:`请根据上下文${context},对${text}进行翻译。包含该单词或短语的中文语法解释、英文例句。, strictly follow HTML tags in your output：
+      <ul>
+        <li>
+         {翻译}
+        </li>
+        <li>
+        {语法解释}
+        </li>
+        <li>
+        {例句}
+        </li>
+      </ul>`,
       temperature:  0,
       max_tokens: 1000,
       top_p: 1,

@@ -1,14 +1,12 @@
 "use strict";
-
-console.log("连接中 connected...");
 const onInstallURL = "https://www.hercules.ink/";
-
-// Chrome 插件按照成功过后，打开一个新的页面
 chrome.runtime.onInstalled.addListener(function (details) {
     if (details.reason === "install") {
+        // 安装成功后Chrome打开Hercules官网
         chrome.tabs.create({ url: onInstallURL });
     }
 });
+
 
 
   

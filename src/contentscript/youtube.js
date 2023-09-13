@@ -36,7 +36,54 @@ function evtListenerOnHeader() {
         })
 }
 
+async function init(){
+    console.log("init")
+    // 对组件进行清理
+    sanitizeWidget();
+    // 如果小部件已经关闭，则直接返回
+    if (!isWidgetOpen()) { return; }
+    // 获取视频ID
+     const videoId = getSearchParam(window.location.href).v;
+    // 获取语言选项的字幕链接
+    const langOptionsWithLink = await getLangOptionsWithLink(videoId);
+    // 没有字幕则提示用户
+    if (!langOptionsWithLink) {
+        noTranscriptionAlert();
+        return;
+    }
+    // 生成语言选择按钮
+    createLangSelectBtns(langOptionsWithLink);
+    const transcriptHTML = await getTranscriptHTML(langOptionsWithLink[0].link, videoId);
+    document.querySelector("#yt_ai_summary_text").innerHTML = transcriptHTML;
+    // 语言切换按钮的监听
+    evtListenerOnLangBtns(langOptionsWithLink, videoId);
+    // 监听时间戳
+    evtListenerOnTimestamp();
+    // 监听按钮
+    evtListenerOnBtn();
+    // 监听是否全屏
+    evtListenerOnScreen();
+    // 监听划词
+    evtListenerOnSelectText();
+  
+    // 监听滚动
+    window.addEventListener('scroll', function() {
+        const ytVideoEl = document.querySelector("#movie_player > div.html5-video-container > video");
+        if (window.pageYOffset > 300) {
+            if (!ytVideoEl.paused) {
+                ytVideoEl.pause();
+            }
+        }else{ 
+            if (ytVideoEl.paused) {
+                ytVideoEl.play();
+            }
+        }
+  });
+  
+}
+
 export function insertSummaryBtn() {
+
     // 清空小部件
     if (document.querySelector("#yt_ai_summary_lang_select")) { 
         document.querySelector("#yt_ai_summary_lang_select").innerHTML = ""; 
@@ -46,7 +93,9 @@ export function insertSummaryBtn() {
     }
     Array.from(document.getElementsByClassName("hercules_container")).forEach(el => { el.remove(); });
     if (!getSearchParam(window.location.href).v) { return; }
+
     waitForElm('#secondary.style-scope.ytd-watch-flexy').then(() => {
+
         Array.from(document.getElementsByClassName("hercules_container")).forEach(el => { el.remove(); });
         // 注入插件UI
         document.querySelector("#secondary.style-scope.ytd-watch-flexy").insertAdjacentHTML("afterbegin", ui);
@@ -72,51 +121,7 @@ export function insertSummaryBtn() {
                 Array.from(document.getElementsByClassName("yt_ai_summary_header_hover_label")).forEach(el => { el.remove(); })
             })
         });
-        
-        async function init(){
-          
-                  // 对组件进行清理
-                  sanitizeWidget();
-                  // 如果小部件已经关闭，则直接返回
-                  if (!isWidgetOpen()) { return; }
-                  // 获取视频ID
-                   const videoId = getSearchParam(window.location.href).v;
-                  // 获取语言选项的字幕链接
-                  const langOptionsWithLink = await getLangOptionsWithLink(videoId);
-                  // 没有字幕则提示用户
-                  if (!langOptionsWithLink) {
-                      noTranscriptionAlert();
-                      return;
-                  }
-                  // 生成语言选择按钮
-                  createLangSelectBtns(langOptionsWithLink);
-                  const transcriptHTML = await getTranscriptHTML(langOptionsWithLink[0].link, videoId);
-                  document.querySelector("#yt_ai_summary_text").innerHTML = transcriptHTML;
-                  // 语言切换按钮的监听
-                  evtListenerOnLangBtns(langOptionsWithLink, videoId);
-                  // 监听时间戳
-                  evtListenerOnTimestamp();
-                  // 监听按钮
-                  evtListenerOnBtn();
-                  // 监听是否全屏
-                  evtListenerOnScreen();
-                  // 监听划词
-                  evtListenerOnSelectText();
-                  // 监听滚动
-                  window.addEventListener('scroll', function() {
-                      const ytVideoEl = document.querySelector("#movie_player > div.html5-video-container > video");
-                      if (window.pageYOffset > 300) {
-                          if (!ytVideoEl.paused) {
-                              ytVideoEl.pause();
-                          }
-                      }else{ 
-                          if (ytVideoEl.paused) {
-                              ytVideoEl.play();
-                          }
-                      }
-                });
-                
-        }
+
         if (!isWidgetOpen()){
             init()
         }
@@ -146,14 +151,14 @@ export function insertSummaryBtn() {
 
 function sanitizeWidget() {
     // 清空转录区域
-    // document.querySelector("#yt_ai_summary_lang_select").innerHTML = "";
+    document.querySelector("#yt_ai_summary_lang_select").innerHTML = "";
     // 清空总结区域
-    // document.querySelector("#yt_ai_summary_text").innerHTML = "";
+    document.querySelector("#yt_ai_summary_text").innerHTML = "";
 
     // 调整高度
     document.querySelector("#yt_ai_summary_body").style.maxHeight = window.innerHeight - 160 + "px";
     // 总结区域出现加载动画
-    // document.querySelector("#yt_ai_summary_text").innerHTML = loading;
+    document.querySelector("#yt_ai_summary_text").innerHTML = loading;
 
     // 切换类列表
     document.querySelector("#yt_ai_summary_body").classList.toggle("yt_ai_summary_body_show");
@@ -246,29 +251,47 @@ function evtListenerOnTimestamp() {
 
 // 监听划词
 function evtListenerOnSelectText(){
+    // 监听字幕区域的划词事件
     let textboard = document.getElementById('yt_ai_summary_text')
-    textboard.addEventListener('mouseup', function(event) {
+    textboard.addEventListener('mouseup', async function(event) {
         event.preventDefault();
         event.stopPropagation();
-        var selectedText = window.getSelection().toString().trim();
+        // 当前选中的文本的上下文环境
+        let context = event.target.innerText
+        var selection = window.getSelection();
+        var selectedText = selection.toString().trim();
         var englishWords = selectedText.match(/\b\w+\b/g);
-        if (englishWords) { 
-            var selection = window.getSelection();
-            if (!selection.rangeCount) return;
-            var range = selection.getRangeAt(0);
-            var newNode = document.createElement("span");
-            if (range.toString().length > 0) {
-                var selectedNode = range.startContainer.parentNode;
-                if (selectedNode.style.backgroundColor === "yellow") {
-                    selectedNode.removeAttribute("style"); // remove the style attribute
-                    selectedNode.innerHTML = selectedNode.textContent; // revert to plain text
-                } else {
-                    newNode.style.backgroundColor = "yellow";
-                    newNode.appendChild(range.extractContents());
-                    range.insertNode(newNode);
-                }
+        if (englishWords && !containsChinese(selectedText) && englishWords.length > 0  && englishWords.length < 5) { 
+            var popup = document.createElement('div');
+            popup.id = 'popup';
+            popup.style.position = 'absolute';
+            popup.style.padding ='30px';
+            popup.style.zIndex = '9999';
+            popup.style.display = 'none'; // 默认隐藏
+            // 添加 div 到文档
+            document.body.appendChild(popup);
+            var rect = selection.getRangeAt(0).getBoundingClientRect();
+            // 设置 div 的位置
+            popup.style.left = rect.left-200 + 'px';
+            popup.style.top = (rect.top - popup.offsetHeight+30) + 'px';
+            popup.innerHTML = `<h3>${selectedText}</h3><p>${loading}</p>`;
+            popup.style.display = 'block';
+            ytVideoEl.pause();
+            try{
+                let result = await fetchGPTAnalysis(selectedText,context);
+                popup.innerHTML = `<h3>${selectedText}</h3><p>${result}</p>`;
+            }catch(e){
+                popup.innerHTML = `<h3>${selectedText}</h3><p>出现未知网络错误</p>`;
             }
         }   
+    });
+    //
+    document.addEventListener('mousedown', function(event) {
+        var popup = document.getElementById('popup');
+        if (popup && !popup.contains(event.target)) {
+            popup.remove();
+            ytVideoEl.play()
+        }
     });
 }
 
@@ -308,36 +331,6 @@ function evtListenerOnBtn(){
             }
         }
       });
-    });
-    
-    grammaList.forEach((element) => {
-        element.addEventListener('click', async function(e) {
-            let startTime = this.getAttribute('data-start-time');
-            e.preventDefault();
-            e.stopPropagation();
-            let text = document.getElementById('text-' + startTime).innerText;
-            if(containsChinese(text)){
-                console.log("包含中文",text)
-                return;
-            }
-             // 清理上一次的翻译结果
-            sanitizeAiResult(startTime);
-            let el = document.getElementById('text-' + startTime);
-            el.innerHTML += `<div class='loading'>${loading}<div>AI 分析中....</div></div>`;
-            ytVideoEl.pause()
-            try{
-                let result = await fetchGPTAnalysis(text);
-                el.insertAdjacentHTML('afterend', `<div class='gramma-text' id='gramma-${startTime}'>${result}</div>`);
-            }catch(e){
-                el.insertAdjacentHTML('afterend', `<div class='translation-text' id='translation-${startTime}'>请填写您的OpenAI API KEY</div>`);
-            }finally{
-                ytVideoEl.play()
-                let loadingEl = el.querySelector('.loading');
-                if (loadingEl) {
-                    loadingEl.remove(); 
-                }
-            }
-        });
     });
 
     keywordsList.forEach((element) => {

@@ -216,26 +216,23 @@
     cursor: pointer;
 }
 
-.popup-container {
+#popup{
    border-radius: 4px;
-   background-color: #fff;
-   padding: 10px auto;
+   background-color: #fafba6;
    box-shadow: rgb(0 0 0 / 35%) 2px 4px 6px;
-   width: 100px;
-   text-align: center;
-   justify-content: center;
-   align-items: center;
+   min-width: 200px;
+   max-width: 300px;
+   min-height: 200px;
+   position: fixed;
+   font-size: 14px;
 }
 
-.popup-option {
-    font-size: 14px;
-    padding: 10px auto;
+#popup h3 {
+    margin-bottom: 20px;
 }
 
-.popup-option:hover {
-    cursor: pointer;
-    color: #fff;
-    background-color: #3068b0;
+#popup li {
+    margin-bottom: 10px;
 }
 
 .yt_ai_summary_header_actions :hover{
