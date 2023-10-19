@@ -47,7 +47,7 @@ npm run build-release
 
 [Chrome Store](https://chrome.google.com/webstore/detail/tubex-your-youtube-ai-cop/bifndkhccndcnabjhllngpdapfakfcif?hl=zh-CN&authuser=0)
 
-[TubeX Website](https://chrome.google.com/webstore/detail/tubex-your-youtube-ai-cop/bifndkhccndcnabjhllngpdapfakfcif?hl=zh-CN&authuser=0)
+[TubeX Website](https://hercules.ink)
 
 ## Notice 
 
