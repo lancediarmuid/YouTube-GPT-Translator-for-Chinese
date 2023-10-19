@@ -1,10 +1,13 @@
 .hercules_container {
+    min-width: 300px;
+    max-width: 400px;
     background-color: #FFFFFF;
     padding: 4px 8px 4px 12px;
     border: 1px solid rgba(0,0,0,0.3);
     border-radius: 4px;
     margin-bottom: 10px;
     box-shadow: rgb(0 0 0 / 35%) 2px 4px 6px;
+    display: block;
 }
 
 .yt_ai_summary_header {
@@ -16,7 +19,7 @@
     cursor: pointer;
 }
 
-.yt_ai_summary_header_actions {
+.yt_ai_header_actions {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,14 +39,14 @@
     }
 }
 
-.yt_ai_summary_header_action_btn {
+.hercules_header_action_btn {
     width: 24px;
     height: 24px;
     padding: 4px;
     border-radius: 50%;
 }
 
-.yt_ai_summary_header_hover_label {
+.yt_ai_header_hover_label {
     position: relative;
     top: 6px;
     left: -35px;
@@ -67,12 +70,12 @@
     background: rgb(32 225 86 / 60%) !important;
 }
 
-.yt_ai_summary_header_action_btn:hover {
+.hercules_header_action_btn:hover {
     background-color: rgba(0, 0, 0, 0.08);
     transition: background-color 0.5s cubic-bezier(0.05, 0, 0, 1) 0s;
 }
 
-.yt_ai_summary_header_action_btn:active {
+.hercules_header_action_btn:active {
     background-color: rgba(0, 0, 0, 0.2);
     transition: background-color 0.5s cubic-bezier(0.05, 0, 0, 1) 0s;
 }
@@ -82,7 +85,7 @@
     display: block !important;
 }
 
-.yt_ai_summary_header_toggle_rotate {
+.yt_ai_header_toggle_rotate {
     transform: rotate(180deg);
 }
 
@@ -98,13 +101,13 @@
     display: block;
 }
 
-.yt_ai_summary_text {
+.hercules_text {
     padding: 12px;
     font-size: 16px;
     line-height: 1.4em;
 }
 
-.yt_ai_summary_lang_select {
+.hercules_lang_select {
     display: flex;
     justify-content: left;
     align-items: center;
@@ -113,7 +116,7 @@
     padding-bottom: 8px;
 }
 
-.yt_ai_summary_lang_select button {
+.hercules_lang_select button {
     display: flex;
     justify-content: left;
     align-items: center;
@@ -127,7 +130,7 @@
     user-select: none;
 }
 
-.yt_ai_summary_lang_select button:hover {
+.hercules_lang_select button:hover {
     background-color: rgba(0,0,0,0.1);
     transition: background-color 0.5s cubic-bezier(0.05,0,0,1);
 }
@@ -137,7 +140,7 @@
     color: white;
 }
 
-.yt_ai_summary_transcript_text_segment {
+.transcript_text_segment {
     display: flex;
     justify-content: left;
     align-items: baseline;
@@ -146,23 +149,23 @@
     grid-template-columns: auto auto;
 }
 
-.yt_ai_summary_transcript_text_timestamp {
+.hercules_transcript_text_timestamp {
     color:#065fd4;
     text-decoration: none;
     cursor: pointer;
     margin-left: 16px;
 }
 
-.yt_ai_summary_transcript_text {
-    font-size: 14px;
+.hercules_transcript_text {
+    font-size: 16x;
 }
 
-.yt_ai_summary_transcript_text div {
+.hercules_transcript_text div {
     margin-bottom: 10px;
 }
 
 .hover {
-    color: #3068b0;
+    color: #042e65;
     font-weight: bolder;
 }
 
@@ -172,25 +175,25 @@
 
 .translation {
     margin-top: 10px;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .translation-text {
     margin-top: 10px;
-    font-size: 13px;
+    font-size: 16px;
     color: #353535;
 }
 
 .gramma-text {
     margin-top: 10px;
-    font-size: 13px;
+    font-size: 16px;
     color: #353535;
 
 }
 
 .keywords-text {
     margin-top: 10px;
-    font-size: 13px;
+    font-size: 16px;
     color: #353535;
 
 }
@@ -206,7 +209,7 @@
 
 .hercules-button {  
     background:rgba(255, 255, 255, 0.0);
-    border: 1px solid #4d4d4d;
+    border: none;
     color: #4d4d4d;
     margin-top: 10px;
     border-radius: 8px;
@@ -217,14 +220,19 @@
 }
 
 #popup{
-   border-radius: 4px;
-   background-color: #fafba6;
-   box-shadow: rgb(0 0 0 / 35%) 2px 4px 6px;
-   min-width: 200px;
-   max-width: 300px;
-   min-height: 200px;
-   position: fixed;
-   font-size: 14px;
+    padding: 5px 8px;
+    border-radius: 5px;
+    background-color: #030303;
+    color: white;
+    width: fit-content;
+    max-width: 200px;
+    height: fit-content;
+    border-radius: 3px;
+    opacity: 0.85;
+    white-space: normal;
+    font-size: 14px;
+    text-align: left;
+    user-select: none;
 }
 
 #popup h3 {
@@ -235,6 +243,68 @@
     margin-bottom: 10px;
 }
 
-.yt_ai_summary_header_actions :hover{
+.yt_ai_header_actions :hover{
     cursor: pointer;
+}
+
+#hercules_bar {
+    display: flex;
+    position: fixed;
+    border-radius: 30px;
+    box-shadow: rgb(0 0 0 / 35%) 2px 4px 6px;
+    background-color: #000;
+    color: #808080;
+    width: 500px;
+    height: 30px;
+    left: 28%;
+    top: 10px;
+    transform: translateX(-28%);
+    padding: 10px 20px;
+}
+
+#hercules_input {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: white;
+    background: black;
+    border-bottom: 1px solid black;
+    width: 90%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #hercules_input::placeholder {
+    color: rgb(183, 183, 183);
+  }
+
+  #hercules_bar svg {
+    width: 10%;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #hercules_bar svg:hover {
+    cursor: pointer;
+  }
+
+  #hercules-submit {
+    margin-top: 5px;
+  }
+
+
+.hercules_lang_select::-webkit-scrollbar {
+    display: none;
+}
+  /* 针对Webkit浏览器如Chrome和Safari */
+.hercules_text::-webkit-scrollbar {
+    display: none;
+}
+  
+.yt_ai_header_text {
+    background: none;
 }

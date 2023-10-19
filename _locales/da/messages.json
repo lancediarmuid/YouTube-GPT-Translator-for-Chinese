@@ -1,0 +1,48 @@
+
+{
+  "appName": {
+    "message": "TubeX: Din YouTube AI-assistent"
+  },
+  "appDesc": {
+    "message": "Integrer kraften af GPT AI og Google Translate i din YouTube og gør den til et fantastisk værktøj til at lære fremmedsprog"
+  },
+  "shortName":{
+    "message": "TubeX"
+  },
+  "slogan":{
+    "message": "Din YouTube AI-assistent"
+  },
+  "note":{
+    "message": "Bemærk: Som standard understøtter Pipefitter gratis brug af Google Translate for brugere. Hvis du ønsker oversættelser af højere kvalitet og AI-funktionaliteten integreret i ChatGPT, skal du indtaste din OpenAI API-nøgle for at bruge det."
+  },
+  "version":{
+    "message": "Version"
+  },
+  "opacity":{
+    "message": "Gennemsigtighed for undertekstbaggrund:"
+  },
+  "purchase":{
+    "message": "Køb API-nøgle"
+  },
+  "google_translate":{
+    "message": "Google Translate"
+  },
+  "gpt_translate":{
+    "message": "GPT Translate"
+  },
+  "start_stop":{
+    "message": "Start/Stop"
+  },
+  "copy_subtitles":{
+    "message": "Kopier videoundertekster"
+  },
+  "chat":{
+    "message": "Åben ChatGPT"
+  },
+  "audio":{
+    "message": "Åben ChatGPT Audio"
+  },
+  "alert": {
+    "message":"Please click on the browser's extension icon in the top right corner and enter your OpenAI API KEY"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "appName": {
+    "message": "TubeX: Asistentul tău AI pentru YouTube"
+  },
+  "appDesc": {
+    "message": "Integrează puterea AI-ului GPT și a Google Translate în YouTube-ul tău, transformându-l într-un instrument excelent pentru învățarea limbilor străine"
+  },
+  "shortName":{
+    "message": "TubeX"
+  },
+  "slogan":{
+    "message": "Asistentul tău AI pentru YouTube"
+  },
+  "note":{
+    "message": "Notă: În mod implicit, Pipefitter suportă utilizarea gratuită a Google Translate pentru utilizatori. Dacă doriți traduceri de calitate superioară și capacități AI integrate în ChatGPT, vă rugăm să introduceți cheia API OpenAI pentru a o utiliza."
+  },
+  "version":{
+    "message": "Versiune"
+  },
+  "opacity":{
+    "message": "Opacitate fundal subtitrări:"
+  },
+  "purchase":{
+    "message": "Cumpără cheia API"
+  },
+  "google_translate":{
+    "message": "Google Translate"
+  },
+  "gpt_translate":{
+    "message": "GPT Translate"
+  },
+  "start_stop":{
+    "message": "Pornire/Oprire"
+  },
+  "copy_subtitles":{
+    "message": "Copiază subtitrările video"
+  },
+  "chat":{
+    "message": "Deschide ChatGPT"
+  },
+  "audio":{
+    "message": "Deschide ChatGPT cu sunet"
+  },
+  "alert": {
+    "message":"Please click on the browser's extension icon in the top right corner and enter your OpenAI API KEY"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "appName": {
+    "message": "TubeX: Twój asystent AI do YouTube"
+  },
+  "appDesc": {
+    "message": "Zintegruj moc sztucznej inteligencji GPT i Google Translate w swoim YouTube, tworząc doskonałe narzędzie do nauki języków obcych"
+  },
+  "shortName":{
+    "message": "TubeX"
+  },
+  "slogan":{
+    "message": "Twój asystent AI do YouTube"
+  },
+  "note":{
+    "message": "Uwaga: Domyślnie Pipefitter obsługuje darmowe korzystanie z Google Translate dla użytkowników. Jeśli chcesz uzyskać wyższą jakość tłumaczeń i możliwości sztucznej inteligencji zintegrowanej w ChatGPT, wprowadź swój klucz API OpenAI, aby go użyć."
+  },
+  "version":{
+    "message": "Wersja"
+  },
+  "opacity":{
+    "message": "Przezroczystość tła napisów:"
+  },
+  "purchase":{
+    "message": "Kup klucz API"
+  },
+  "google_translate":{
+    "message": "Google Translate"
+  },
+  "gpt_translate":{
+    "message": "GPT Tłumacz"
+  },
+  "start_stop":{
+    "message": "Uruchom/Zatrzymaj"
+  },
+  "copy_subtitles":{
+    "message": "Kopiuj napisy wideo"
+  },
+  "chat":{
+    "message": "Otwórz ChatGPT"
+  },
+  "audio":{
+    "message": "Otwórz ChatGPT Audio"
+  },
+  "alert": {
+    "message":"Please click on the browser's extension icon in the top right corner and enter your OpenAI API KEY"
+  }
+}

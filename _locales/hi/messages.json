@@ -1,0 +1,48 @@
+
+{
+  "appName": {
+    "message": "TubeX: आपका YouTube AI सहायक"
+  },
+  "appDesc": {
+    "message": "अपने YouTube में GPT AI और Google अनुवाद की शक्ति को सम्मिलित करें, जिससे यह विदेशी भाषाओं को सीखने का एक महान उपकरण बन जाता है"
+  },
+  "shortName":{
+    "message": "TubeX"
+  },
+  "slogan":{
+    "message": "आपका YouTube AI सहायक"
+  },
+  "note":{
+    "message": "नोट: डिफ़ॉल्ट रूप से, Pipefitter उपयोगकर्ताओं के लिए Google अनुवाद का मुफ्त उपयोग समर्थित करता है। यदि आप उच्च गुणवत्ता वाले अनुवाद और ChatGPT में AI क्षमताओं का उपयोग करना चाहते हैं, तो कृपया अपना OpenAI API KEY दर्ज करें।"
+  },
+  "version":{
+    "message": "संस्करण"
+  },
+  "opacity":{
+    "message": "उपशीर्षक पृष्ठभूमि अस्पष्टता:"
+  },
+  "purchase":{
+    "message": "API KEY खरीदें"
+  },
+  "google_translate":{
+    "message": "Google अनुवाद"
+  },
+  "gpt_translate":{
+    "message": "GPT अनुवाद"
+  },
+  "start_stop":{
+    "message": "प्रारंभ/रोकें"
+  },
+  "copy_subtitles":{
+    "message": "वीडियो उपशीर्षक कॉपी करें"
+  },
+  "chat":{
+    "message": "ChatGPT खोलें"
+  },
+  "audio":{
+    "message": "ChatGPT ऑडियो खोलें"
+  },
+  "alert": {
+    "message":"कृपया अपने ब्राउज़र के एक्सटेंशन आइकन पर क्लिक करें जो ऊपरी दाहिनी कोने में है और अपना OpenAI API KEY दर्ज करें"
+  }
+}

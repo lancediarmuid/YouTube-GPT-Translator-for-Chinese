@@ -1,0 +1,49 @@
+{
+  "appName": {
+    "message": "TubeX: ผู้ช่วย AI ของคุณใน YouTube",
+    "description": "เพียงเชื่อมต่อ GPT APIKEY ของคุณ"
+  },
+  "appDesc": {
+    "message": "รวมพลังของ GPT AI และ Google Translate เข้ากับ YouTube ของคุณ ทำให้เป็นเครื่องมือที่ยอดเยี่ยมสำหรับการเรียนรู้ภาษาต่างประเทศ",
+    "description": "เพียงเชื่อมต่อ GPT APIKEY ของคุณ"
+  },
+  "shortName":{
+    "message": "TubeX"
+  },
+  "slogan":{
+    "message": "ผู้ช่วย AI ของคุณใน YouTube"
+  },
+  "note":{
+    "message": "หมายเหตุ: โดยค่าเริ่มต้น TubeX สนับสนุนการใช้งาน Google Translate ฟรีสำหรับผู้ใช้ หากคุณต้องการการแปลที่มีคุณภาพสูงและความสามารถของ AI ที่รวมอยู่ใน ChatGPT กรุณากรอก OpenAI API KEY ของคุณ"
+  },
+  "version":{
+    "message": "เลขเวอร์ชัน"
+  },
+  "opacity":{
+    "message": "ความโปร่งใสของพื้นหลังคำบรรยาย:"
+  },
+  "purchase":{
+    "message": "ซื้อ API KEY"
+  },
+  "google_translate":{
+    "message": "Google Translate"
+  },
+  "gpt_translate":{
+    "message": "GPT Translate"
+  },
+  "start_stop":{
+    "message": "เริ่ม/หยุด"
+  },
+  "copy_subtitles":{
+    "message": "คัดลอกคำบรรยายวิดีโอ"
+  },
+  "chat":{
+    "message": "เปิด ChatGPT"
+  },
+  "audio":{
+    "message": "เปิดเสียง ChatGPT"
+  },
+  "alert": {
+    "message":"Please click on the browser's extension icon in the top right corner and enter your OpenAI API KEY"
+  }
+}

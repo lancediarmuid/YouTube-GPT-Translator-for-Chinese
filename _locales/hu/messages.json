@@ -1,0 +1,47 @@
+{
+  "appName": {
+    "message": "TubeX: Az Ön YouTube AI asszisztense"
+  },
+  "appDesc": {
+    "message": "Integrálja a GPT AI és a Google Fordítást a YouTube-ba, hogy nagyszerű eszközzé váljon a külföldi nyelvek tanulásához"
+  },
+  "shortName":{
+    "message": "TubeX"
+  },
+  "slogan":{
+    "message": "Az Ön YouTube AI asszisztense"
+  },
+  "note":{
+    "message": "Megjegyzés: Alapértelmezetten a Pipefitter támogatja a Google Fordítás ingyenes használatát a felhasználók számára. Ha magasabb minőségű fordításokat és az AI képességeket szeretné használni a ChatGPT-ben, kérjük, adja meg az OpenAI API KULCS-át."
+  },
+  "version":{
+    "message": "Verzió"
+  },
+  "opacity":{
+    "message": "Felirat háttér átlátszósága:"
+  },
+  "purchase":{
+    "message": "API KULCS Vásárlása"
+  },
+  "google_translate":{
+    "message": "Google Fordítás"
+  },
+  "gpt_translate":{
+    "message": "GPT Fordítás"
+  },
+  "start_stop":{
+    "message": "Indítás/Leállítás"
+  },
+  "copy_subtitles":{
+    "message": "Videó feliratának másolása"
+  },
+  "chat":{
+    "message": "ChatGPT megnyitása"
+  },
+  "audio":{
+    "message": "Hangos ChatGPT megnyitása"
+  },
+  "alert": {
+    "message":"Please click on the browser's extension icon in the top right corner and enter your OpenAI API KEY"
+  }
+}

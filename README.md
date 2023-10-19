@@ -1,4 +1,4 @@
-# Herculues：YouTube Notebook
+# TubeX：YouTube AI Copilot
 
 <div align="center">
   <img src="./src/images/icon.png" width="200"/>
@@ -11,7 +11,7 @@
     <img src="https://img.shields.io/badge/chrome-116-red" alt="python">
 </p>
 
-**Herculues** is a simple Chrome extension (manifest v3) based on OpenAI's ChatGPT AI technology. It enables real-time translation of English videos and allows for easy copying and pasting of video subtitles. For English learners, this plugin provides Chinese definitions for key words or phrases in the videos. For someone practicing English listening skills, subtitles can be selected for repeated playback and practice. In the future, we will also develop additional features such as video content summaries and one-click generation of video content mind maps. Stay tuned for more updates.
+**ubeX** is a simple Chrome extension (manifest v3) based on OpenAI's ChatGPT AI technology. It enables real-time translation of English videos and allows for easy copying and pasting of video subtitles. For English learners, this plugin provides Chinese definitions for key words or phrases in the videos. For someone practicing English listening skills, subtitles can be selected for repeated playback and practice. In the future, we will also develop additional features such as video content summaries and one-click generation of video content mind maps. Stay tuned for more updates.
 
 ## Installation 
 
@@ -44,7 +44,10 @@ npm run build-release
 
 ### Installation from Chrome Store
 
-Please search **Hercules** from **Chrome Store**.
+
+[Chrome Store](https://chrome.google.com/webstore/detail/tubex-your-youtube-ai-cop/bifndkhccndcnabjhllngpdapfakfcif?hl=zh-CN&authuser=0)
+
+[TubeX Website](https://chrome.google.com/webstore/detail/tubex-your-youtube-ai-cop/bifndkhccndcnabjhllngpdapfakfcif?hl=zh-CN&authuser=0)
 
 ## Notice 
 

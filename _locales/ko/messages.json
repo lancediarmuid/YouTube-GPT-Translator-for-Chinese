@@ -1,0 +1,47 @@
+{
+  "appName": {
+    "message": "TubeX: 당신의 YouTube AI 어시스턴트(Free)"
+  },
+  "appDesc": {
+    "message": "GPT AI와 Google 번역의 기능을 YouTube에 통합하여 외국어 학습에 탁월한 도구로 만듭니다"
+  },
+  "shortName":{
+    "message": "TubeX"
+  },
+  "slogan":{
+    "message": "당신의 YouTube AI 어시스턴트"
+  },
+  "note":{
+    "message": "참고: 기본적으로 Pipefitter는 사용자에게 Google 번역의 무료 사용을 지원합니다. 더 높은 품질의 번역과 ChatGPT에 통합된 AI 기능을 원하시면 OpenAI API 키를 입력하여 사용하십시오."
+  },
+  "version":{
+    "message": "버전"
+  },
+  "opacity":{
+    "message": "자막 배경 불투명도:"
+  },
+  "purchase":{
+    "message": "API 키 구매"
+  },
+  "google_translate":{
+    "message": "Google 번역"
+  },
+  "gpt_translate":{
+    "message": "GPT 번역"
+  },
+  "start_stop":{
+    "message": "시작/정지"
+  },
+  "copy_subtitles":{
+    "message": "비디오 자막 복사"
+  },
+  "chat":{
+    "message": "ChatGPT 열기"
+  },
+  "audio":{
+    "message": "ChatGPT 오디오 열기"
+  },
+  "alert": {
+    "message":"브라우저의 우측 상단 모서리에있는 확장 아이콘을 클릭하고 OpenAI API 키를 입력해주세요"
+  }
+}

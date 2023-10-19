@@ -1,0 +1,47 @@
+{
+  "appName": {
+    "message": "TubeX: Din YouTube AI-assistent"
+  },
+  "appDesc": {
+    "message": "Integrera kraften i GPT AI och Google Translate i din YouTube, vilket gör den till en utmärkt verktyg för att lära sig främmande språk"
+  },
+  "shortName":{
+    "message": "TubeX"
+  },
+  "slogan":{
+    "message": "Din YouTube AI-assistent"
+  },
+  "note":{
+    "message": "Obs: Som standard stöder TubeX gratis användning av Google Translate för användare. Om du vill ha högkvalitativa översättningar och de AI-funktioner som är integrerade i ChatGPT, ange din OpenAI API-nyckel för att använda."
+  },
+  "version":{
+    "message": "Version"
+  },
+  "opacity":{
+    "message": "Undertext Bakgrund Opacitet:"
+  },
+  "purchase":{
+    "message": "Köp API-nyckel"
+  },
+  "google_translate":{
+    "message": "Google Translate"
+  },
+  "gpt_translate":{
+    "message": "GPT Translate"
+  },
+  "start_stop":{
+    "message": "Starta/Stop"
+  },
+  "copy_subtitles":{
+    "message": "Kopiera Videoundertext"
+  },
+  "chat":{
+    "message": "Öppna ChatGPT"
+  },
+  "audio":{
+    "message": "Öppna ChatGPT Ljud"
+  },
+  "alert": {
+    "message":"Klicka på webbläsarens tilläggikon i det övre högra hörnet och ange din OpenAI API-nyckel"
+  }
+}

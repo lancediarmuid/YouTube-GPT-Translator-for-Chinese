@@ -1,0 +1,47 @@
+{
+  "appName": {
+    "message": "TubeX: YouTube AI神器(永久免费)"
+  },
+  "appDesc": {
+    "message": "内置Google和GPT3.5的AI引擎的YouTube字幕翻译神器"
+  },
+  "shortName":{
+    "message": "TubeX"
+  },
+  "slogan":{
+    "message": "Your YouTube AI Assistant"
+  },
+  "note":{
+    "message": "Note: By default, TubeX supports free usage of Google Translate for users. If you want higher quality translations and the AI capabilities integrated in ChatGPT, please enter your OpenAI API KEY to use."
+  },
+  "version":{
+    "message": "Version"
+  },
+  "opacity":{
+    "message": "The Background Opacity:"
+  },
+  "purchase":{
+    "message": "Contact Us"
+  },
+  "google_translate":{
+    "message": "Google 翻译"
+  },
+  "gpt_translate":{
+    "message": "GPT 翻译"
+  },
+  "start_stop":{
+    "message": "开始/暂停"
+  },
+  "copy_subtitles":{
+    "message": "复制导出字幕"
+  },
+  "chat":{
+    "message": "打开ChatGPT"
+  },
+  "audio":{
+    "message": "打开ChatGPT语音"
+  },
+  "alert": {
+    "message":"Please click on the browser's extension icon in the top right corner and enter your OpenAI API KEY"
+  }
+}

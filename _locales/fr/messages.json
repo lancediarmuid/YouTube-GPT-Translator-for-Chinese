@@ -1,0 +1,47 @@
+{
+  "appName": {
+    "message": "TubeX : Votre assistant IA YouTube"
+  },
+  "appDesc": {
+    "message": "Intégrez la puissance de l'IA GPT et de Google Translate dans votre YouTube, en en faisant un excellent outil pour apprendre les langues étrangères"
+  },
+  "shortName":{
+    "message": "TubeX"
+  },
+  "slogan":{
+    "message": "Votre assistant IA YouTube"
+  },
+  "note":{
+    "message": "Note : Par défaut, TubeX prend en charge l'utilisation gratuite de Google Translate pour les utilisateurs. Si vous souhaitez des traductions de meilleure qualité et les capacités d'IA intégrées dans ChatGPT, veuillez entrer votre clé API OpenAI pour l'utiliser."
+  },
+  "version":{
+    "message": "Version"
+  },
+  "opacity":{
+    "message": "Opacité de l'arrière-plan des sous-titres :"
+  },
+  "purchase":{
+    "message": "Acheter une clé API"
+  },
+  "google_translate":{
+    "message": "Google Translate"
+  },
+  "gpt_translate":{
+    "message": "GPT Translate"
+  },
+  "start_stop":{
+    "message": "Démarrer/Arrêter"
+  },
+  "copy_subtitles":{
+    "message": "Copier les sous-titres de la vidéo"
+  },
+  "chat":{
+    "message": "Ouvrir ChatGPT"
+  },
+  "audio":{
+    "message": "Ouvrir ChatGPT Audio"
+  },
+  "alert": {
+    "message":"Please click on the browser's extension icon in the top right corner and enter your OpenAI API KEY"
+  }
+}

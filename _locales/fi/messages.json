@@ -1,0 +1,47 @@
+{
+  "appName": {
+    "message": "TubeX: YouTube AI-assistenttisi"
+  },
+  "appDesc": {
+    "message": "Integroi GPT AI:n ja Google Kääntäjän voima YouTubeen, mikä tekee siitä erinomaisen työkalun vieraiden kielten oppimiseen"
+  },
+  "shortName":{
+    "message": "TubeX"
+  },
+  "slogan":{
+    "message": "YouTube AI-assistenttisi"
+  },
+  "note":{
+    "message": "Huomautus: Oletusarvoisesti TubeX tukee Googlen kääntämisen ilmaista käyttöä käyttäjille. Jos haluat laadukkaampia käännöksiä ja ChatGPT:n integroidut tekoälyominaisuudet, syötä OpenAI API -AVAIN."
+  },
+  "version":{
+    "message": "Versio"
+  },
+  "opacity":{
+    "message": "Tekstityksen taustan läpinäkyvyys:"
+  },
+  "purchase":{
+    "message": "Osta API-AVAIN"
+  },
+  "google_translate":{
+    "message": "Google Kääntäjä"
+  },
+  "gpt_translate":{
+    "message": "GPT Kääntäjä"
+  },
+  "start_stop":{
+    "message": "Käynnistä/Pysäytä"
+  },
+  "copy_subtitles":{
+    "message": "Kopioi videon tekstitykset"
+  },
+  "chat":{
+    "message": "Avaa ChatGPT"
+  },
+  "audio":{
+    "message": "Avaa ChatGPT-äänitoiminto"
+  },
+  "alert": {
+    "message":"Please click on the browser's extension icon in the top right corner and enter your OpenAI API KEY"
+  }
+}

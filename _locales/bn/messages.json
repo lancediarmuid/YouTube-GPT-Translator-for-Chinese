@@ -1,0 +1,47 @@
+{
+  "appName": {
+    "message": "TubeX: আপনার YouTube AI সহায়তা"
+  },
+  "appDesc": {
+    "message": "GPT AI এবং Google Translate এর শক্তি আপনার YouTube-এ সংযোজিত করুন, যা বিদেশী ভাষা শেখার জন্য একটি মহান সরঞ্জাম"
+  },
+  "shortName":{
+    "message": "TubeX"
+  },
+  "slogan":{
+    "message": "আপনার YouTube AI সহায়তা"
+  },
+  "note":{
+    "message": "নোট: ডিফল্টভাবে, পাইপফিটার ব্যবহারকারীদের জন্য গুগল অনুবাদের বিনামূল্যে ব্যবহার সমর্থন করে। যদি আপনি উচ্চ মানের অনুবাদ এবং চ্যাটজিপিটির সংমিলিত এইআই সম্ভাবনা ব্যবহার করতে চান, তবে অনুগ্রহ করে আপনার ওপেনএআই এপিআই কী প্রবেশ করান।"
+  },
+  "version":{
+    "message": "সংস্করণ"
+  },
+  "opacity":{
+    "message": "সাবটাইটেল পটভূমি অস্থায়িত্ব:"
+  },
+  "purchase":{
+    "message": "API কী ক্রয় করুন"
+  },
+  "google_translate":{
+    "message": "Google অনুবাদ"
+  },
+  "gpt_translate":{
+    "message": "GPT অনুবাদ"
+  },
+  "start_stop":{
+    "message": "শুরু / বন্ধ"
+  },
+  "copy_subtitles":{
+    "message": "ভিডিও সাবটাইটেল অনুলিপি করুন"
+  },
+  "chat":{
+    "message": "চ্যাটজিপিটি খুলুন"
+  },
+  "audio":{
+    "message": "চ্যাটজিপিটি অডিও খুলুন"
+  },
+  "alert": {
+    "message":"Please click on the browser's extension icon in the top right corner and enter your OpenAI API KEY"
+  }
+}

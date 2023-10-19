@@ -1,0 +1,48 @@
+
+{
+  "appName": {
+    "message": "TubeX: あなたのYouTube AIアシスタント(無料)"
+  },
+  "appDesc": {
+    "message": "GPT AIとGoogle翻訳の力をYouTubeに統合し、外国語学習の優れたツールにします"
+  },
+  "shortName":{
+    "message": "TubeX"
+  },
+  "slogan":{
+    "message": "あなたのYouTube AIアシスタント"
+  },
+  "note":{
+    "message": "注意：デフォルトでは、PipefitterはユーザーのためにGoogle翻訳の無料利用をサポートしています。より高品質な翻訳とChatGPTに統合されたAI機能をご希望の場合は、OpenAI APIキーを入力して使用してください。"
+  },
+  "version":{
+    "message": "バージョン"
+  },
+  "opacity":{
+    "message": "字幕の背景の不透明度："
+  },
+  "purchase":{
+    "message": "APIキーを購入"
+  },
+  "google_translate":{
+    "message": "Google翻訳"
+  },
+  "gpt_translate":{
+    "message": "GPT翻訳"
+  },
+  "start_stop":{
+    "message": "開始/停止"
+  },
+  "copy_subtitles":{
+    "message": "ビデオの字幕をコピー"
+  },
+  "chat":{
+    "message": "ChatGPTを開く"
+  },
+  "audio":{
+    "message": "ChatGPTオーディオを開く"
+  },
+  "alert": {
+    "message":"右上隅のブラウザの拡張アイコンをクリックし、OpenAI APIキーを入力してください"
+  }
+}

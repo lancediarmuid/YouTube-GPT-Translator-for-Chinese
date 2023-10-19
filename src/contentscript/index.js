@@ -1,25 +1,30 @@
-"use strict";
-import { insertSummaryBtn } from "./youtube";
-let oldHref = "";
+import { insertExtension } from './action';
 
+let oldHref = '';
 window.onload = async () => {
-    if (window.location.hostname === "www.youtube.com") {
-        if (window.location.search !== "" && window.location.search.includes("v=")) {
-            // 执行插件
-            insertSummaryBtn();
-        }
-        // 监听url变化
-        const bodyList = document.querySelector("body");
-        let observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                if (oldHref !== document.location.href) {
-                    console.log("url change");
-                    oldHref = document.location.href;
-                    insertSummaryBtn();
-                }
-            });
-        });   
-        observer.observe(bodyList, { childList: true, subtree: true });    
+  const ele = document.getElementsByClassName('hercules_container');
+  if (window.location.hostname === 'www.youtube.com') {
+    if (window.location.search !== '' && window.location.search.includes('v=')) {
+      console.log('第一次加载Youtube视频，插入扩展');
+      // insertExtension();
     }
-}
 
+    const bodyList = document.querySelector('body');
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach(() => {
+        if (oldHref !== document.location.href) {
+          oldHref = document.location.href;
+          if (ele.length === 0) {
+            insertExtension();
+          } else {
+            while (ele.length > 0) {
+              ele[0].remove();
+            }
+            insertExtension();
+          }
+        }
+      });
+    });
+    observer.observe(bodyList, { childList: true, subtree: true });
+  }
+};

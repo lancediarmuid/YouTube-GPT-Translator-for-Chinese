@@ -1,12 +1,13 @@
 {
-  "name": "Hercules:YouTube AI NoteBook",
-  "version": "1.0.7",
+  "name": "__MSG_appName__",
+  "description": "__MSG_appDesc__",
+  "default_locale": "en",
+  "version": "1.3.7",
   "manifest_version": 3,
   "author": "Lewis Zhang",
   "homepage_url": "https://hercules.ink",
-  "short_name": "Hercules",
-  "key":"",
-  "description": "Your YouTube AI NoteBook",
+  "short_name": "TubeX",
+  "key":"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9odeC5/YH/CgL/t3ca8onB9O5IVv1Z+1+uy5o5c3QXZC38v0SJaJBWvDaA+H7ZPOZHVRZGQ2B8l1EcjKvFvVxBANxYszIYZlENGFESnIPEazWOYKRKW2Fjtnl+kRQDxWp9rvgbx54m6qPh8ALuuZJ44ETdI5qFRd+tU3pCvkIqsAt1/ccL0q3K2EEj0yTjHwl/O01Z0UFsVQwZ8Q/DbfzFDR0E8txNxbUqojwn4yzNZ6odrrLCcFEqxbMRqg5Ern3IFKPraXH+byuDSzyKPk6VW4bVpoLSnfP+LRwsX0eNSStmnvRPe2sYsDw9x4R+2vkgln7Sk3Cdy7y+9A8UdpwIDAQAB",
   "background": {
     "service_worker": "background.bundle.js",
     "type": "module"
@@ -33,7 +34,7 @@
     "48": "images/48.png"
   },
   "oauth2":{
-    "client_id": "",
+    "client_id": "820268438758-qfd3cmpa0uu5q6j10qf83p15tsr0v4dh.apps.googleusercontent.com",
     "scopes": [""]
   }
 }

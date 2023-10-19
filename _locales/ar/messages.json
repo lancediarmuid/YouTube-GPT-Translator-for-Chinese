@@ -1,0 +1,47 @@
+{
+  "appName": {
+    "message": "TubeX: مساعدك الذكي على يوتيوب"
+  },
+  "appDesc": {
+    "message": "قم بدمج قوة GPT AI و Google Translate في يوتيوب الخاص بك، مما يجعله أداة رائعة لتعلم اللغات الأجنبية"
+  },
+  "shortName":{
+    "message": "TubeX"
+  },
+  "slogan":{
+    "message": "مساعدك الذكي على يوتيوب"
+  },
+  "note":{
+    "message": "ملاحظة: بشكل افتراضي، يدعم TubeX الاستخدام المجاني لـ Google Translate للمستخدمين. إذا كنت ترغب في ترجمات عالية الجودة وإمكانات الذكاء الاصطناعي المدمجة في ChatGPT، يرجى إدخال مفتاح API الخاص بك للاستخدام."
+  },
+  "version":{
+    "message": "الإصدار"
+  },
+  "opacity":{
+    "message": "شفافية خلفية العناوين الفرعية:"
+  },
+  "purchase":{
+    "message": "شراء مفتاح API"
+  },
+  "google_translate":{
+    "message": "ترجمة جوجل"
+  },
+  "gpt_translate":{
+    "message": "ترجمة GPT"
+  },
+  "start_stop":{
+    "message": "تشغيل / إيقاف"
+  },
+  "copy_subtitles":{
+    "message": "نسخ العناوين الفرعية للفيديو"
+  },
+  "chat":{
+    "message": "فتح ChatGPT"
+  },
+  "audio":{
+    "message": "فتح ChatGPT الصوتي"
+  },
+  "alert": {
+    "message":"يرجى النقر على أيقونة التمديد في الزاوية العلوية اليمنى للمتصفح وإدخال مفتاح OpenAI API الخاص بك"
+  }
+}

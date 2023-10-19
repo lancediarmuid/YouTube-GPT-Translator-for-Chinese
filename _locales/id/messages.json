@@ -1,0 +1,47 @@
+{
+  "appName": {
+    "message": "TubeX: Asisten AI YouTube Anda"
+  },
+  "appDesc": {
+    "message": "Integrasikan kekuatan AI GPT dan Google Translate ke YouTube Anda, menjadikannya alat yang hebat untuk belajar bahasa asing"
+  },
+  "shortName":{
+    "message": "TubeX"
+  },
+  "slogan":{
+    "message": "Asisten AI YouTube Anda"
+  },
+  "note":{
+    "message": "Catatan: Secara default, Pipefitter mendukung penggunaan gratis Google Translate. Jika Anda ingin terjemahan berkualitas tinggi dan kemampuan AI terintegrasi dalam ChatGPT, silakan masukkan KUNCI API OpenAI Anda untuk menggunakannya."
+  },
+  "version":{
+    "message": "Versi"
+  },
+  "opacity":{
+    "message": "Keburaman Latar Belakang Subtitle:"
+  },
+  "purchase":{
+    "message": "Beli KUNCI API"
+  },
+  "google_translate":{
+    "message": "Terjemahan Google"
+  },
+  "gpt_translate":{
+    "message": "Terjemahan GPT"
+  },
+  "start_stop":{
+    "message": "Mulai/Stop"
+  },
+  "copy_subtitles":{
+    "message": "Salin Subtitle Video"
+  },
+  "chat":{
+    "message": "Buka ChatGPT"
+  },
+  "audio":{
+    "message": "Buka Audio ChatGPT"
+  },
+  "alert": {
+    "message":"Please click on the browser's extension icon in the top right corner and enter your OpenAI API KEY"
+  }
+}

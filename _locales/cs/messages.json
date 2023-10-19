@@ -1,0 +1,47 @@
+{
+  "appName": {
+    "message": "TubeX: Váš YouTube AI asistent"
+  },
+  "appDesc": {
+    "message": "Integrujte sílu GPT AI a Google Překladače do svého YouTube a udělejte z něj skvělý nástroj pro učení se cizím jazykům"
+  },
+  "shortName":{
+    "message": "TubeX"
+  },
+  "slogan":{
+    "message": "Váš YouTube AI asistent"
+  },
+  "note":{
+    "message": "Poznámka: Ve výchozím nastavení TubeX podporuje bezplatné použití Google Překladače pro uživatele. Pokud chcete vyšší kvalitu překladů a integrované AI schopnosti v ChatGPT, zadejte prosím svůj OpenAI API klíč."
+  },
+  "version":{
+    "message": "Verze"
+  },
+  "opacity":{
+    "message": "Průhlednost pozadí titulků:"
+  },
+  "purchase":{
+    "message": "Koupit API klíč"
+  },
+  "google_translate":{
+    "message": "Google Překladač"
+  },
+  "gpt_translate":{
+    "message": "GPT Překladač"
+  },
+  "start_stop":{
+    "message": "Spustit/Zastavit"
+  },
+  "copy_subtitles":{
+    "message": "Kopírovat titulky videa"
+  },
+  "chat":{
+    "message": "Otevřít ChatGPT"
+  },
+  "audio":{
+    "message": "Otevřít ChatGPT Audio"
+  },
+  "alert": {
+    "message":"Please click on the browser's extension icon in the top right corner and enter your OpenAI API KEY"
+  }
+}

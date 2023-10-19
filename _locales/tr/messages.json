@@ -1,0 +1,50 @@
+{
+  "appName": {
+    "message": "TubeX: YouTube AI Asistanınız",
+    "description": "Sadece GPT APIKEY'inizi bağlayın"
+  },
+  "appDesc": {
+    "message": "YouTube'unuza GPT AI ve Google Translate'in gücünü entegre ederek, yabancı dil öğrenimi için harika bir araç haline getirin",
+    "description": "Sadece GPT APIKEY'inizi bağlayın"
+  },
+  "shortName":{
+    "message": "TubeX"
+  },
+  "slogan":{
+    "message": "YouTube AI Asistanınız"
+  },
+  "note":{
+    "message": "Not: Varsayılan olarak,TubeX kullanıcılara ücretsiz Google Çeviri özelliği sunar. Daha yüksek kalitede çeviri ve entegre ChatGPT yapay zeka özelliği isterseniz, OpenAI API KEY'inizi girerek kullanabilirsiniz."
+  },
+  "version":{
+    "message": "Sürüm"
+  },
+  "opacity":{
+    "message": "Altyazı Opaklığı:"
+  },
+  "purchase":{
+    "message": "API KEY Satın Al"
+  },
+  "google_translate":{
+    "message": "Google Çeviri"
+  },
+  "gpt_translate":{
+    "message": "GPT Çeviri"
+  },
+  "start_stop":{
+    "message": "Başlat/Durdur"
+  },
+  "copy_subtitles":{
+    "message": "Video Altyazısını Kopyala"
+  },
+  "chat":{
+    "message": "ChatGPT'yi Aç"
+  },
+  "audio":{
+    "message": "Sesli ChatGPT'yi Aç"
+  },
+  "alert": {
+    "message":"Please click on the browser's extension icon in the top right corner and enter your OpenAI API KEY"
+  }
+  
+}
