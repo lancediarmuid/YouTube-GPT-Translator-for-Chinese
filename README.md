@@ -4,14 +4,14 @@
   <img src="./src/images/icon.png" width="200"/>
 </div>
 <p align="center">
-  <em>We stand with the people of Ukraine and Israel.</em>
+  <em>A Free and open-source Youtube Copilot extension on Chrome</em>
 </p>
 <p align="center">
     <img src="https://img.shields.io/badge/manifest-v3-blue" alt="python">
     <img src="https://img.shields.io/badge/chrome-116-red" alt="python">
 </p>
 
-**TubeX** is an open-source YouTube Copilot that supports translation in 24 mainstream languages worldwide. It comes with built-in Google and GPT3.5 engines. You can directly use chatGPT on the YouTube web interface to request custom tasks such as generating outlines and summaries based on the current video according to your needs. Our vision is to enable people from different countries to overcome language barriers and communicate through videos.
+**TubeX** is an open-source YouTube Copilot that supports translation in 24 mainstream languages worldwide. It comes with built-in Google and GPT3.5 engines. You can directly use chatGPT on the YouTube web interface to request custom tasks such as generating outlines and summaries based on the current video according to your needs. Our vision is to enable people from different countries to overcome language barriers and communicate through videos.We hope that one day, the little girls in Afghanistan can watch open courses from Stanford University, and students from Palestine and Israel can sit together and discuss artificial intelligence. Technology should be used to disseminate knowledge rather than manufacture ammunition.
 
 ## Installation 
 
