@@ -3,16 +3,20 @@
 const onInstallURL = 'https://www.youtube.com/watch?v=_-wjA4XlBl4';
 const onInstallURL2 = 'https://www.youtube.com/watch?v=KE7qU0-ZDIQ';
 
-const key = 'INPUT_YOUR_OPEN_AI_API_KEY_HERE';
+const key = '';
 
 chrome.runtime.onInstalled.addListener((details) => {
   if (details.reason === 'install') {
     chrome.storage.local.set({ apikey: key });
-    if (navigator.language === 'en') {
+    if (navigator.language === 'en'
+    || navigator.language === 'en-US'
+    || navigator.language === 'en-UK'
+    || navigator.language === 'en-CA'
+    || navigator.language === 'en-AU'
+    ) {
       chrome.tabs.create({ url: onInstallURL2 });
     } else {
       chrome.tabs.create({ url: onInstallURL });
     }
   }
 });
-

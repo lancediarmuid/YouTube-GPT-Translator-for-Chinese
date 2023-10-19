@@ -10,6 +10,18 @@ import evtListenerOnLangBtns from '../evtListeners/evtListenerOnLangBtns';
 // eslint-disable-next-line import/no-cycle
 // import scrollIntoCurrTimeDiv from './scrollIntoCurrTimeDiv';
 
+async function checkAvailability() {
+  try {
+    const response = await fetch('https://translate.googleapis.com');
+    if (response.ok) {
+      return true;
+    }
+    return false;
+  } catch (error) {
+    return false;
+  }
+}
+
 async function init() {
   sanitizeWidget();
 
@@ -31,7 +43,11 @@ async function init() {
   // 监听翻译按钮
   addEventListenersOnTranscript();
   // 点击Google翻译作为默认翻译
-  document.querySelector('#hercules_translate').click();
+  if (checkAvailability()) {
+    document.querySelector('#hercules_translate').click();
+  } else {
+    document.querySelector('#hercules_gpt').click();
+  }
 }
 
 export default init;
