@@ -4,14 +4,14 @@
   <img src="./src/images/icon.png" width="200"/>
 </div>
 <p align="center">
-  <em>如果你是一个非英语国家的YouTube观众我想这个插件很适合你</em>
+  <em>We stand with the people of Ukraine and Israel.</em>
 </p>
 <p align="center">
     <img src="https://img.shields.io/badge/manifest-v3-blue" alt="python">
     <img src="https://img.shields.io/badge/chrome-116-red" alt="python">
 </p>
 
-**ubeX** is a simple Chrome extension (manifest v3) based on OpenAI's ChatGPT AI technology. It enables real-time translation of English videos and allows for easy copying and pasting of video subtitles. For English learners, this plugin provides Chinese definitions for key words or phrases in the videos. For someone practicing English listening skills, subtitles can be selected for repeated playback and practice. In the future, we will also develop additional features such as video content summaries and one-click generation of video content mind maps. Stay tuned for more updates.
+**TubeX** is an open-source YouTube Copilot that supports translation in 24 mainstream languages worldwide. It comes with built-in Google and GPT3.5 engines. You can directly use chatGPT on the YouTube web interface to request custom tasks such as generating outlines and summaries based on the current video according to your needs. Our vision is to enable people from different countries to overcome language barriers and communicate through videos.
 
 ## Installation 
 
