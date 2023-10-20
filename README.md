@@ -13,6 +13,14 @@
 
 **TubeX** is an open-source YouTube Copilot that supports translation in 24 mainstream languages worldwide. It comes with built-in Google and GPT3.5 engines. You can directly use chatGPT on the YouTube web interface to request custom tasks such as generating outlines and summaries based on the current video according to your needs. Our vision is to enable people from different countries to overcome language barriers and communicate through videos.We hope that one day, the little girls in Afghanistan can watch open courses from Stanford University, and students from Palestine and Israel can sit together and discuss artificial intelligence. Technology should be used to disseminate knowledge rather than manufacture ammunition.
 
+> Yet the GPT API is still unstable, which may result in you only being able to use the Google Translate engine during your usage.
+
+## 1.4.0 Version Features
+
+1. Add black theme;
+2. Add e.g sentences after highlighting words;
+3. Add Bard AI
+
 ## Installation 
 
 ### Developer Installation 

@@ -1,13 +1,13 @@
 .hercules_container {
     min-width: 300px;
     max-width: 400px;
-    background-color: #FFFFFF;
     padding: 4px 8px 4px 12px;
     border: 1px solid rgba(0,0,0,0.3);
     border-radius: 4px;
     margin-bottom: 10px;
     box-shadow: rgb(0 0 0 / 35%) 2px 4px 6px;
     display: block;
+    color: rgb(130, 130, 130);
 }
 
 .yt_ai_summary_header {
@@ -150,7 +150,7 @@
 }
 
 .hercules_transcript_text_timestamp {
-    color:#065fd4;
+    /* color:#065fd4; */
     text-decoration: none;
     cursor: pointer;
     margin-left: 16px;
@@ -165,12 +165,12 @@
 }
 
 .hover {
-    color: #042e65;
+    /* color: #042e65; */
     font-weight: bolder;
 }
 
 .onair {
-    color: #20497f;
+    /* color: #20497f; */
 }
 
 .translation {
@@ -181,20 +181,20 @@
 .translation-text {
     margin-top: 10px;
     font-size: 16px;
-    color: #353535;
+    /* color: #353535; */
 }
 
 .gramma-text {
     margin-top: 10px;
     font-size: 16px;
-    color: #353535;
+    /* color: #353535; */
 
 }
 
 .keywords-text {
     margin-top: 10px;
     font-size: 16px;
-    color: #353535;
+    /* color: #353535; */
 
 }
 
@@ -210,7 +210,7 @@
 .hercules-button {  
     background:rgba(255, 255, 255, 0.0);
     border: none;
-    color: #4d4d4d;
+    /* color: #4d4d4d; */
     margin-top: 10px;
     border-radius: 8px;
 }

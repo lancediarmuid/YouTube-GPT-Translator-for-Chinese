@@ -30,6 +30,7 @@ function insertExtension() {
     const insertPoint = document.querySelector(YOUTUBE_NATIVE);
     // 插入扩展UI
     insertPoint.insertAdjacentHTML('afterbegin', main);
+
     const googleTranslate = chrome.i18n.getMessage('google_translate');
     document.getElementById('hercules_translate').setAttribute('data-hover-label', googleTranslate);
     const gptTranslate = chrome.i18n.getMessage('gpt_translate');

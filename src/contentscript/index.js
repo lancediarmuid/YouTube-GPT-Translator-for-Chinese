@@ -5,8 +5,7 @@ window.onload = async () => {
   const ele = document.getElementsByClassName('hercules_container');
   if (window.location.hostname === 'www.youtube.com') {
     if (window.location.search !== '' && window.location.search.includes('v=')) {
-      console.log('第一次加载Youtube视频，插入扩展');
-      // insertExtension();
+      console.log('加载进来');
     }
 
     const bodyList = document.querySelector('body');
