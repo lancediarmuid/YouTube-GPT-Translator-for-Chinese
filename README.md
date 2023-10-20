@@ -18,8 +18,11 @@
 ## 1.4.0 Version Features
 
 1. Add black theme;
-2. Add e.g sentences after highlighting words;
-3. Add Bard AI
+2. Add dragging function;
+
+## Set Your GPT API Key
+
+Open `background.js` file and input your api key into **key** varible.
 
 ## Installation 
 

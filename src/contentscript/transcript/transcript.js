@@ -195,11 +195,11 @@ export async function getTranscriptHTML(link) {
                     </div>
                   </div>
                   <div>
-                    <a class="hercules_transcript_text_timestamp" 
+                    <span class="hercules_transcript_text_timestamp" 
                       style="padding-top: 16px !important;" 
                       data-start-time="${t}">
                       ${hhmmss}
-                    </a>
+                    </span>
                   </div>
                  
               </div>`;
