@@ -1,9 +1,5 @@
 /* eslint-disable no-undef */
 window.onload = function init() {
-  document.getElementById('input').addEventListener('input', (e) => {
-    chrome.storage.local.set({ apikey: e.target.value });
-  });
-
   document.getElementById('opacity-bar').addEventListener('input', (e) => {
     chrome.tabs.query({ active: true, currentWindow: true }, () => {
       const opacityValue = e.target.value;
@@ -14,12 +10,6 @@ window.onload = function init() {
   chrome.storage.local.get(['opacity'], (result) => {
     if (result.opacity) {
       document.getElementById('opacity-bar').value = result.opacity;
-    }
-  });
-
-  chrome.storage.local.get(['apikey'], (result) => {
-    if (result.apikey) {
-      document.getElementById('input').value = result.apikey;
     }
   });
 
