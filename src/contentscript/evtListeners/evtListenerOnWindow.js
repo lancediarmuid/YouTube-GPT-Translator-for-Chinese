@@ -6,8 +6,6 @@ const languages = [
   { value: 'en', text: 'English' },
   { value: 'en-US', text: 'English(US)' },
   { value: 'en-UK', text: 'English(UK)' },
-  { value: 'en-CA', text: 'English(CA)' },
-  { value: 'en-AU', text: 'English(AU)' },
   { value: 'ja', text: '日本語' },
   { value: 'ko', text: '한국어' },
   { value: 'fr', text: 'Français' },
@@ -35,22 +33,24 @@ const languages = [
 ];
 
 const evtListenerOnWindow = () => {
-  const titleEle = document.getElementById('yt_ai_header_text');
+  const select = document.getElementById('yt_ai_header_text');
 
   // 动态添加选项
   languages.forEach((option) => {
     const newOption = document.createElement('option');
     newOption.value = option.value;
     newOption.text = option.text;
-    titleEle.appendChild(newOption);
+    select.appendChild(newOption);
   });
 
   // 设置默认值
-  titleEle.value = navigator.language;
+  select.value = navigator.language;
 
   // 监听选择事件
-  titleEle.addEventListener('change', (e) => {
-    titleEle.value = e.target.value;
+  select.addEventListener('change', (e) => {
+    select.value = e.target.value;
+    document.querySelector('#hercules_translate').click();
+    document.querySelector('#hercules_translate').click();
   });
   // 监听window滚动事件
   window.addEventListener('scroll', () => {

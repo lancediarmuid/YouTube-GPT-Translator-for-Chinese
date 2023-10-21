@@ -9,6 +9,8 @@ const evtListenerOnCopy = () => {
       copyTranscript();
     }
   });
+
+  // 监听选择事件
 };
 
 export default evtListenerOnCopy;

@@ -1,9 +1,9 @@
 // eslint-disable-next-line import/no-cycle
-import { readLocalStorage, synthesizeSpeech, recognizeSpeech } from '../utils';
-import { ytVideoEl } from '../component';
+// import { readLocalStorage, synthesizeSpeech, recognizeSpeech } from '../utils';
+// import { ytVideoEl } from '../component';
 
 async function evtListenerOnAudio() {
-  console.log("取消语音监听")
+  console.log('取消语音监听');
   // document.getElementById('yt_ai_header_audio').addEventListener('click', async (e) => {
   //   e.stopPropagation();
   //   e.stopPropagation();

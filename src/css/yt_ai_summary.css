@@ -1,5 +1,5 @@
 .hercules_container {
-    min-width: 300px;
+    min-width: 400px;
     max-width: 400px;
     padding: 4px 8px 4px 12px;
     border: 1px solid rgba(0,0,0,0.3);
@@ -91,10 +91,15 @@
 
 .yt_ai_summary_body {
     display: none;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
     margin: 4px 0;
     padding-top: 8px;
     border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.yt_ai_summary_body::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari, and Opera */
 }
 
 .yt_ai_summary_body_show {
@@ -308,4 +313,13 @@
 .yt_ai_header_text {
     background: none;
     color: rgb(130, 130, 130);
+    border: none;
+}
+
+.yt_ai_header_text:hover {
+    cursor: pointer;
+}
+
+select:focus {
+    outline: none;
 }

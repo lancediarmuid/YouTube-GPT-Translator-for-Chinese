@@ -30,7 +30,9 @@ const evtListenerOnGoogleTranslate = () => {
         const text = el.innerText;
         const res = await requestGoogle(text);
         const time = el.getAttribute('data-start-time');
-        document.getElementById(`translate-${time}`).innerText = res;
+        if (document.getElementById(`translate-${time}`)) {
+          document.getElementById(`translate-${time}`).innerText = res;
+        }
       });
     }
   });
