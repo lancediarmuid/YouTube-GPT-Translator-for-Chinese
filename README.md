@@ -25,9 +25,9 @@ Open `background.js` file and input your api key into **key** varible.
 
  <a href="https://chrome.google.com/webstore/detail/herculesyoutube%E8%A7%86%E9%A2%91%E7%BF%BB%E8%AF%91%E6%8F%92%E4%BB%B6%E8%8B%B1%E7%BF%BB%E4%B8%AD/bifndkhccndcnabjhllngpdapfakfcif" style ="display:flex" target="_blank" rel="noreferrer">
               <img src="./src/images/chrome_logo.png" width="40" alt="Chrome"/>
-              <p>
+              <span>
                Install on Chrome
-              </p>
+              </span>
 </a>
 
 ### Developer Installation 
