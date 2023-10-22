@@ -52,19 +52,6 @@ const evtListenerOnWindow = () => {
     document.querySelector('#hercules_translate').click();
     document.querySelector('#hercules_translate').click();
   });
-  // 监听window滚动事件
-  window.addEventListener('scroll', () => {
-    const ytVideoEl = document.querySelector('#movie_player > div.html5-video-container > video');
-    const startbtn = document.querySelector('#hercules_track');
-    if (!startbtn) { return; }
-    if (window.pageYOffset > 300) {
-      if (!ytVideoEl.paused) {
-        startbtn.click();
-      }
-    } else if (ytVideoEl.paused) {
-      startbtn.click();
-    }
-  });
 };
 
 export default evtListenerOnWindow;

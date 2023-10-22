@@ -134,7 +134,7 @@ export default async function requestGoogle(question) {
     });
     return str;
   } catch (e) {
-    return `由于Google翻译不再支持中国大陆地区，请用户在您VPN的PAC选项中添加translate.googleapis.com
-    或VPN开启全局模式，以便您能够继续使用Google翻译`;
+    console.log(e);
+    return '本翻译引擎由Google提供，但由于Google翻译不再支持中国大陆地区，请将您的VPN调整至全局模式或在您VPN的PAC选项中添加translate.googleapis.com';
   }
 }

@@ -43,6 +43,7 @@ async function init() {
   // 监听翻译按钮
   addEventListenersOnTranscript();
   // 点击Google翻译作为默认翻译
+  document.querySelector('#hercules_translate').click();
   if (checkAvailability()) {
     document.querySelector('#hercules_translate').click();
   } else {

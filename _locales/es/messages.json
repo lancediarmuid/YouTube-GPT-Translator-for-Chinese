@@ -1,0 +1,47 @@
+{
+  "appName": {
+    "message": "TubeX: Tu copiloto de IA de YouTube (Herramienta gratuita)"
+  },
+  "appDesc": {
+    "message": "Integra el poder de la IA de GPT y Google Translate en tu YouTube, convirtiéndolo en una excelente herramienta para aprender idiomas extranjeros"
+  },
+  "shortName":{
+    "message": "TubeX"
+  },
+  "slogan":{
+    "message": "Tu copiloto de IA de YouTube"
+  },
+  "note":{
+    "message": "Nota: Por defecto, TubeX admite el uso gratuito de Google Translate para los usuarios. Si deseas traducciones de mayor calidad y las capacidades de IA integradas en ChatGPT, ingresa tu clave de API de OpenAI para usarlas."
+  },
+  "version":{
+    "message": "Versión"
+  },
+  "opacity":{
+    "message": "Opacidad de fondo:"
+  },
+  "purchase":{
+    "message": "Comprar clave API"
+  },
+  "google_translate":{
+    "message": "Google Translate"
+  },
+  "gpt_translate":{
+    "message": "GPT Translate"
+  },
+  "start_stop":{
+    "message": "Iniciar/Detener"
+  },
+  "copy_subtitles":{
+    "message": "Copiar subtítulos del video"
+  },
+  "chat":{
+    "message": "Abrir ChatGPT"
+  },
+  "audio":{
+    "message": "Abrir ChatGPT de audio"
+  },
+  "alert": {
+    "message":"Haz clic en el icono de la extensión del navegador en la esquina superior derecha e ingresa tu clave de API de OpenAI"
+  }
+}
