@@ -3,6 +3,21 @@ import { loading } from '../component';
 import { requestGoogle, requestGpt } from '../api';
 import { readLocalStorage } from '../utils';
 
+let isThrottled = false;
+
+function throttle(func, delay) {
+  if (isThrottled) {
+    return;
+  }
+
+  isThrottled = true;
+  func();
+
+  setTimeout(() => {
+    isThrottled = false;
+  }, delay);
+}
+
 const evtListenerOnHighlight = () => {
   // 监听字幕区域的划词事件
   const textboard = document.getElementById('yt_ai_summary_body');
@@ -38,12 +53,16 @@ const evtListenerOnHighlight = () => {
         } else {
           const titleEle = document.getElementById('yt_ai_header_text');
           const lang = titleEle.options[titleEle.selectedIndex].text;
-          const stream = await requestGpt(`${selectedText}。What's mean。Output should be ${lang}`, true);
-          for await (const chunk of stream) {
-            if (chunk.choices) {
-              gptResultDiv.insertAdjacentHTML('beforeend', chunk.choices[0]?.delta?.content || '');
+
+          throttle(async () => {
+            const stream = await requestGpt(`${selectedText}。Provide the definition, pronunciation, attributes, and example sentences of the given word or phrase.
+            Output should be ${lang}`, true);
+            for await (const chunk of stream) {
+              if (chunk.choices) {
+                gptResultDiv.insertAdjacentHTML('beforeend', chunk.choices[0]?.delta?.content || '');
+              }
             }
-          }
+          }, 3000);
         }
       } catch (e) {
         if (popup && popup.innerHTML) {
