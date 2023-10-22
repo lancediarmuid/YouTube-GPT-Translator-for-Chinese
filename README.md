@@ -51,9 +51,13 @@ npm run build-release
 ### Installation from Chrome Store
 
 
-[Chrome Store](https://chrome.google.com/webstore/detail/tubex-your-youtube-ai-cop/bifndkhccndcnabjhllngpdapfakfcif?hl=zh-CN&authuser=0)
-
-[TubeX Website](https://hercules.ink)
+ <a href="https://chrome.google.com/webstore/detail/herculesyoutube%E8%A7%86%E9%A2%91%E7%BF%BB%E8%AF%91%E6%8F%92%E4%BB%B6%E8%8B%B1%E7%BF%BB%E4%B8%AD/bifndkhccndcnabjhllngpdapfakfcif"
+              target="_blank" rel="noreferrer">
+              <img src="./src/images/chrome_logo.png" width={40} alt="Chrome"/>
+              <p>
+                {t('install_on_Chrome')}
+              </p>
+</a>
 
 ## Notice 
 
