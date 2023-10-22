@@ -41,10 +41,8 @@ export async function recognizeSpeech() {
     if (result.reason === ResultReason.RecognizedSpeech) {
       // 获取字幕从videoId开始
       const transcript = await getTranscript();
-      const regex = /视频|video/i;
-      const containsVideo = regex.test(result.text);
       let { text } = result;
-      if (containsVideo && transcript) {
+      if (transcript) {
         text = `${text}。you could refer to the following text:${transcript}`;
       }
       const res = await requestGpt(text, false);

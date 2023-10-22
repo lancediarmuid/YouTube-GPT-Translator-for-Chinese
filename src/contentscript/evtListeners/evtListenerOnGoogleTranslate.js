@@ -23,7 +23,7 @@ const evtListenerOnGoogleTranslate = () => {
         document.getElementById(`translate-${time}`).innerText = '';
       });
     } else {
-      svg.setAttribute('fill', '#065fd4');
+      svg.setAttribute('fill', '#eacd76');
       const gptSvg = document.querySelector('#hercules_gpt svg');
       gptSvg.setAttribute('fill', '#828282');
       Array.from(document.getElementsByClassName('hercules_transcript_text')).forEach(async (el) => {

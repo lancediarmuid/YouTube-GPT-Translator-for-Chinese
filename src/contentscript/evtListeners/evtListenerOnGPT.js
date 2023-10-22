@@ -25,7 +25,7 @@ async function request() {
 
     const transcript = document.getElementsByClassName('hercules_transcript_text');
     // 当前已开启GPT功能
-    if (svg.getAttribute('fill') === '#065fd4') {
+    if (svg.getAttribute('fill') === '#eacd76') {
       // 清空所有的翻译文本
       Array.from(transcript).forEach(async (el) => {
         const time = el.getAttribute('data-start-time');
@@ -37,7 +37,7 @@ async function request() {
         const time = el.getAttribute('data-start-time');
         document.getElementById(`translate-${time}`).innerText = '';
       });
-      svg.setAttribute('fill', '#065fd4');
+      svg.setAttribute('fill', '#eacd76');
       googleSvg.setAttribute('fill', '#828282');
       const currTime = getTYCurrentTime();
       Array.from(document.getElementsByClassName('hercules_transcript_text')).forEach(async (el, i, arr) => {

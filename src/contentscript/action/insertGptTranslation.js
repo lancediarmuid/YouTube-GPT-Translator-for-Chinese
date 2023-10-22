@@ -8,7 +8,7 @@ import { requestGpt } from '../api';
  */
 async function insertGptTranslation(sourceText, targetElement) {
   const gptsvg = document.querySelector('#hercules_gpt svg');
-  if (gptsvg.getAttribute('fill') === '#065fd4' && sourceText && targetElement.innerText === '') {
+  if (gptsvg.getAttribute('fill') === '#eacd76' && sourceText && targetElement.innerText === '') {
     const stream = await requestGpt(`${sourceText}.Please translate it`, true);
     for await (const part of stream) {
       if (part.choices) {

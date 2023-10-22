@@ -1,6 +1,6 @@
 import copyTranscript from './copyTranscript';
 import getTranscript from './getTranscript';
-
+import pureTranscript from './pureTranscript';
 import {
   getLangOptionsWithLink,
   getRawTranscript,
@@ -15,4 +15,5 @@ export {
   getRawTranscript,
   getTranscript,
   getTranscriptHTML,
+  pureTranscript,
 };

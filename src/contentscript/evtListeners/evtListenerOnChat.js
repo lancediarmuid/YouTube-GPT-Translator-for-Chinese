@@ -3,24 +3,24 @@
 import { readLocalStorage } from '../utils';
 import { bar } from '../component';
 import { requestGpt } from '../api';
-import { getTranscript } from '../transcript';
+import { pureTranscript } from '../transcript';
 import { resetSubtitles } from '../action';
 
 async function handleData() {
   const btn = document.getElementById('hercules-submit');
   const input = document.getElementById('hercules_input');
   let text = input.value;
+  const transcript = pureTranscript();
+  if (transcript) {
+    text = `${text}.Below are the subtitles of the video:${transcript}。`;
+  }
+  console.log('1', text);
   const body = document.querySelector('#hercules_text');
   body.innerHTML = '';
   input.value = '';
   btn.style.display = 'none';
   input.placeholder = 'AI is typing...';
-  const transcript = await getTranscript();
-  const regex = /视频|video/i;
-  const containsVideo = regex.test(text);
-  if (containsVideo && transcript) {
-    text = `${text}.Below are the subtitles of the video:${transcript}。`;
-  }
+
   const stream = await requestGpt(text, true);
   for await (const part of stream) {
     if (part.choices) {
@@ -54,11 +54,11 @@ async function evtListenerOnChat() {
     }
     if (apikey) {
       const svg = document.querySelector('#yt_ai_header_chat svg');
-      if (svg.getAttribute('fill') === '#065fd4') {
+      if (svg.getAttribute('fill') === '#eacd76') {
         resetSubtitles();
       } else {
         document.querySelector('.hercules_container').insertAdjacentHTML('afterbegin', bar);
-        svg.setAttribute('fill', '#065fd4');
+        svg.setAttribute('fill', '#eacd76');
         evtListenerOnChatInput();
       }
     } else {

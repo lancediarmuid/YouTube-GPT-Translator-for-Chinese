@@ -36,6 +36,7 @@ async function getTranscript() {
   Array.from(textNodes).forEach((i) => {
     str += i.textContent;
   });
+  console.log('getTranscript', str);
 
   return str;
 }
