@@ -55,7 +55,90 @@ function insertExtension() {
       init();
     });
   });
+  // 打开或创建数据库
+  const request = indexedDB.open('tubexprod', 1);
 
+  // 处理数据库版本变化
+  request.onupgradeneeded = function (event) {
+    const db = event.target.result;
+
+    // 创建一个对象存储空间（表）
+    const objectStore = db.createObjectStore('myObjectStore', { keyPath: 'id', autoIncrement: true });
+
+    // 定义存储对象的属性
+    objectStore.createIndex('title', 'title', { unique: true });
+    objectStore.createIndex('media', 'media', { unique: false });
+    objectStore.createIndex('desc', 'desc', { unique: false });
+    objectStore.createIndex('timestamp', 'timestamp', { unique: false });
+  };
+
+  // 处理数据库打开成功
+  request.onsuccess = function (event) {
+    const db = event.target.result;
+
+    // 开启一个事务
+    const transaction = db.transaction(['myObjectStore'], 'readwrite');
+
+    // 获取存储对象
+    const objectStore = transaction.objectStore('myObjectStore');
+
+    // 获取视频标题
+    const titleEle = document.querySelector('.ytd-watch-metadata');
+    if (titleEle) {
+      const rawText = titleEle.innerText;
+      const originalArray = rawText.split('\n');
+      // eslint-disable-next-line no-restricted-globals
+      const filteredArray = originalArray.filter((item) => item !== '' && item !== ' ' && isNaN(item));
+      const data = {
+        title: filteredArray[0],
+        media: filteredArray[1],
+        desc: filteredArray[6],
+        timestamp: new Date(),
+      };
+
+      // 向存储对象添加数据
+      const req = objectStore.add(data);
+
+      // 处理存储成功后的回调
+      req.onsuccess = function () {
+        console.log('Data added to IndexedDB');
+      };
+
+      // 处理事务完成后的回调
+      transaction.oncomplete = function () {
+        console.log('Transaction completed');
+      };
+
+      // 处理事务错误
+      transaction.onerror = function () {
+        console.log('Transaction error:', event.target.error);
+      };
+
+      // function readAll() {
+      //   const objectStore = db.transaction('myObjectStore').objectStore('myObjectStore');
+
+      //   objectStore.openCursor().onsuccess = function (event) {
+      //     const cursor = event.target.result;
+
+      //     if (cursor) {
+      //       console.log(`${cursor.value.title}`);
+      //       cursor.continue();
+      //     } else {
+      //       console.log('没有更多数据了！');
+      //     }
+      //   };
+      // }
+      // readAll();
+
+      // 关闭数据库连接
+      db.close();
+    }
+
+    // 处理数据库打开失败
+    request.onerror = function (e) {
+      console.log('Database error:', e.target.error);
+    };
+  };
   setInterval(() => {
     const ytVideoEl = document.querySelector('#movie_player > div.html5-video-container > video');
     const pauseIcon = document.querySelector('svg[data-icon="pause"]');

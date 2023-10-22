@@ -1,4 +1,4 @@
-function detectLanguage(str) {
+export function detectLanguage(str) {
   const japaneseRegex = /[\u3040-\u30FF\u31F0-\u31FF\uFF66-\uFF9F]/;
   const chineseRegex = /[\u4E00-\u9FFF\u3400-\u4DBF]/;
   const englishRegex = /[A-Za-z]/;

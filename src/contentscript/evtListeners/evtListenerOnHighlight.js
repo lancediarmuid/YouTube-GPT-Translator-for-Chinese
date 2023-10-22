@@ -2,6 +2,7 @@ import { loading } from '../component';
 // eslint-disable-next-line import/no-cycle
 import { requestGoogle, requestGpt } from '../api';
 import { readLocalStorage } from '../utils';
+import { detectLanguage } from '../api/requestGoogle';
 
 let isThrottled = false;
 
@@ -27,7 +28,7 @@ const evtListenerOnHighlight = () => {
     event.stopPropagation();
     const selection = window.getSelection();
     const selectedText = selection.toString().trim();
-    if (selectedText.length > 1) {
+    if (selectedText.length > 1 && selectedText.length < 15) {
       const popup = document.createElement('div');
       popup.id = 'popup';
       popup.style.position = 'absolute';
@@ -52,11 +53,13 @@ const evtListenerOnHighlight = () => {
           gptResultDiv.insertAdjacentHTML('beforeend', text);
         } else {
           const titleEle = document.getElementById('yt_ai_header_text');
-          const lang = titleEle.options[titleEle.selectedIndex].text;
-
+          const Targetlang = titleEle.options[titleEle.selectedIndex].text;
           throttle(async () => {
-            const stream = await requestGpt(`${selectedText}。Provide the definition, pronunciation, attributes, and example sentences of the given word or phrase.
-            Output should be ${lang}`, true);
+            const nativeLang = detectLanguage(selectedText);
+            const stream = await requestGpt(`${selectedText}。
+            Provide the definition, phonetic transcription, attributes in ${nativeLang}
+            and example ${nativeLang} sentences of the given word or phrase.
+            Output should be ${Targetlang} and split by \n`, true);
             for await (const chunk of stream) {
               if (chunk.choices) {
                 gptResultDiv.insertAdjacentHTML('beforeend', chunk.choices[0]?.delta?.content || '');
