@@ -23,7 +23,7 @@ Open `background.js` file and input your api key into **key** varible.
 
 ### Installation from Chrome Store
 
-
+<div style=" display: flex;column-gap: 24px;justify-content: center;align-items: center;width: fit-content;margin: auto;">
  <a href="https://chrome.google.com/webstore/detail/herculesyoutube%E8%A7%86%E9%A2%91%E7%BF%BB%E8%AF%91%E6%8F%92%E4%BB%B6%E8%8B%B1%E7%BF%BB%E4%B8%AD/bifndkhccndcnabjhllngpdapfakfcif"
               target="_blank" rel="noreferrer">
               <img src="./src/images/chrome_logo.png" width="40" alt="Chrome"/>
@@ -31,7 +31,7 @@ Open `background.js` file and input your api key into **key** varible.
                Install on Chrome
               </p>
 </a>
-
+</div>
 ### Developer Installation 
 
 To install this extension, follow these steps:
