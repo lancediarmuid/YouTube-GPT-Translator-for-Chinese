@@ -15,11 +15,6 @@
 
 > Yet the GPT API is still unstable, which may result in you only being able to use the Google Translate engine during your usage.
 
-## 1.4.1 Version Features
-
-1. Add black theme;
-2. Add dragging function;
-
 ## Set Your GPT API Key
 
 Open `background.js` file and input your api key into **key** varible.
@@ -65,10 +60,6 @@ npm run build-release
 - This project is a fork of YouTube Summary with ChatGPT and is an open-source project.
 - This project heavily relies on YouTube, OpenAI, and Google official products, and there is no guarantee of its perpetual effectiveness.
 - When using this project in mainland China, please comply with relevant laws and regulations.
-
-## 已知Bugs
-1. windows系统显示出现滚动条;
-2. 全屏状态下点击收缩会导致字幕消失。
 
 ## Feedback and Support 
 
