@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-cycle
 import { requestGpt } from '../api';
+import marked from '../utils/marked';
 
 /**
  * @param {string} sourceText
@@ -12,7 +13,7 @@ async function insertGptTranslation(sourceText, targetElement) {
     const stream = await requestGpt(`${sourceText}.Please translate it`, true);
     for await (const part of stream) {
       if (part.choices) {
-        const char = part.choices[0]?.delta?.content || '';
+        const char = marked(part.choices[0]?.delta?.content || '');
         targetElement.insertAdjacentHTML('beforeend', char);
       } else {
         targetElement.insertAdjacentHTML('beforeend', 'GPT Error,Please refresh the page');

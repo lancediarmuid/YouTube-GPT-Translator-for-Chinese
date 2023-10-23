@@ -38,6 +38,7 @@
     "google-translate-api-browser": "^3.0.1",
     "jquery": "^3.6.2",
     "langchain": "^0.0.150",
+    "marked": "^9.1.2",
     "microsoft-cognitiveservices-speech-sdk": "^1.32.0",
     "openai": "^4.6.0"
   }

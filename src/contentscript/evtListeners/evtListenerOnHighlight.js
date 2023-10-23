@@ -3,6 +3,7 @@ import { loading } from '../component';
 import { requestGoogle, requestGpt } from '../api';
 import { readLocalStorage } from '../utils';
 import { detectLanguage } from '../api/requestGoogle';
+import marked from '../utils/marked';
 
 let isThrottled = false;
 
@@ -62,7 +63,8 @@ const evtListenerOnHighlight = () => {
             Output should be ${Targetlang} and split by \n`, true);
             for await (const chunk of stream) {
               if (chunk.choices) {
-                gptResultDiv.insertAdjacentHTML('beforeend', chunk.choices[0]?.delta?.content || '');
+                const html = marked(chunk.choices[0]?.delta?.content || '');
+                gptResultDiv.insertAdjacentHTML('beforeend', html);
               }
             }
           }, 3000);

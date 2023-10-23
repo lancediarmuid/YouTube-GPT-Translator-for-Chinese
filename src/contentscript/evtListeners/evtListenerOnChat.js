@@ -5,6 +5,7 @@ import { bar } from '../component';
 import { requestGpt } from '../api';
 import { pureTranscript } from '../transcript';
 import { resetSubtitles } from '../action';
+import marked from '../utils/marked';
 
 async function handleData() {
   const btn = document.getElementById('hercules-submit');
@@ -14,7 +15,6 @@ async function handleData() {
   if (transcript) {
     text = `${text}.Below are the subtitles of the video:${transcript}。`;
   }
-  console.log('1', text);
   const body = document.querySelector('#hercules_text');
   body.innerHTML = '';
   input.value = '';
@@ -24,7 +24,7 @@ async function handleData() {
   const stream = await requestGpt(text, true);
   for await (const part of stream) {
     if (part.choices) {
-      const char = part.choices[0]?.delta?.content || '';
+      const char = marked(part.choices[0]?.delta?.content || '');
       body.insertAdjacentHTML('beforeend', char);
     } else {
       body.insertAdjacentHTML('beforeend', 'GPT Error,Please refresh the page');
