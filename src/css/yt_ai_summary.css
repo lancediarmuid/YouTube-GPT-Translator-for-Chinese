@@ -255,27 +255,27 @@
 #hercules_bar {
     display: flex;
     position: fixed;
-    border-radius: 30px;
+    border-radius: 20px;
     box-shadow: rgb(0 0 0 / 35%) 2px 4px 6px;
     background-color: #000;
     color: #808080;
-    width: 500px;
-    height: 30px;
-    left: 28%;
-    top: 10px;
-    transform: translateX(-28%);
+    width: 350px;
+    height: 20px;
+    left: 5%;
+    top: 50px;
+    transform: translateX(-5%);
     padding: 10px 20px;
 }
 
 #hercules_input {
     border: none;
     outline: none;
-    font-size: 16px;
+    font-size: 14px;
     color: white;
     background: black;
     border-bottom: 1px solid black;
     width: 90%;
-    height: 30px;
+    height: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -297,9 +297,6 @@
     cursor: pointer;
   }
 
-  #hercules-submit {
-    margin-top: 5px;
-  }
 
 
 .hercules_lang_select::-webkit-scrollbar {

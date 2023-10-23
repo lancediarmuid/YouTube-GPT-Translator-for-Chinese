@@ -50,7 +50,9 @@ const evtListenerOnScreen = () => {
     }
   });
     // 开始监听播放窗口元素
-  ro.observe(playerElement);
+  if (playerElement) {
+    ro.observe(playerElement);
+  }
 };
 
 export default evtListenerOnScreen;

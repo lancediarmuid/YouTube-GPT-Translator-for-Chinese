@@ -153,7 +153,7 @@ function insertExtension() {
         startIcon.style.display = 'none';
       }
     }
-    if (ytVideoEl.paused) { return; }
+    if (ytVideoEl && ytVideoEl.paused) { return; }
     if (!document.querySelector('#hercules_text')) { return; }
     scrollIntoCurrTimeDiv();
   }, 1000);
