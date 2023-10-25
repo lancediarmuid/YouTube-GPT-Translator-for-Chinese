@@ -20,6 +20,7 @@ export default async function requestGpt(prompt, isStream) {
 
   const openai = new OpenAI({
     apiKey: apikey,
+    baseURL: 'https://openkey.cloud/v1',
     dangerouslyAllowBrowser: 'true',
   });
 

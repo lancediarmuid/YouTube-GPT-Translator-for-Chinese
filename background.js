@@ -3,7 +3,7 @@
 const onInstallURL = 'https://www.youtube.com/watch?v=_-wjA4XlBl4';
 const onInstallURL2 = 'https://www.youtube.com/watch?v=KE7qU0-ZDIQ';
 // Here input your openai api key
-const key = '';
+const key = 'sk-AfMIRmaVGn0UdxM8fomlNFx2hB0zsmKkzZU0oDpSd7GJrt3O';
 
 chrome.runtime.onInstalled.addListener((details) => {
   if (details.reason === 'install') {
